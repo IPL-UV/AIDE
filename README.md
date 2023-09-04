@@ -8,7 +8,7 @@ The AIDE toolbox consists of a full pipeline for the detection, characterization
 2) ML architecture selection and training
 3) Evaluation and visualization of results
 
-## Usage
+## Usage and Documentation
 ```python
 # 1) Create an empty pip environment
 python3 -m venv ./aide_env 

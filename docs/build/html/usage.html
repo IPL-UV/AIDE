@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>main module &#8212; AIDE 0.0.1 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usage &#8212; AIDE 0.0.1 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?digest=845a48175c3935ba0d7ff16b8ed0072d62fd099f" />
@@ -20,8 +20,8 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="AIDE" href="modules.html" />
-    <link rel="prev" title="Usage" href="usage.html" /><link rel="stylesheet" href="_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="next" title="main module" href="main.html" />
+    <link rel="prev" title="Welcome to AIDE’s documentation!" href="index.html" /><link rel="stylesheet" href="_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
     <link rel="shortcut icon" type="image/png" href="_static/py.svg" />
             <script type="text/javascript" src="_static/copybutton.js"></script>
             <script type="text/javascript" src="_static/menu.js"></script>
@@ -64,8 +64,8 @@
   <div>
     <h3><a href="index.html">Table of Contents</a></h3>
     <ul>
-<li><a class="reference internal" href="#">main module</a><ul>
-<li><a class="reference internal" href="#main.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li><a class="reference internal" href="#">Usage</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
 </ul>
 </li>
 </ul>
@@ -73,18 +73,18 @@
   </div>
   <div>
     <h4>Previous topic</h4>
-    <p class="topless"><a href="usage.html"
-                          title="previous chapter">Usage</a></p>
+    <p class="topless"><a href="index.html"
+                          title="previous chapter">Welcome to AIDE’s documentation!</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
-    <p class="topless"><a href="modules.html"
-                          title="next chapter">AIDE</a></p>
+    <p class="topless"><a href="main.html"
+                          title="next chapter">main module</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/main.rst.txt"
+      <li><a href="_sources/usage.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -112,10 +112,10 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="modules.html" title="AIDE"
+          <a href="main.html" title="main module"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="usage.html" title="Usage"
+          <a href="index.html" title="Welcome to AIDE’s documentation!"
              accesskey="P">previous</a> |</li>
           <li><img src="_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
@@ -128,7 +128,7 @@
               <a href="index.html">AIDE 0.0.1 documentation</a> &#187;
               
           </li>
-        <li class="nav-item nav-item-this"><a href="">main module</a></li>
+        <li class="nav-item nav-item-this"><a href="">Usage</a></li>
                 <li class="right">
                     
 
@@ -158,13 +158,33 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="module-main">
-<span id="main-module"></span><h1>main module<a class="headerlink" href="#module-main" title="Permalink to this heading"></a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="main.main">
-<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.main" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+  <section id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h1>
+<section id="installation">
+<span id="id1"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
+<p>To use the AIDE toolbox, follow the steps here below:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>Create<span class="w"> </span>an<span class="w"> </span>empty<span class="w"> </span>pip<span class="w"> </span>environment
+<span class="go">python3 -m venv ./aide_env</span>
 
+
+<span class="gp"># </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>Activate<span class="w"> </span>environment
+<span class="go">source ./aide_env/bin/activate</span>
+
+
+<span class="gp"># </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>Install<span class="w"> </span>dependencies
+<span class="go">pip install -r requirements.txt install libs</span>
+
+
+<span class="gp"># </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>Run<span class="w"> </span>main.py<span class="w"> </span>of<span class="w"> </span>AIDE<span class="w"> </span>using<span class="w"> </span>a<span class="w"> </span>config<span class="w"> </span>file.<span class="w"> </span>Some<span class="w"> </span>examples:
+
+<span class="gp"># </span>DroughtED<span class="w"> </span>database<span class="w"> </span>and<span class="w"> </span>K-Nearest<span class="w"> </span>Neighbors<span class="w"> </span><span class="o">(</span>KNN<span class="o">)</span><span class="w"> </span>model<span class="w"> </span><span class="o">(</span>from<span class="w"> </span>PyOD<span class="o">)</span>
+<span class="go">python main.py --config=/configs/config_DroughtED_OutlierDetection.yaml</span>
+
+<span class="gp"># </span>DroughtED<span class="w"> </span>database<span class="w"> </span>and<span class="w"> </span>LSTM-based<span class="w"> </span>architecture<span class="w"> </span><span class="o">(</span>user-defined<span class="o">)</span>
+<span class="go">python main.py --config=/configs/config_DroughtED_DeepLearning.yaml</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -177,8 +197,8 @@
   <div>
     <h3><a href="index.html">Table of Contents</a></h3>
     <ul>
-<li><a class="reference internal" href="#">main module</a><ul>
-<li><a class="reference internal" href="#main.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li><a class="reference internal" href="#">Usage</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
 </ul>
 </li>
 </ul>
@@ -186,18 +206,18 @@
   </div>
   <div>
     <h4>Previous topic</h4>
-    <p class="topless"><a href="usage.html"
-                          title="previous chapter">Usage</a></p>
+    <p class="topless"><a href="index.html"
+                          title="previous chapter">Welcome to AIDE’s documentation!</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
-    <p class="topless"><a href="modules.html"
-                          title="next chapter">AIDE</a></p>
+    <p class="topless"><a href="main.html"
+                          title="next chapter">main module</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/main.rst.txt"
+      <li><a href="_sources/usage.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -225,10 +245,10 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="modules.html" title="AIDE"
+          <a href="main.html" title="main module"
              >next</a> |</li>
         <li class="right" >
-          <a href="usage.html" title="Usage"
+          <a href="index.html" title="Welcome to AIDE’s documentation!"
              >previous</a> |</li>
           <li><img src="_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
@@ -241,7 +261,7 @@
               <a href="index.html">AIDE 0.0.1 documentation</a> &#187;
               
           </li>
-        <li class="nav-item nav-item-this"><a href="">main module</a></li>
+        <li class="nav-item nav-item-this"><a href="">Usage</a></li>
                 <li class="right">
                     
 

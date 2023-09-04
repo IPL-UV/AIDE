@@ -21,7 +21,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="main module" href="main.html" />
-    <link rel="prev" title="Welcome to XAIDA4Detection’s documentation!" href="index.html" /><link rel="stylesheet" href="_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="prev" title="Welcome to AIDE’s documentation!" href="index.html" /><link rel="stylesheet" href="_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
     <link rel="shortcut icon" type="image/png" href="_static/py.svg" />
             <script type="text/javascript" src="_static/copybutton.js"></script>
             <script type="text/javascript" src="_static/menu.js"></script>
@@ -74,7 +74,7 @@
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="index.html"
-                          title="previous chapter">Welcome to XAIDA4Detection’s documentation!</a></p>
+                          title="previous chapter">Welcome to AIDE’s documentation!</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
@@ -112,7 +112,7 @@
           <a href="main.html" title="main module"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Welcome to XAIDA4Detection’s documentation!"
+          <a href="index.html" title="Welcome to AIDE’s documentation!"
              accesskey="P">previous</a> |</li>
           <li><img src="_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
@@ -159,26 +159,26 @@
 <h1>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h1>
 <section id="installation">
 <span id="id1"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
-<p>To use the XAIDA4Detection toolbox, follow the steps here below:</p>
+<p>To use the AIDE toolbox, follow the steps here below:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>Create<span class="w"> </span>an<span class="w"> </span>empty<span class="w"> </span>pip<span class="w"> </span>environment
-<span class="go">python3 -m venv ./xaida_env</span>
+<span class="go">python3 -m venv ./aide_env</span>
 
 
 <span class="gp"># </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>Activate<span class="w"> </span>environment
-<span class="go">source ./xaida_env/bin/activate</span>
+<span class="go">source ./aide_env/bin/activate</span>
 
 
 <span class="gp"># </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>Install<span class="w"> </span>dependencies
-<span class="go">pip install -r requirements_xaida.txt install libs</span>
+<span class="go">pip install -r requirements.txt install libs</span>
 
 
-<span class="gp"># </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>Run<span class="w"> </span>main.py<span class="w"> </span>of<span class="w"> </span>XAIDA4Detection<span class="w"> </span>using<span class="w"> </span>a<span class="w"> </span>config<span class="w"> </span>file.<span class="w"> </span>Some<span class="w"> </span>examples:
+<span class="gp"># </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>Run<span class="w"> </span>main.py<span class="w"> </span>of<span class="w"> </span>AIDE<span class="w"> </span>using<span class="w"> </span>a<span class="w"> </span>config<span class="w"> </span>file.<span class="w"> </span>Some<span class="w"> </span>examples:
 
 <span class="gp"># </span>DroughtED<span class="w"> </span>database<span class="w"> </span>and<span class="w"> </span>K-Nearest<span class="w"> </span>Neighbors<span class="w"> </span><span class="o">(</span>KNN<span class="o">)</span><span class="w"> </span>model<span class="w"> </span><span class="o">(</span>from<span class="w"> </span>PyOD<span class="o">)</span>
-<span class="go">python main.py --config=/configs/config_DroughtED_PYOD.yaml</span>
+<span class="go">python main.py --config=/configs/config_DroughtED_OutlierDetection.yaml</span>
 
 <span class="gp"># </span>DroughtED<span class="w"> </span>database<span class="w"> </span>and<span class="w"> </span>LSTM-based<span class="w"> </span>architecture<span class="w"> </span><span class="o">(</span>user-defined<span class="o">)</span>
-<span class="go">python main.py --config=/configs/config_DroughtED_LSTM.yaml</span>
+<span class="go">python main.py --config=/configs/config_DroughtED_DeepLearning.yaml</span>
 </pre></div>
 </div>
 </section>
@@ -204,7 +204,7 @@
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="index.html"
-                          title="previous chapter">Welcome to XAIDA4Detection’s documentation!</a></p>
+                          title="previous chapter">Welcome to AIDE’s documentation!</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
@@ -242,7 +242,7 @@
           <a href="main.html" title="main module"
              >next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Welcome to XAIDA4Detection’s documentation!"
+          <a href="index.html" title="Welcome to AIDE’s documentation!"
              >previous</a> |</li>
           <li><img src="_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>

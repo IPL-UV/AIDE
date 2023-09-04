@@ -1,9 +1,9 @@
-.. XAIDA4Detection documentation master file, created by
+.. AIDE documentation master file, created by
    sphinx-quickstart on Tue May 23 19:48:59 2023.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to XAIDA4Detection's documentation!
+Welcome to AIDE's documentation!
 ===========================================
 
 Check out the :doc:`usage` section for further information, including how to

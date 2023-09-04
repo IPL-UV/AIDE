@@ -31,6 +31,8 @@ python main.py --config=./configs/config_DroughtED_OutlierDetection.yaml
 python main.py --config=./configs/config_DroughtED_DeepLearning.yam
 ```
 
+Documentation can be found on [**Read the Docs**](http://aidextremes.readthedocs.org/en/latest), as well as in the [`docs/`](https://github.com/IPL-UV/AIDE/tree/main/docs) on the toolbox source.
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>evaluators.xai package &#8212; XAIDA4Detection 0.0.1 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>evaluators.xai package &#8212; AIDE 0.0.1 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?digest=845a48175c3935ba0d7ff16b8ed0072d62fd099f" />
@@ -66,23 +66,8 @@
     <ul>
 <li><a class="reference internal" href="#">evaluators.xai package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-evaluators.xai.XAI">evaluators.xai.XAI module</a><ul>
-<li><a class="reference internal" href="#evaluators.xai.XAI.XAI"><code class="docutils literal notranslate"><span class="pre">XAI</span></code></a><ul>
-<li><a class="reference internal" href="#evaluators.xai.XAI.XAI.xai"><code class="docutils literal notranslate"><span class="pre">XAI.xai()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#evaluators.xai.XAI.agg_y"><code class="docutils literal notranslate"><span class="pre">agg_y()</span></code></a></li>
-<li><a class="reference internal" href="#evaluators.xai.XAI.attribute"><code class="docutils literal notranslate"><span class="pre">attribute()</span></code></a></li>
-<li><a class="reference internal" href="#evaluators.xai.XAI.event_at_all"><code class="docutils literal notranslate"><span class="pre">event_at_all()</span></code></a></li>
-<li><a class="reference internal" href="#evaluators.xai.XAI.event_at_beginning"><code class="docutils literal notranslate"><span class="pre">event_at_beginning()</span></code></a></li>
-<li><a class="reference internal" href="#evaluators.xai.XAI.event_at_end"><code class="docutils literal notranslate"><span class="pre">event_at_end()</span></code></a></li>
-<li><a class="reference internal" href="#evaluators.xai.XAI.get_agg_mask"><code class="docutils literal notranslate"><span class="pre">get_agg_mask()</span></code></a></li>
-<li><a class="reference internal" href="#evaluators.xai.XAI.get_multiindex_df"><code class="docutils literal notranslate"><span class="pre">get_multiindex_df()</span></code></a></li>
-<li><a class="reference internal" href="#evaluators.xai.XAI.plot_attributions_1d"><code class="docutils literal notranslate"><span class="pre">plot_attributions_1d()</span></code></a></li>
-<li><a class="reference internal" href="#evaluators.xai.XAI.plot_attributions_nd"><code class="docutils literal notranslate"><span class="pre">plot_attributions_nd()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-evaluators.xai">Module contents</a></li>
+<li><a class="reference internal" href="#evaluators-xai-xai-module">evaluators.xai.XAI module</a></li>
+<li><a class="reference internal" href="#module-contents">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -126,9 +111,6 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
           <a href="utils.html" title="utils package"
              accesskey="N">next</a> |</li>
         <li class="right" >
@@ -142,7 +124,7 @@
           </li>
           <li>
               
-              <a href="index.html">XAIDA4Detection 0.0.1 documentation</a> &#187;
+              <a href="index.html">AIDE 0.0.1 documentation</a> &#187;
               
           </li>
           <li class="nav-item nav-item-1"><a href="modules.html" >XAIDA4Detection</a> &#187;</li>
@@ -182,134 +164,11 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-evaluators.xai.XAI">
-<span id="evaluators-xai-xai-module"></span><h2>evaluators.xai.XAI module<a class="headerlink" href="#module-evaluators.xai.XAI" title="Permalink to this heading"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="evaluators.xai.XAI.XAI">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evaluators.xai.XAI.</span></span><span class="sig-name descname"><span class="pre">XAI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataloader</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.xai.XAI.XAI" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="evaluators.xai.XAI.XAI.xai">
-<span class="sig-name descname"><span class="pre">xai</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.xai.XAI.XAI.xai" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="evaluators.xai.XAI.agg_y">
-<span class="sig-prename descclassname"><span class="pre">evaluators.xai.XAI.</span></span><span class="sig-name descname"><span class="pre">agg_y</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_agg_dim=(2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">3)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_classes=-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cross_agg=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agg_dim_fn=&lt;built-in</span> <span class="pre">method</span> <span class="pre">mean</span> <span class="pre">of</span> <span class="pre">type</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agg_mask_fn=&lt;built-in</span> <span class="pre">method</span> <span class="pre">mean</span> <span class="pre">of</span> <span class="pre">type</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.xai.XAI.agg_y" title="Permalink to this definition"></a></dt>
-<dd><p>This wrapper aggreagates an output tensor over <cite>out_agg_dim</cite> using <cite>agg_dim_fn</cite>.
-This makes it easier to attribute with respect to a single output scalar, as opposed
-to individual pixel output attribution.</p>
-<p>Instead, if a mask is provided (not None), it uses this mask to aggregate over the classes,
-either by simple direct masking if <cite>cross_agg=False</cite> where the mask just selects some
-wanted pixels from each output class, or by generating all possible combinations of the output
-classes with the masking classes if <cite>cross_agg=True</cite>. In this last case, the new number
-of classes is the product of original_classes x aggregation_classes. Selected samples are then
-aggreated using <cite>agg_mask_fn</cite></p>
-<p>It also expands the output channel dimension if it has only a size of 1 and <cite>num_classes</cite>&gt;1.
-E.g.: it expands from binary classification to 2-class multiclass output</p>
-<p>Note: Output classes must be located in dimension 1 of y, and for masked aggregation,
-dimension 1 must have a size of 1</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="evaluators.xai.XAI.attribute">
-<span class="sig-prename descclassname"><span class="pre">evaluators.xai.XAI.</span></span><span class="sig-name descname"><span class="pre">attribute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataloader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_classes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_agg_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agg_mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.xai.XAI.attribute" title="Permalink to this definition"></a></dt>
-<dd><p>Attribute over an arbitrary amount of input and output dimensions
-From config, it uses the following information:</p>
-<blockquote>
-<div><dl class="simple">
-<dt>For XAI:</dt><dd><ul class="simple">
-<li><p>config[‘evaluation’][‘xai’][‘params’][‘out_agg_dim’]</p></li>
-<li><p>config[‘evaluation’][‘xai’][‘params’][‘type’]</p></li>
-</ul>
-</dd>
-<dt>For <cite>adapt_variables</cite>:</dt><dd><ul class="simple">
-<li><p>config[‘data’][‘data_dim’]</p></li>
-<li><p>config[‘arch’][‘input_model_dim’]</p></li>
-</ul>
-</dd>
-</dl>
-</div></blockquote>
-<p>It returns dictionaries with a key for every attributed event,
-as well as x_shape and y_shape</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="evaluators.xai.XAI.event_at_all">
-<span class="sig-prename descclassname"><span class="pre">evaluators.xai.XAI.</span></span><span class="sig-name descname"><span class="pre">event_at_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.xai.XAI.event_at_all" title="Permalink to this definition"></a></dt>
-<dd><p>Takes an <cite>arr</cite> of shape (*), and creates a new one of shape (t, <a href="#id1"><span class="problematic" id="id2">*</span></a>),
-where the original <cite>arr</cite> is repeated t times over t index 0</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="evaluators.xai.XAI.event_at_beginning">
-<span class="sig-prename descclassname"><span class="pre">evaluators.xai.XAI.</span></span><span class="sig-name descname"><span class="pre">event_at_beginning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.xai.XAI.event_at_beginning" title="Permalink to this definition"></a></dt>
-<dd><p>Takes an <cite>arr</cite> of shape (*), and creates a new one of shape (t, <a href="#id3"><span class="problematic" id="id4">*</span></a>),
-where the original <cite>arr</cite> is at the first position of the 0th dimension,
-and the rest of the elements are zero</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="evaluators.xai.XAI.event_at_end">
-<span class="sig-prename descclassname"><span class="pre">evaluators.xai.XAI.</span></span><span class="sig-name descname"><span class="pre">event_at_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.xai.XAI.event_at_end" title="Permalink to this definition"></a></dt>
-<dd><p>Takes an <cite>arr</cite> of shape (*), and creates a new one of shape (t, <a href="#id5"><span class="problematic" id="id6">*</span></a>),
-where the original <cite>arr</cite> is at the last position of the 0th dimension,
-and the rest of the elements are zero</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="evaluators.xai.XAI.get_agg_mask">
-<span class="sig-prename descclassname"><span class="pre">evaluators.xai.XAI.</span></span><span class="sig-name descname"><span class="pre">get_agg_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">agg_mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.xai.XAI.get_agg_mask" title="Permalink to this definition"></a></dt>
-<dd><p>Compute the aggregation mask according to the <cite>agg_mode</cite>, which must be one of:
-[“none”, “threshold[-full]”, “correctness[-full]”, “labels[-full]”, “custom[-full]”]</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="evaluators.xai.XAI.get_multiindex_df">
-<span class="sig-prename descclassname"><span class="pre">evaluators.xai.XAI.</span></span><span class="sig-name descname"><span class="pre">get_multiindex_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'values'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.xai.XAI.get_multiindex_df" title="Permalink to this definition"></a></dt>
-<dd><p>Builds a multiindex + multicolumn pandas dataframe</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<em>numpy array with a shape that is consistent with the rows + columns provided</em>) – </p></li>
-<li><p><strong>rows</strong> (<em>a list</em><em> of </em><em>lists that will be used to build a MultiIndex</em><em>, </em><em>optionally empty list</em>) – </p></li>
-<li><p><strong>columns</strong> (<em>a list</em><em> of </em><em>lists that will be used to build a MultiIndex</em><em>, </em><em>optionally empty list</em>) – </p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>pd.DataFrame</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="evaluators.xai.XAI.plot_attributions_1d">
-<span class="sig-prename descclassname"><span class="pre">evaluators.xai.XAI.</span></span><span class="sig-name descname"><span class="pre">plot_attributions_1d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attributions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">predictions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_classes_predictions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_classes_attributions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(10,</span> <span class="pre">10)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timesteps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['tab:blue',</span> <span class="pre">'tab:orange',</span> <span class="pre">'tab:green',</span> <span class="pre">'tab:red',</span> <span class="pre">'tab:purple',</span> <span class="pre">'tab:brown',</span> <span class="pre">'tab:pink',</span> <span class="pre">'tab:gray',</span> <span class="pre">'tab:olive',</span> <span class="pre">'tab:cyan']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outlier_perc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">margin_perc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">25.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr_factor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr_baseline</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'middle'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'stacked'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names_position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'left'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_fontsize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_classification</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.xai.XAI.plot_attributions_1d" title="Permalink to this definition"></a></dt>
-<dd><p>Plot 1D attributions (e.g. of a inputs) given an output timestep
-If you want to see absolute attributions, just do np.abs(attributions) yourself
-Shapes:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>attributions: (out t, out classes, in t, in features)</p></li>
-<li><p>inputs: (in t, in features)</p></li>
-<li><p>labels: (out t, [out classes]) out classes is optional</p></li>
-<li><p>predictions: (out t, out classes)</p></li>
-</ul>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="evaluators.xai.XAI.plot_attributions_nd">
-<span class="sig-prename descclassname"><span class="pre">evaluators.xai.XAI.</span></span><span class="sig-name descname"><span class="pre">plot_attributions_nd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(20,</span> <span class="pre">10)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.xai.XAI.plot_attributions_nd" title="Permalink to this definition"></a></dt>
-<dd><p>Plots avarage attributions over all dimensions except for output classes and input features
-It should work for any model</p>
-</dd></dl>
-
+<section id="evaluators-xai-xai-module">
+<h2>evaluators.xai.XAI module<a class="headerlink" href="#evaluators-xai-xai-module" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-evaluators.xai">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-evaluators.xai" title="Permalink to this heading"></a></h2>
+<section id="module-contents">
+<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 
@@ -325,23 +184,8 @@ It should work for any model</p>
     <ul>
 <li><a class="reference internal" href="#">evaluators.xai package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-evaluators.xai.XAI">evaluators.xai.XAI module</a><ul>
-<li><a class="reference internal" href="#evaluators.xai.XAI.XAI"><code class="docutils literal notranslate"><span class="pre">XAI</span></code></a><ul>
-<li><a class="reference internal" href="#evaluators.xai.XAI.XAI.xai"><code class="docutils literal notranslate"><span class="pre">XAI.xai()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#evaluators.xai.XAI.agg_y"><code class="docutils literal notranslate"><span class="pre">agg_y()</span></code></a></li>
-<li><a class="reference internal" href="#evaluators.xai.XAI.attribute"><code class="docutils literal notranslate"><span class="pre">attribute()</span></code></a></li>
-<li><a class="reference internal" href="#evaluators.xai.XAI.event_at_all"><code class="docutils literal notranslate"><span class="pre">event_at_all()</span></code></a></li>
-<li><a class="reference internal" href="#evaluators.xai.XAI.event_at_beginning"><code class="docutils literal notranslate"><span class="pre">event_at_beginning()</span></code></a></li>
-<li><a class="reference internal" href="#evaluators.xai.XAI.event_at_end"><code class="docutils literal notranslate"><span class="pre">event_at_end()</span></code></a></li>
-<li><a class="reference internal" href="#evaluators.xai.XAI.get_agg_mask"><code class="docutils literal notranslate"><span class="pre">get_agg_mask()</span></code></a></li>
-<li><a class="reference internal" href="#evaluators.xai.XAI.get_multiindex_df"><code class="docutils literal notranslate"><span class="pre">get_multiindex_df()</span></code></a></li>
-<li><a class="reference internal" href="#evaluators.xai.XAI.plot_attributions_1d"><code class="docutils literal notranslate"><span class="pre">plot_attributions_1d()</span></code></a></li>
-<li><a class="reference internal" href="#evaluators.xai.XAI.plot_attributions_nd"><code class="docutils literal notranslate"><span class="pre">plot_attributions_nd()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-evaluators.xai">Module contents</a></li>
+<li><a class="reference internal" href="#evaluators-xai-xai-module">evaluators.xai.XAI module</a></li>
+<li><a class="reference internal" href="#module-contents">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -385,9 +229,6 @@ It should work for any model</p>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
           <a href="utils.html" title="utils package"
              >next</a> |</li>
         <li class="right" >
@@ -401,7 +242,7 @@ It should work for any model</p>
           </li>
           <li>
               
-              <a href="index.html">XAIDA4Detection 0.0.1 documentation</a> &#187;
+              <a href="index.html">AIDE 0.0.1 documentation</a> &#187;
               
           </li>
           <li class="nav-item nav-item-1"><a href="modules.html" >XAIDA4Detection</a> &#187;</li>
@@ -431,7 +272,7 @@ It should work for any model</p>
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2023, Cortés-Andrés, J., Gonzalez-Calabuig, M., Zhang, M., Williams, T., Fernández-Torres, M.-Á., Pellicer-Valero, O. J., and Camps-Valls, G..
+    &copy; Copyright 2023, Cortés-Andrés, J., Gonzalez-Calabuig, M., Zhang, M., Williams, T., Pellicer-Valero, O. J., Fernández-Torres, M.-Á., and Camps-Valls, G..
     <br />
     This page is licensed under the Python Software Foundation License Version 2.
     <br />

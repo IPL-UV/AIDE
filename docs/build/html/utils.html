@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>utils package &#8212; XAIDA4Detection 0.0.1 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>utils package &#8212; AIDE 0.0.1 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?digest=845a48175c3935ba0d7ff16b8ed0072d62fd099f" />
@@ -65,47 +65,15 @@
     <ul>
 <li><a class="reference internal" href="#">utils package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-utils.adapt_variables">utils.adapt_variables module</a><ul>
-<li><a class="reference internal" href="#utils.adapt_variables.adapt_variables"><code class="docutils literal notranslate"><span class="pre">adapt_variables()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-utils.determine_threshold">utils.determine_threshold module</a><ul>
-<li><a class="reference internal" href="#utils.determine_threshold.determine_threshold"><code class="docutils literal notranslate"><span class="pre">determine_threshold()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-utils.loss">utils.loss module</a><ul>
-<li><a class="reference internal" href="#utils.loss.Loss"><code class="docutils literal notranslate"><span class="pre">Loss</span></code></a><ul>
-<li><a class="reference internal" href="#utils.loss.Loss.forward"><code class="docutils literal notranslate"><span class="pre">Loss.forward()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#utils.loss.set_loss"><code class="docutils literal notranslate"><span class="pre">set_loss()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-utils.metrics_pyod">utils.metrics_pyod module</a><ul>
-<li><a class="reference internal" href="#utils.metrics_pyod.evaluate_print"><code class="docutils literal notranslate"><span class="pre">evaluate_print()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-utils.metrics_pytorch">utils.metrics_pytorch module</a><ul>
-<li><a class="reference internal" href="#utils.metrics_pytorch.init_metrics"><code class="docutils literal notranslate"><span class="pre">init_metrics()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-utils.misc">utils.misc module</a><ul>
-<li><a class="reference internal" href="#utils.misc.plot_confusion_matrix"><code class="docutils literal notranslate"><span class="pre">plot_confusion_matrix()</span></code></a></li>
-<li><a class="reference internal" href="#utils.misc.plot_spatial_aggregation"><code class="docutils literal notranslate"><span class="pre">plot_spatial_aggregation()</span></code></a></li>
-<li><a class="reference internal" href="#utils.misc.plot_spatial_signal"><code class="docutils literal notranslate"><span class="pre">plot_spatial_signal()</span></code></a></li>
-<li><a class="reference internal" href="#utils.misc.plot_temporal_results"><code class="docutils literal notranslate"><span class="pre">plot_temporal_results()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-utils.setup_config">utils.setup_config module</a><ul>
-<li><a class="reference internal" href="#utils.setup_config.setup"><code class="docutils literal notranslate"><span class="pre">setup()</span></code></a></li>
-<li><a class="reference internal" href="#utils.setup_config.setup_config"><code class="docutils literal notranslate"><span class="pre">setup_config()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-utils.validate_config">utils.validate_config module</a><ul>
-<li><a class="reference internal" href="#utils.validate_config.validate_config"><code class="docutils literal notranslate"><span class="pre">validate_config()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-utils">Module contents</a></li>
+<li><a class="reference internal" href="#utils-adapt-variables-module">utils.adapt_variables module</a></li>
+<li><a class="reference internal" href="#utils-determine-threshold-module">utils.determine_threshold module</a></li>
+<li><a class="reference internal" href="#utils-loss-module">utils.loss module</a></li>
+<li><a class="reference internal" href="#utils-metrics-pyod-module">utils.metrics_pyod module</a></li>
+<li><a class="reference internal" href="#utils-metrics-pytorch-module">utils.metrics_pytorch module</a></li>
+<li><a class="reference internal" href="#utils-misc-module">utils.misc module</a></li>
+<li><a class="reference internal" href="#utils-setup-config-module">utils.setup_config module</a></li>
+<li><a class="reference internal" href="#utils-validate-config-module">utils.validate_config module</a></li>
+<li><a class="reference internal" href="#module-contents">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -144,9 +112,6 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
           <a href="evaluators.xai.html" title="evaluators.xai package"
              accesskey="P">previous</a> |</li>
           <li><img src="_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
@@ -157,7 +122,7 @@
           </li>
           <li>
               
-              <a href="index.html">XAIDA4Detection 0.0.1 documentation</a> &#187;
+              <a href="index.html">AIDE 0.0.1 documentation</a> &#187;
               
           </li>
           <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">XAIDA4Detection</a> &#187;</li>
@@ -196,189 +161,32 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-utils.adapt_variables">
-<span id="utils-adapt-variables-module"></span><h2>utils.adapt_variables module<a class="headerlink" href="#module-utils.adapt_variables" title="Permalink to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="utils.adapt_variables.adapt_variables">
-<span class="sig-prename descclassname"><span class="pre">utils.adapt_variables.</span></span><span class="sig-name descname"><span class="pre">adapt_variables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">masks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.adapt_variables.adapt_variables" title="Permalink to this definition"></a></dt>
-<dd><p>Adapts the variables to fit the dimension of the model selected</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>config</strong> (<em>configuration dictionary.</em>) – </p></li>
-<li><p><strong>x</strong> (<em>input data</em><em> of </em><em>dims</em>) – </p></li>
-<li><p><strong>masks</strong> (<em>masks locating where we have values</em><em> or </em><em>not.</em>) – </p></li>
-<li><p><strong>labels</strong> (<em>ground truth data.</em>) – </p></li>
-<li><p><strong>form</strong> (<em>Inputs</em><em> of </em><em>the</em>) – <p>1D: (batch, variables, time)</p>
-<dl class="simple">
-<dt>2D: (batch, variables, time, x)</dt><dd><p>can be converted to:
--&gt; 1D: (batch * x, variables, time)</p>
-</dd>
-<dt>3D: (batch, variables, time, lat, lon)</dt><dd><p>can be converted to:
--&gt; 1D: (batch * (lat * lon), variables, time)
--&gt; 2D: (batch * time, variables, lat, lon)</p>
-</dd>
-</dl>
-</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>x</strong> (<em>adapted input.</em>)</p></li>
-<li><p><strong>masks</strong> (<em>adapted masks.</em>)</p></li>
-<li><p><strong>labels</strong> (<em>adapted labels.</em>)</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
+<section id="utils-adapt-variables-module">
+<h2>utils.adapt_variables module<a class="headerlink" href="#utils-adapt-variables-module" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-utils.determine_threshold">
-<span id="utils-determine-threshold-module"></span><h2>utils.determine_threshold module<a class="headerlink" href="#module-utils.determine_threshold" title="Permalink to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="utils.determine_threshold.determine_threshold">
-<span class="sig-prename descclassname"><span class="pre">utils.determine_threshold.</span></span><span class="sig-name descname"><span class="pre">determine_threshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'f1_score'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ranges</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.0,</span> <span class="pre">1.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_is_better</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.determine_threshold.determine_threshold" title="Permalink to this definition"></a></dt>
-<dd><p>Find optimal threshold based on defined metric</p>
-</dd></dl>
-
+<section id="utils-determine-threshold-module">
+<h2>utils.determine_threshold module<a class="headerlink" href="#utils-determine-threshold-module" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-utils.loss">
-<span id="utils-loss-module"></span><h2>utils.loss module<a class="headerlink" href="#module-utils.loss" title="Permalink to this heading"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="utils.loss.Loss">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">utils.loss.</span></span><span class="sig-name descname"><span class="pre">Loss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">package</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">configuration</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.loss.Loss" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></p>
-<p>Wrapper for loss functions</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="utils.loss.Loss.forward">
-<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.loss.Loss.forward" title="Permalink to this definition"></a></dt>
-<dd><p>Defines the computation performed at every call.</p>
-<p>Should be overridden by all subclasses.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Although the recipe for forward pass needs to be defined within
-this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
-instead of this since the former takes care of running the
-registered hooks while the latter silently ignores them.</p>
-</div>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="utils.loss.set_loss">
-<span class="sig-prename descclassname"><span class="pre">utils.loss.</span></span><span class="sig-name descname"><span class="pre">set_loss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.loss.set_loss" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
+<section id="utils-loss-module">
+<h2>utils.loss module<a class="headerlink" href="#utils-loss-module" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-utils.metrics_pyod">
-<span id="utils-metrics-pyod-module"></span><h2>utils.metrics_pyod module<a class="headerlink" href="#module-utils.metrics_pyod" title="Permalink to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="utils.metrics_pyod.evaluate_print">
-<span class="sig-prename descclassname"><span class="pre">utils.metrics_pyod.</span></span><span class="sig-name descname"><span class="pre">evaluate_print</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clf_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scores</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.metrics_pyod.evaluate_print" title="Permalink to this definition"></a></dt>
-<dd><p>Utility function for evaluating and printing the results for examples.
-Default metrics include ROC, Accuracy, Precision, Recall and Average Precision.</p>
-</dd></dl>
-
+<section id="utils-metrics-pyod-module">
+<h2>utils.metrics_pyod module<a class="headerlink" href="#utils-metrics-pyod-module" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-utils.metrics_pytorch">
-<span id="utils-metrics-pytorch-module"></span><h2>utils.metrics_pytorch module<a class="headerlink" href="#module-utils.metrics_pytorch" title="Permalink to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="utils.metrics_pytorch.init_metrics">
-<span class="sig-prename descclassname"><span class="pre">utils.metrics_pytorch.</span></span><span class="sig-name descname"><span class="pre">init_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.metrics_pytorch.init_metrics" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
+<section id="utils-metrics-pytorch-module">
+<h2>utils.metrics_pytorch module<a class="headerlink" href="#utils-metrics-pytorch-module" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-utils.misc">
-<span id="utils-misc-module"></span><h2>utils.misc module<a class="headerlink" href="#module-utils.misc" title="Permalink to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="utils.misc.plot_confusion_matrix">
-<span class="sig-prename descclassname"><span class="pre">utils.misc.</span></span><span class="sig-name descname"><span class="pre">plot_confusion_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.misc.plot_confusion_matrix" title="Permalink to this definition"></a></dt>
-<dd><p>Compute and plot confusion matrix for evaluation</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="utils.misc.plot_spatial_aggregation">
-<span class="sig-prename descclassname"><span class="pre">utils.misc.</span></span><span class="sig-name descname"><span class="pre">plot_spatial_aggregation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_classes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.misc.plot_spatial_aggregation" title="Permalink to this definition"></a></dt>
-<dd><p>Plot extreme event detection saliency map for a given time step</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="utils.misc.plot_spatial_signal">
-<span class="sig-prename descclassname"><span class="pre">utils.misc.</span></span><span class="sig-name descname"><span class="pre">plot_spatial_signal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.misc.plot_spatial_signal" title="Permalink to this definition"></a></dt>
-<dd><p>Plot extreme event detection categorical map for a given time step</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="utils.misc.plot_temporal_results">
-<span class="sig-prename descclassname"><span class="pre">utils.misc.</span></span><span class="sig-name descname"><span class="pre">plot_temporal_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xticks_labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputs_when_event</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_without_event</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.misc.plot_temporal_results" title="Permalink to this definition"></a></dt>
-<dd><dl class="simple">
-<dt>Plot extreme event detection signals through time:</dt><dd><ul class="simple">
-<li><p>GT extreme event signal</p></li>
-<li><p>Extreme signal (Aggregated mean over region affected by the extreme event)</p></li>
-<li><p>Non-extreme signal (Aggregated mean over region non-affected by the extreme event)</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
+<section id="utils-misc-module">
+<h2>utils.misc module<a class="headerlink" href="#utils-misc-module" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-utils.setup_config">
-<span id="utils-setup-config-module"></span><h2>utils.setup_config module<a class="headerlink" href="#module-utils.setup_config" title="Permalink to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="utils.setup_config.setup">
-<span class="sig-prename descclassname"><span class="pre">utils.setup_config.</span></span><span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.setup_config.setup" title="Permalink to this definition"></a></dt>
-<dd><p>Open configuration file .yaml as a dictionary</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>filename</strong> (<em>path to .yaml configuration file.</em>) – </p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>config</strong></p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>python dictionary.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="utils.setup_config.setup_config">
-<span class="sig-prename descclassname"><span class="pre">utils.setup_config.</span></span><span class="sig-name descname"><span class="pre">setup_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utils.setup_config.setup_config" title="Permalink to this definition"></a></dt>
-<dd><p>Gets the configuration for the current experiment and creates the needed folder structure.
-If provided, some hyperparameters can be added</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>config</strong></p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>python dictionary with the experiment configuration.</p>
-</dd>
-</dl>
-</dd></dl>
-
+<section id="utils-setup-config-module">
+<h2>utils.setup_config module<a class="headerlink" href="#utils-setup-config-module" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-utils.validate_config">
-<span id="utils-validate-config-module"></span><h2>utils.validate_config module<a class="headerlink" href="#module-utils.validate_config" title="Permalink to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="utils.validate_config.validate_config">
-<span class="sig-prename descclassname"><span class="pre">utils.validate_config.</span></span><span class="sig-name descname"><span class="pre">validate_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.validate_config.validate_config" title="Permalink to this definition"></a></dt>
-<dd><p>Checks for the consistency between the data dimension,
-the dimension of the model requested and the output dimension</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>config</strong> (<em>configuration dictionary.</em>) – </p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>None.</p>
-</dd>
-</dl>
-</dd></dl>
-
+<section id="utils-validate-config-module">
+<h2>utils.validate_config module<a class="headerlink" href="#utils-validate-config-module" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-utils">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-utils" title="Permalink to this heading"></a></h2>
+<section id="module-contents">
+<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 
@@ -394,47 +202,15 @@ the dimension of the model requested and the output dimension</p>
     <ul>
 <li><a class="reference internal" href="#">utils package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-utils.adapt_variables">utils.adapt_variables module</a><ul>
-<li><a class="reference internal" href="#utils.adapt_variables.adapt_variables"><code class="docutils literal notranslate"><span class="pre">adapt_variables()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-utils.determine_threshold">utils.determine_threshold module</a><ul>
-<li><a class="reference internal" href="#utils.determine_threshold.determine_threshold"><code class="docutils literal notranslate"><span class="pre">determine_threshold()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-utils.loss">utils.loss module</a><ul>
-<li><a class="reference internal" href="#utils.loss.Loss"><code class="docutils literal notranslate"><span class="pre">Loss</span></code></a><ul>
-<li><a class="reference internal" href="#utils.loss.Loss.forward"><code class="docutils literal notranslate"><span class="pre">Loss.forward()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#utils.loss.set_loss"><code class="docutils literal notranslate"><span class="pre">set_loss()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-utils.metrics_pyod">utils.metrics_pyod module</a><ul>
-<li><a class="reference internal" href="#utils.metrics_pyod.evaluate_print"><code class="docutils literal notranslate"><span class="pre">evaluate_print()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-utils.metrics_pytorch">utils.metrics_pytorch module</a><ul>
-<li><a class="reference internal" href="#utils.metrics_pytorch.init_metrics"><code class="docutils literal notranslate"><span class="pre">init_metrics()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-utils.misc">utils.misc module</a><ul>
-<li><a class="reference internal" href="#utils.misc.plot_confusion_matrix"><code class="docutils literal notranslate"><span class="pre">plot_confusion_matrix()</span></code></a></li>
-<li><a class="reference internal" href="#utils.misc.plot_spatial_aggregation"><code class="docutils literal notranslate"><span class="pre">plot_spatial_aggregation()</span></code></a></li>
-<li><a class="reference internal" href="#utils.misc.plot_spatial_signal"><code class="docutils literal notranslate"><span class="pre">plot_spatial_signal()</span></code></a></li>
-<li><a class="reference internal" href="#utils.misc.plot_temporal_results"><code class="docutils literal notranslate"><span class="pre">plot_temporal_results()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-utils.setup_config">utils.setup_config module</a><ul>
-<li><a class="reference internal" href="#utils.setup_config.setup"><code class="docutils literal notranslate"><span class="pre">setup()</span></code></a></li>
-<li><a class="reference internal" href="#utils.setup_config.setup_config"><code class="docutils literal notranslate"><span class="pre">setup_config()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-utils.validate_config">utils.validate_config module</a><ul>
-<li><a class="reference internal" href="#utils.validate_config.validate_config"><code class="docutils literal notranslate"><span class="pre">validate_config()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-utils">Module contents</a></li>
+<li><a class="reference internal" href="#utils-adapt-variables-module">utils.adapt_variables module</a></li>
+<li><a class="reference internal" href="#utils-determine-threshold-module">utils.determine_threshold module</a></li>
+<li><a class="reference internal" href="#utils-loss-module">utils.loss module</a></li>
+<li><a class="reference internal" href="#utils-metrics-pyod-module">utils.metrics_pyod module</a></li>
+<li><a class="reference internal" href="#utils-metrics-pytorch-module">utils.metrics_pytorch module</a></li>
+<li><a class="reference internal" href="#utils-misc-module">utils.misc module</a></li>
+<li><a class="reference internal" href="#utils-setup-config-module">utils.setup_config module</a></li>
+<li><a class="reference internal" href="#utils-validate-config-module">utils.validate_config module</a></li>
+<li><a class="reference internal" href="#module-contents">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -473,9 +249,6 @@ the dimension of the model requested and the output dimension</p>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
           <a href="evaluators.xai.html" title="evaluators.xai package"
              >previous</a> |</li>
           <li><img src="_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
@@ -486,7 +259,7 @@ the dimension of the model requested and the output dimension</p>
           </li>
           <li>
               
-              <a href="index.html">XAIDA4Detection 0.0.1 documentation</a> &#187;
+              <a href="index.html">AIDE 0.0.1 documentation</a> &#187;
               
           </li>
           <li class="nav-item nav-item-1"><a href="modules.html" >XAIDA4Detection</a> &#187;</li>
@@ -515,7 +288,7 @@ the dimension of the model requested and the output dimension</p>
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2023, Cortés-Andrés, J., Gonzalez-Calabuig, M., Zhang, M., Williams, T., Fernández-Torres, M.-Á., Pellicer-Valero, O. J., and Camps-Valls, G..
+    &copy; Copyright 2023, Cortés-Andrés, J., Gonzalez-Calabuig, M., Zhang, M., Williams, T., Pellicer-Valero, O. J., Fernández-Torres, M.-Á., and Camps-Valls, G..
     <br />
     This page is licensed under the Python Software Foundation License Version 2.
     <br />

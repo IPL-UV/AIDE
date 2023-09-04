@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>evaluators.visualizers package &#8212; XAIDA4Detection 0.0.1 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>evaluators.visualizers package &#8212; AIDE 0.0.1 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?digest=845a48175c3935ba0d7ff16b8ed0072d62fd099f" />
@@ -66,39 +66,11 @@
     <ul>
 <li><a class="reference internal" href="#">evaluators.visualizers package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-evaluators.visualizers.classificationVisualizer1D">evaluators.visualizers.classificationVisualizer1D module</a><ul>
-<li><a class="reference internal" href="#evaluators.visualizers.classificationVisualizer1D.ClassificationVisualizer1D"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizer1D</span></code></a><ul>
-<li><a class="reference internal" href="#evaluators.visualizers.classificationVisualizer1D.ClassificationVisualizer1D.global_operations"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizer1D.global_operations()</span></code></a></li>
-<li><a class="reference internal" href="#evaluators.visualizers.classificationVisualizer1D.ClassificationVisualizer1D.per_sample_operations"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizer1D.per_sample_operations()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-evaluators.visualizers.classificationVisualizer2D">evaluators.visualizers.classificationVisualizer2D module</a><ul>
-<li><a class="reference internal" href="#evaluators.visualizers.classificationVisualizer2D.ClassificationVisualizer2D"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizer2D</span></code></a><ul>
-<li><a class="reference internal" href="#evaluators.visualizers.classificationVisualizer2D.ClassificationVisualizer2D.global_operations"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizer2D.global_operations()</span></code></a></li>
-<li><a class="reference internal" href="#evaluators.visualizers.classificationVisualizer2D.ClassificationVisualizer2D.per_sample_operations"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizer2D.per_sample_operations()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-evaluators.visualizers.classificationVisualizerAbstract">evaluators.visualizers.classificationVisualizerAbstract module</a><ul>
-<li><a class="reference internal" href="#evaluators.visualizers.classificationVisualizerAbstract.ClassificationVisualizerAbstract"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizerAbstract</span></code></a><ul>
-<li><a class="reference internal" href="#evaluators.visualizers.classificationVisualizerAbstract.ClassificationVisualizerAbstract.global_operations"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizerAbstract.global_operations()</span></code></a></li>
-<li><a class="reference internal" href="#evaluators.visualizers.classificationVisualizerAbstract.ClassificationVisualizerAbstract.per_sample_operations"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizerAbstract.per_sample_operations()</span></code></a></li>
-<li><a class="reference internal" href="#evaluators.visualizers.classificationVisualizerAbstract.ClassificationVisualizerAbstract.visualize"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizerAbstract.visualize()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-evaluators.visualizers.outlierDetectionVisualizer">evaluators.visualizers.outlierDetectionVisualizer module</a><ul>
-<li><a class="reference internal" href="#evaluators.visualizers.outlierDetectionVisualizer.OutlierDetectionVisualizer"><code class="docutils literal notranslate"><span class="pre">OutlierDetectionVisualizer</span></code></a><ul>
-<li><a class="reference internal" href="#evaluators.visualizers.outlierDetectionVisualizer.OutlierDetectionVisualizer.visualize"><code class="docutils literal notranslate"><span class="pre">OutlierDetectionVisualizer.visualize()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-evaluators.visualizers">Module contents</a></li>
+<li><a class="reference internal" href="#evaluators-visualizers-classificationvisualizer1d-module">evaluators.visualizers.classificationVisualizer1D module</a></li>
+<li><a class="reference internal" href="#evaluators-visualizers-classificationvisualizer2d-module">evaluators.visualizers.classificationVisualizer2D module</a></li>
+<li><a class="reference internal" href="#evaluators-visualizers-classificationvisualizerabstract-module">evaluators.visualizers.classificationVisualizerAbstract module</a></li>
+<li><a class="reference internal" href="#evaluators-visualizers-outlierdetectionvisualizer-module">evaluators.visualizers.outlierDetectionVisualizer module</a></li>
+<li><a class="reference internal" href="#module-contents">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -142,9 +114,6 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
           <a href="evaluators.xai.html" title="evaluators.xai package"
              accesskey="N">next</a> |</li>
         <li class="right" >
@@ -158,7 +127,7 @@
           </li>
           <li>
               
-              <a href="index.html">XAIDA4Detection 0.0.1 documentation</a> &#187;
+              <a href="index.html">AIDE 0.0.1 documentation</a> &#187;
               
           </li>
           <li class="nav-item nav-item-1"><a href="modules.html" >XAIDA4Detection</a> &#187;</li>
@@ -198,92 +167,20 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-evaluators.visualizers.classificationVisualizer1D">
-<span id="evaluators-visualizers-classificationvisualizer1d-module"></span><h2>evaluators.visualizers.classificationVisualizer1D module<a class="headerlink" href="#module-evaluators.visualizers.classificationVisualizer1D" title="Permalink to this heading"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="evaluators.visualizers.classificationVisualizer1D.ClassificationVisualizer1D">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evaluators.visualizers.classificationVisualizer1D.</span></span><span class="sig-name descname"><span class="pre">ClassificationVisualizer1D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataloader</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.visualizers.classificationVisualizer1D.ClassificationVisualizer1D" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#evaluators.visualizers.classificationVisualizerAbstract.ClassificationVisualizerAbstract" title="evaluators.visualizers.classificationVisualizerAbstract.ClassificationVisualizerAbstract"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClassificationVisualizerAbstract</span></code></a></p>
-<p>Evaluator for 1D outputs</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="evaluators.visualizers.classificationVisualizer1D.ClassificationVisualizer1D.global_operations">
-<span class="sig-name descname"><span class="pre">global_operations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.visualizers.classificationVisualizer1D.ClassificationVisualizer1D.global_operations" title="Permalink to this definition"></a></dt>
-<dd><p>Plot confusion matrix and visualize results through time</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="evaluators.visualizers.classificationVisualizer1D.ClassificationVisualizer1D.per_sample_operations">
-<span class="sig-name descname"><span class="pre">per_sample_operations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_indexes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_names</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.visualizers.classificationVisualizer1D.ClassificationVisualizer1D.per_sample_operations" title="Permalink to this definition"></a></dt>
-<dd><p>Performs per sample plot of the extreme event detection maps and the variables’ saving for the global operations</p>
-</dd></dl>
-
-</dd></dl>
-
+<section id="evaluators-visualizers-classificationvisualizer1d-module">
+<h2>evaluators.visualizers.classificationVisualizer1D module<a class="headerlink" href="#evaluators-visualizers-classificationvisualizer1d-module" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-evaluators.visualizers.classificationVisualizer2D">
-<span id="evaluators-visualizers-classificationvisualizer2d-module"></span><h2>evaluators.visualizers.classificationVisualizer2D module<a class="headerlink" href="#module-evaluators.visualizers.classificationVisualizer2D" title="Permalink to this heading"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="evaluators.visualizers.classificationVisualizer2D.ClassificationVisualizer2D">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evaluators.visualizers.classificationVisualizer2D.</span></span><span class="sig-name descname"><span class="pre">ClassificationVisualizer2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataloader</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.visualizers.classificationVisualizer2D.ClassificationVisualizer2D" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#evaluators.visualizers.classificationVisualizerAbstract.ClassificationVisualizerAbstract" title="evaluators.visualizers.classificationVisualizerAbstract.ClassificationVisualizerAbstract"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClassificationVisualizerAbstract</span></code></a></p>
-<p>Evaluator for 2D outputs</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="evaluators.visualizers.classificationVisualizer2D.ClassificationVisualizer2D.global_operations">
-<span class="sig-name descname"><span class="pre">global_operations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.visualizers.classificationVisualizer2D.ClassificationVisualizer2D.global_operations" title="Permalink to this definition"></a></dt>
-<dd><p>Plot confusion matrix and visualize results through time</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="evaluators.visualizers.classificationVisualizer2D.ClassificationVisualizer2D.per_sample_operations">
-<span class="sig-name descname"><span class="pre">per_sample_operations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_indexes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_names</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.visualizers.classificationVisualizer2D.ClassificationVisualizer2D.per_sample_operations" title="Permalink to this definition"></a></dt>
-<dd><p>Performs per sample plot of the extreme event detection maps and the variables’ saving for the global operations</p>
-</dd></dl>
-
-</dd></dl>
-
+<section id="evaluators-visualizers-classificationvisualizer2d-module">
+<h2>evaluators.visualizers.classificationVisualizer2D module<a class="headerlink" href="#evaluators-visualizers-classificationvisualizer2d-module" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-evaluators.visualizers.classificationVisualizerAbstract">
-<span id="evaluators-visualizers-classificationvisualizerabstract-module"></span><h2>evaluators.visualizers.classificationVisualizerAbstract module<a class="headerlink" href="#module-evaluators.visualizers.classificationVisualizerAbstract" title="Permalink to this heading"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="evaluators.visualizers.classificationVisualizerAbstract.ClassificationVisualizerAbstract">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evaluators.visualizers.classificationVisualizerAbstract.</span></span><span class="sig-name descname"><span class="pre">ClassificationVisualizerAbstract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataloader</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.visualizers.classificationVisualizerAbstract.ClassificationVisualizerAbstract" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
-<p>Evaluator generic class</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="evaluators.visualizers.classificationVisualizerAbstract.ClassificationVisualizerAbstract.global_operations">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">global_operations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.visualizers.classificationVisualizerAbstract.ClassificationVisualizerAbstract.global_operations" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="evaluators.visualizers.classificationVisualizerAbstract.ClassificationVisualizerAbstract.per_sample_operations">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">per_sample_operations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.visualizers.classificationVisualizerAbstract.ClassificationVisualizerAbstract.per_sample_operations" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="evaluators.visualizers.classificationVisualizerAbstract.ClassificationVisualizerAbstract.visualize">
-<span class="sig-name descname"><span class="pre">visualize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inference_outputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.visualizers.classificationVisualizerAbstract.ClassificationVisualizerAbstract.visualize" title="Permalink to this definition"></a></dt>
-<dd><p>Visualize results</p>
-</dd></dl>
-
-</dd></dl>
-
+<section id="evaluators-visualizers-classificationvisualizerabstract-module">
+<h2>evaluators.visualizers.classificationVisualizerAbstract module<a class="headerlink" href="#evaluators-visualizers-classificationvisualizerabstract-module" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-evaluators.visualizers.outlierDetectionVisualizer">
-<span id="evaluators-visualizers-outlierdetectionvisualizer-module"></span><h2>evaluators.visualizers.outlierDetectionVisualizer module<a class="headerlink" href="#module-evaluators.visualizers.outlierDetectionVisualizer" title="Permalink to this heading"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="evaluators.visualizers.outlierDetectionVisualizer.OutlierDetectionVisualizer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evaluators.visualizers.outlierDetectionVisualizer.</span></span><span class="sig-name descname"><span class="pre">OutlierDetectionVisualizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">models</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.visualizers.outlierDetectionVisualizer.OutlierDetectionVisualizer" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="evaluators.visualizers.outlierDetectionVisualizer.OutlierDetectionVisualizer.visualize">
-<span class="sig-name descname"><span class="pre">visualize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.visualizers.outlierDetectionVisualizer.OutlierDetectionVisualizer.visualize" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+<section id="evaluators-visualizers-outlierdetectionvisualizer-module">
+<h2>evaluators.visualizers.outlierDetectionVisualizer module<a class="headerlink" href="#evaluators-visualizers-outlierdetectionvisualizer-module" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-evaluators.visualizers">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-evaluators.visualizers" title="Permalink to this heading"></a></h2>
+<section id="module-contents">
+<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 
@@ -299,39 +196,11 @@
     <ul>
 <li><a class="reference internal" href="#">evaluators.visualizers package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-evaluators.visualizers.classificationVisualizer1D">evaluators.visualizers.classificationVisualizer1D module</a><ul>
-<li><a class="reference internal" href="#evaluators.visualizers.classificationVisualizer1D.ClassificationVisualizer1D"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizer1D</span></code></a><ul>
-<li><a class="reference internal" href="#evaluators.visualizers.classificationVisualizer1D.ClassificationVisualizer1D.global_operations"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizer1D.global_operations()</span></code></a></li>
-<li><a class="reference internal" href="#evaluators.visualizers.classificationVisualizer1D.ClassificationVisualizer1D.per_sample_operations"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizer1D.per_sample_operations()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-evaluators.visualizers.classificationVisualizer2D">evaluators.visualizers.classificationVisualizer2D module</a><ul>
-<li><a class="reference internal" href="#evaluators.visualizers.classificationVisualizer2D.ClassificationVisualizer2D"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizer2D</span></code></a><ul>
-<li><a class="reference internal" href="#evaluators.visualizers.classificationVisualizer2D.ClassificationVisualizer2D.global_operations"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizer2D.global_operations()</span></code></a></li>
-<li><a class="reference internal" href="#evaluators.visualizers.classificationVisualizer2D.ClassificationVisualizer2D.per_sample_operations"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizer2D.per_sample_operations()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-evaluators.visualizers.classificationVisualizerAbstract">evaluators.visualizers.classificationVisualizerAbstract module</a><ul>
-<li><a class="reference internal" href="#evaluators.visualizers.classificationVisualizerAbstract.ClassificationVisualizerAbstract"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizerAbstract</span></code></a><ul>
-<li><a class="reference internal" href="#evaluators.visualizers.classificationVisualizerAbstract.ClassificationVisualizerAbstract.global_operations"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizerAbstract.global_operations()</span></code></a></li>
-<li><a class="reference internal" href="#evaluators.visualizers.classificationVisualizerAbstract.ClassificationVisualizerAbstract.per_sample_operations"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizerAbstract.per_sample_operations()</span></code></a></li>
-<li><a class="reference internal" href="#evaluators.visualizers.classificationVisualizerAbstract.ClassificationVisualizerAbstract.visualize"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizerAbstract.visualize()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-evaluators.visualizers.outlierDetectionVisualizer">evaluators.visualizers.outlierDetectionVisualizer module</a><ul>
-<li><a class="reference internal" href="#evaluators.visualizers.outlierDetectionVisualizer.OutlierDetectionVisualizer"><code class="docutils literal notranslate"><span class="pre">OutlierDetectionVisualizer</span></code></a><ul>
-<li><a class="reference internal" href="#evaluators.visualizers.outlierDetectionVisualizer.OutlierDetectionVisualizer.visualize"><code class="docutils literal notranslate"><span class="pre">OutlierDetectionVisualizer.visualize()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-evaluators.visualizers">Module contents</a></li>
+<li><a class="reference internal" href="#evaluators-visualizers-classificationvisualizer1d-module">evaluators.visualizers.classificationVisualizer1D module</a></li>
+<li><a class="reference internal" href="#evaluators-visualizers-classificationvisualizer2d-module">evaluators.visualizers.classificationVisualizer2D module</a></li>
+<li><a class="reference internal" href="#evaluators-visualizers-classificationvisualizerabstract-module">evaluators.visualizers.classificationVisualizerAbstract module</a></li>
+<li><a class="reference internal" href="#evaluators-visualizers-outlierdetectionvisualizer-module">evaluators.visualizers.outlierDetectionVisualizer module</a></li>
+<li><a class="reference internal" href="#module-contents">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -375,9 +244,6 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
           <a href="evaluators.xai.html" title="evaluators.xai package"
              >next</a> |</li>
         <li class="right" >
@@ -391,7 +257,7 @@
           </li>
           <li>
               
-              <a href="index.html">XAIDA4Detection 0.0.1 documentation</a> &#187;
+              <a href="index.html">AIDE 0.0.1 documentation</a> &#187;
               
           </li>
           <li class="nav-item nav-item-1"><a href="modules.html" >XAIDA4Detection</a> &#187;</li>
@@ -421,7 +287,7 @@
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2023, Cortés-Andrés, J., Gonzalez-Calabuig, M., Zhang, M., Williams, T., Fernández-Torres, M.-Á., Pellicer-Valero, O. J., and Camps-Valls, G..
+    &copy; Copyright 2023, Cortés-Andrés, J., Gonzalez-Calabuig, M., Zhang, M., Williams, T., Pellicer-Valero, O. J., Fernández-Torres, M.-Á., and Camps-Valls, G..
     <br />
     This page is licensed under the Python Software Foundation License Version 2.
     <br />

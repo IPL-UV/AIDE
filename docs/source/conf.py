@@ -10,9 +10,9 @@ import sys
 sys.path.insert(0, os.path.abspath('../../XAIDA4Detection/'))
 import sphinx_rtd_theme
 
-project = 'XAIDA4Detection'
-copyright = '2023, Cortés-Andrés, J., Gonzalez-Calabuig, M., Zhang, M., Williams, T., Fernández-Torres, M.-Á., Pellicer-Valero, O. J., and Camps-Valls, G.'
-author = 'Cortés-Andrés, J., Gonzalez-Calabuig, M., Zhang, M., Williams, T., Fernández-Torres, M.-Á., Pellicer-Valero, O. J., and Camps-Valls, G.'
+project = 'AIDE'
+copyright = '2023, Cortés-Andrés, J., Gonzalez-Calabuig, M., Zhang, M., Williams, T., Pellicer-Valero, O. J., Fernández-Torres, M.-Á., and Camps-Valls, G.'
+author = 'Cortés-Andrés, J., Gonzalez-Calabuig, M., Zhang, M., Williams, T., Pellicer-Valero, O. J., Fernández-Torres, M.-Á., and Camps-Valls, G.'
 release = '0.0.1'
 
 # -- General configuration ---------------------------------------------------

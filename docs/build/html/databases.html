@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>databases package &#8212; XAIDA4Detection 0.0.1 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>databases package &#8212; AIDE 0.0.1 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?digest=845a48175c3935ba0d7ff16b8ed0072d62fd099f" />
@@ -66,30 +66,10 @@
     <ul>
 <li><a class="reference internal" href="#">databases package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-databases.DROUGHT_database">databases.DROUGHT_database module</a><ul>
-<li><a class="reference internal" href="#databases.DROUGHT_database.DROUGHT"><code class="docutils literal notranslate"><span class="pre">DROUGHT</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-databases.DroughtED_database">databases.DroughtED_database module</a><ul>
-<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED"><code class="docutils literal notranslate"><span class="pre">DroughtED</span></code></a><ul>
-<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.binarize_data"><code class="docutils literal notranslate"><span class="pre">DroughtED.binarize_data()</span></code></a></li>
-<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.interpolate_nans"><code class="docutils literal notranslate"><span class="pre">DroughtED.interpolate_nans()</span></code></a></li>
-<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.loadXY"><code class="docutils literal notranslate"><span class="pre">DroughtED.loadXY()</span></code></a></li>
-<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.normalize"><code class="docutils literal notranslate"><span class="pre">DroughtED.normalize()</span></code></a></li>
-<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.read_database_files"><code class="docutils literal notranslate"><span class="pre">DroughtED.read_database_files()</span></code></a></li>
-<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.select_slice"><code class="docutils literal notranslate"><span class="pre">DroughtED.select_slice()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-databases.XAIDA_database">databases.XAIDA_database module</a><ul>
-<li><a class="reference internal" href="#databases.XAIDA_database.XAIDA"><code class="docutils literal notranslate"><span class="pre">XAIDA</span></code></a><ul>
-<li><a class="reference internal" href="#databases.XAIDA_database.XAIDA.get_data"><code class="docutils literal notranslate"><span class="pre">XAIDA.get_data()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-databases">Module contents</a></li>
+<li><a class="reference internal" href="#databases-drought-database-module">databases.DROUGHT_database module</a></li>
+<li><a class="reference internal" href="#databases-droughted-database-module">databases.DroughtED_database module</a></li>
+<li><a class="reference internal" href="#databases-xaida-database-module">databases.XAIDA_database module</a></li>
+<li><a class="reference internal" href="#module-contents">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -133,9 +113,6 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
           <a href="evaluators.html" title="evaluators package"
              accesskey="N">next</a> |</li>
         <li class="right" >
@@ -149,7 +126,7 @@
           </li>
           <li>
               
-              <a href="index.html">XAIDA4Detection 0.0.1 documentation</a> &#187;
+              <a href="index.html">AIDE 0.0.1 documentation</a> &#187;
               
           </li>
           <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">XAIDA4Detection</a> &#187;</li>
@@ -188,76 +165,17 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-databases.DROUGHT_database">
-<span id="databases-drought-database-module"></span><h2>databases.DROUGHT_database module<a class="headerlink" href="#module-databases.DROUGHT_database" title="Permalink to this heading"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="databases.DROUGHT_database.DROUGHT">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">databases.DROUGHT_database.</span></span><span class="sig-name descname"><span class="pre">DROUGHT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#databases.DROUGHT_database.DROUGHT" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></p>
-<p>DROUGHT database</p>
-</dd></dl>
-
+<section id="databases-drought-database-module">
+<h2>databases.DROUGHT_database module<a class="headerlink" href="#databases-drought-database-module" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-databases.DroughtED_database">
-<span id="databases-droughted-database-module"></span><h2>databases.DroughtED_database module<a class="headerlink" href="#module-databases.DroughtED_database" title="Permalink to this heading"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="databases.DroughtED_database.DroughtED">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">databases.DroughtED_database.</span></span><span class="sig-name descname"><span class="pre">DroughtED</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#databases.DroughtED_database.DroughtED" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></p>
-<p>DroughtED Database</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="databases.DroughtED_database.DroughtED.binarize_data">
-<span class="sig-name descname"><span class="pre">binarize_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#databases.DroughtED_database.DroughtED.binarize_data" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="databases.DroughtED_database.DroughtED.interpolate_nans">
-<span class="sig-name descname"><span class="pre">interpolate_nans</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">padata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pkind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'linear'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#databases.DroughtED_database.DroughtED.interpolate_nans" title="Permalink to this definition"></a></dt>
-<dd><p>see: <a class="reference external" href="https://stackoverflow.com/a/53050216/2167159">https://stackoverflow.com/a/53050216/2167159</a></p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="databases.DroughtED_database.DroughtED.loadXY">
-<span class="sig-name descname"><span class="pre">loadXY</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#databases.DroughtED_database.DroughtED.loadXY" title="Permalink to this definition"></a></dt>
-<dd><p>Load database</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="databases.DroughtED_database.DroughtED.normalize">
-<span class="sig-name descname"><span class="pre">normalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#databases.DroughtED_database.DroughtED.normalize" title="Permalink to this definition"></a></dt>
-<dd><p>Get statistics for standardization</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="databases.DroughtED_database.DroughtED.read_database_files">
-<span class="sig-name descname"><span class="pre">read_database_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#databases.DroughtED_database.DroughtED.read_database_files" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="databases.DroughtED_database.DroughtED.select_slice">
-<span class="sig-name descname"><span class="pre">select_slice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dfs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#databases.DroughtED_database.DroughtED.select_slice" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+<section id="databases-droughted-database-module">
+<h2>databases.DroughtED_database module<a class="headerlink" href="#databases-droughted-database-module" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-databases.XAIDA_database">
-<span id="databases-xaida-database-module"></span><h2>databases.XAIDA_database module<a class="headerlink" href="#module-databases.XAIDA_database" title="Permalink to this heading"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="databases.XAIDA_database.XAIDA">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">databases.XAIDA_database.</span></span><span class="sig-name descname"><span class="pre">XAIDA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#databases.XAIDA_database.XAIDA" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></p>
-<p>XAIDA database</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="databases.XAIDA_database.XAIDA.get_data">
-<span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#databases.XAIDA_database.XAIDA.get_data" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+<section id="databases-xaida-database-module">
+<h2>databases.XAIDA_database module<a class="headerlink" href="#databases-xaida-database-module" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-databases">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-databases" title="Permalink to this heading"></a></h2>
+<section id="module-contents">
+<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 
@@ -273,30 +191,10 @@
     <ul>
 <li><a class="reference internal" href="#">databases package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-databases.DROUGHT_database">databases.DROUGHT_database module</a><ul>
-<li><a class="reference internal" href="#databases.DROUGHT_database.DROUGHT"><code class="docutils literal notranslate"><span class="pre">DROUGHT</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-databases.DroughtED_database">databases.DroughtED_database module</a><ul>
-<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED"><code class="docutils literal notranslate"><span class="pre">DroughtED</span></code></a><ul>
-<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.binarize_data"><code class="docutils literal notranslate"><span class="pre">DroughtED.binarize_data()</span></code></a></li>
-<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.interpolate_nans"><code class="docutils literal notranslate"><span class="pre">DroughtED.interpolate_nans()</span></code></a></li>
-<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.loadXY"><code class="docutils literal notranslate"><span class="pre">DroughtED.loadXY()</span></code></a></li>
-<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.normalize"><code class="docutils literal notranslate"><span class="pre">DroughtED.normalize()</span></code></a></li>
-<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.read_database_files"><code class="docutils literal notranslate"><span class="pre">DroughtED.read_database_files()</span></code></a></li>
-<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.select_slice"><code class="docutils literal notranslate"><span class="pre">DroughtED.select_slice()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-databases.XAIDA_database">databases.XAIDA_database module</a><ul>
-<li><a class="reference internal" href="#databases.XAIDA_database.XAIDA"><code class="docutils literal notranslate"><span class="pre">XAIDA</span></code></a><ul>
-<li><a class="reference internal" href="#databases.XAIDA_database.XAIDA.get_data"><code class="docutils literal notranslate"><span class="pre">XAIDA.get_data()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-databases">Module contents</a></li>
+<li><a class="reference internal" href="#databases-drought-database-module">databases.DROUGHT_database module</a></li>
+<li><a class="reference internal" href="#databases-droughted-database-module">databases.DroughtED_database module</a></li>
+<li><a class="reference internal" href="#databases-xaida-database-module">databases.XAIDA_database module</a></li>
+<li><a class="reference internal" href="#module-contents">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -340,9 +238,6 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
           <a href="evaluators.html" title="evaluators package"
              >next</a> |</li>
         <li class="right" >
@@ -356,7 +251,7 @@
           </li>
           <li>
               
-              <a href="index.html">XAIDA4Detection 0.0.1 documentation</a> &#187;
+              <a href="index.html">AIDE 0.0.1 documentation</a> &#187;
               
           </li>
           <li class="nav-item nav-item-1"><a href="modules.html" >XAIDA4Detection</a> &#187;</li>
@@ -385,7 +280,7 @@
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2023, Cortés-Andrés, J., Gonzalez-Calabuig, M., Zhang, M., Williams, T., Fernández-Torres, M.-Á., Pellicer-Valero, O. J., and Camps-Valls, G..
+    &copy; Copyright 2023, Cortés-Andrés, J., Gonzalez-Calabuig, M., Zhang, M., Williams, T., Pellicer-Valero, O. J., Fernández-Torres, M.-Á., and Camps-Valls, G..
     <br />
     This page is licensed under the Python Software Foundation License Version 2.
     <br />

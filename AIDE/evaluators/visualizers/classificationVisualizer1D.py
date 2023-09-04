@@ -49,8 +49,8 @@ class ClassificationVisualizer1D(ClassificationVisualizerAbstract):
         ax = plt.subplot(111)
         plt.title('Temporal evolution')
         cycle = plt.rcParams['axes.prop_cycle'].by_key()['color']
-        ax.plot(labels/torch.max(labels), c = cycle[0], label = 'Event GT', linestyle='dashed', linewidth=3)
-        ax.fill_between(np.arange(len(labels/torch.max(labels))), labels/torch.max(labels), 0, color=cycle[0], alpha=0.4)
+        ax.plot(labels/torch.max(labels), c = cycle[np.unique(labels)[-1]], label = 'Event GT', linestyle='dashed', linewidth=3)
+        ax.fill_between(np.arange(len(labels/torch.max(labels))), labels/torch.max(labels), 0, color=cycle[np.unique(labels)[-1]], alpha=0.4)
         plt.ylim(bottom=-0.1)
         class_names= self.test_loader.dataset.classes if hasattr(self.test_loader.dataset, 'classes') \
             else [str(c) for c in np.arange(self.num_classes)]

@@ -67,9 +67,27 @@
 <li><a class="reference internal" href="#">evaluators package</a><ul>
 <li><a class="reference internal" href="#subpackages">Subpackages</a></li>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#evaluators-pyodevaluator-module">evaluators.pyodEvaluator module</a></li>
-<li><a class="reference internal" href="#evaluators-pytorchevaluator-module">evaluators.pytorchEvaluator module</a></li>
-<li><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li><a class="reference internal" href="#module-evaluators.pyodEvaluator">evaluators.pyodEvaluator module</a><ul>
+<li><a class="reference internal" href="#evaluators.pyodEvaluator.PyodEvaluator"><code class="docutils literal notranslate"><span class="pre">PyodEvaluator</span></code></a><ul>
+<li><a class="reference internal" href="#evaluators.pyodEvaluator.PyodEvaluator.evaluate"><code class="docutils literal notranslate"><span class="pre">PyodEvaluator.evaluate()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-evaluators.pytorchEvaluator">evaluators.pytorchEvaluator module</a><ul>
+<li><a class="reference internal" href="#evaluators.pytorchEvaluator.PytorchEvaluator"><code class="docutils literal notranslate"><span class="pre">PytorchEvaluator</span></code></a><ul>
+<li><a class="reference internal" href="#evaluators.pytorchEvaluator.PytorchEvaluator.adapt_input"><code class="docutils literal notranslate"><span class="pre">PytorchEvaluator.adapt_input()</span></code></a></li>
+<li><a class="reference internal" href="#evaluators.pytorchEvaluator.PytorchEvaluator.connect_events"><code class="docutils literal notranslate"><span class="pre">PytorchEvaluator.connect_events()</span></code></a></li>
+<li><a class="reference internal" href="#evaluators.pytorchEvaluator.PytorchEvaluator.define_events"><code class="docutils literal notranslate"><span class="pre">PytorchEvaluator.define_events()</span></code></a></li>
+<li><a class="reference internal" href="#evaluators.pytorchEvaluator.PytorchEvaluator.evaluate"><code class="docutils literal notranslate"><span class="pre">PytorchEvaluator.evaluate()</span></code></a></li>
+<li><a class="reference internal" href="#evaluators.pytorchEvaluator.PytorchEvaluator.inference"><code class="docutils literal notranslate"><span class="pre">PytorchEvaluator.inference()</span></code></a></li>
+<li><a class="reference internal" href="#evaluators.pytorchEvaluator.PytorchEvaluator.remove_scant_labels"><code class="docutils literal notranslate"><span class="pre">PytorchEvaluator.remove_scant_labels()</span></code></a></li>
+<li><a class="reference internal" href="#evaluators.pytorchEvaluator.PytorchEvaluator.set_threshold"><code class="docutils literal notranslate"><span class="pre">PytorchEvaluator.set_threshold()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-evaluators">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -113,6 +131,9 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="evaluators.characterizers.html" title="evaluators.characterizers package"
              accesskey="N">next</a> |</li>
         <li class="right" >
@@ -129,7 +150,7 @@
               <a href="index.html">AIDE 0.0.1 documentation</a> &#187;
               
           </li>
-          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">XAIDA4Detection</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">AIDE</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">evaluators package</a></li>
                 <li class="right">
                     
@@ -168,23 +189,73 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="evaluators.characterizers.html">evaluators.characterizers package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="evaluators.characterizers.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evaluators.characterizers.html#evaluators-characterizers-classificationcharacterizer-module">evaluators.characterizers.classificationCharacterizer module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evaluators.characterizers.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluators.characterizers.html#module-evaluators.characterizers.classificationCharacterizer">evaluators.characterizers.classificationCharacterizer module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evaluators.characterizers.html#evaluators.characterizers.classificationCharacterizer.ClassificationCharacterizer"><code class="docutils literal notranslate"><span class="pre">ClassificationCharacterizer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evaluators.characterizers.html#evaluators.characterizers.classificationCharacterizer.ClassificationCharacterizer.charact_set_results"><code class="docutils literal notranslate"><span class="pre">ClassificationCharacterizer.charact_set_results()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evaluators.characterizers.html#evaluators.characterizers.classificationCharacterizer.ClassificationCharacterizer.characterize"><code class="docutils literal notranslate"><span class="pre">ClassificationCharacterizer.characterize()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evaluators.characterizers.html#module-evaluators.characterizers">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="evaluators.visualizers.html">evaluators.visualizers package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="evaluators.visualizers.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evaluators.visualizers.html#evaluators-visualizers-classificationvisualizer1d-module">evaluators.visualizers.classificationVisualizer1D module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evaluators.visualizers.html#evaluators-visualizers-classificationvisualizer2d-module">evaluators.visualizers.classificationVisualizer2D module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evaluators.visualizers.html#evaluators-visualizers-classificationvisualizerabstract-module">evaluators.visualizers.classificationVisualizerAbstract module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evaluators.visualizers.html#evaluators-visualizers-outlierdetectionvisualizer-module">evaluators.visualizers.outlierDetectionVisualizer module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evaluators.visualizers.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluators.visualizers.html#module-evaluators.visualizers.classificationVisualizer1D">evaluators.visualizers.classificationVisualizer1D module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evaluators.visualizers.html#evaluators.visualizers.classificationVisualizer1D.ClassificationVisualizer1D"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizer1D</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evaluators.visualizers.html#evaluators.visualizers.classificationVisualizer1D.ClassificationVisualizer1D.global_operations"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizer1D.global_operations()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evaluators.visualizers.html#evaluators.visualizers.classificationVisualizer1D.ClassificationVisualizer1D.per_sample_operations"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizer1D.per_sample_operations()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evaluators.visualizers.html#module-evaluators.visualizers.classificationVisualizer2D">evaluators.visualizers.classificationVisualizer2D module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evaluators.visualizers.html#evaluators.visualizers.classificationVisualizer2D.ClassificationVisualizer2D"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizer2D</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evaluators.visualizers.html#evaluators.visualizers.classificationVisualizer2D.ClassificationVisualizer2D.global_operations"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizer2D.global_operations()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evaluators.visualizers.html#evaluators.visualizers.classificationVisualizer2D.ClassificationVisualizer2D.per_sample_operations"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizer2D.per_sample_operations()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evaluators.visualizers.html#module-evaluators.visualizers.classificationVisualizerAbstract">evaluators.visualizers.classificationVisualizerAbstract module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evaluators.visualizers.html#evaluators.visualizers.classificationVisualizerAbstract.ClassificationVisualizerAbstract"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizerAbstract</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evaluators.visualizers.html#evaluators.visualizers.classificationVisualizerAbstract.ClassificationVisualizerAbstract.global_operations"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizerAbstract.global_operations()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evaluators.visualizers.html#evaluators.visualizers.classificationVisualizerAbstract.ClassificationVisualizerAbstract.per_sample_operations"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizerAbstract.per_sample_operations()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evaluators.visualizers.html#evaluators.visualizers.classificationVisualizerAbstract.ClassificationVisualizerAbstract.visualize"><code class="docutils literal notranslate"><span class="pre">ClassificationVisualizerAbstract.visualize()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evaluators.visualizers.html#module-evaluators.visualizers.outlierDetectionVisualizer">evaluators.visualizers.outlierDetectionVisualizer module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evaluators.visualizers.html#evaluators.visualizers.outlierDetectionVisualizer.OutlierDetectionVisualizer"><code class="docutils literal notranslate"><span class="pre">OutlierDetectionVisualizer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evaluators.visualizers.html#evaluators.visualizers.outlierDetectionVisualizer.OutlierDetectionVisualizer.visualize"><code class="docutils literal notranslate"><span class="pre">OutlierDetectionVisualizer.visualize()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evaluators.visualizers.html#module-evaluators.visualizers">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="evaluators.xai.html">evaluators.xai package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="evaluators.xai.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evaluators.xai.html#evaluators-xai-xai-module">evaluators.xai.XAI module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evaluators.xai.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluators.xai.html#module-evaluators.xai.XAI">evaluators.xai.XAI module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evaluators.xai.html#evaluators.xai.XAI.XAI"><code class="docutils literal notranslate"><span class="pre">XAI</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evaluators.xai.html#evaluators.xai.XAI.XAI.xai"><code class="docutils literal notranslate"><span class="pre">XAI.xai()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="evaluators.xai.html#evaluators.xai.XAI.agg_y"><code class="docutils literal notranslate"><span class="pre">agg_y()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="evaluators.xai.html#evaluators.xai.XAI.attribute"><code class="docutils literal notranslate"><span class="pre">attribute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="evaluators.xai.html#evaluators.xai.XAI.event_at_all"><code class="docutils literal notranslate"><span class="pre">event_at_all()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="evaluators.xai.html#evaluators.xai.XAI.event_at_beginning"><code class="docutils literal notranslate"><span class="pre">event_at_beginning()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="evaluators.xai.html#evaluators.xai.XAI.event_at_end"><code class="docutils literal notranslate"><span class="pre">event_at_end()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="evaluators.xai.html#evaluators.xai.XAI.get_agg_mask"><code class="docutils literal notranslate"><span class="pre">get_agg_mask()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="evaluators.xai.html#evaluators.xai.XAI.get_multiindex_df"><code class="docutils literal notranslate"><span class="pre">get_multiindex_df()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="evaluators.xai.html#evaluators.xai.XAI.plot_attributions_1d"><code class="docutils literal notranslate"><span class="pre">plot_attributions_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="evaluators.xai.html#evaluators.xai.XAI.plot_attributions_nd"><code class="docutils literal notranslate"><span class="pre">plot_attributions_nd()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evaluators.xai.html#module-evaluators.xai">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -193,14 +264,74 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
-<section id="evaluators-pyodevaluator-module">
-<h2>evaluators.pyodEvaluator module<a class="headerlink" href="#evaluators-pyodevaluator-module" title="Permalink to this heading"></a></h2>
+<section id="module-evaluators.pyodEvaluator">
+<span id="evaluators-pyodevaluator-module"></span><h2>evaluators.pyodEvaluator module<a class="headerlink" href="#module-evaluators.pyodEvaluator" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="evaluators.pyodEvaluator.PyodEvaluator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evaluators.pyodEvaluator.</span></span><span class="sig-name descname"><span class="pre">PyodEvaluator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">models</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_test</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.pyodEvaluator.PyodEvaluator" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="evaluators.pyodEvaluator.PyodEvaluator.evaluate">
+<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.pyodEvaluator.PyodEvaluator.evaluate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="evaluators-pytorchevaluator-module">
-<h2>evaluators.pytorchEvaluator module<a class="headerlink" href="#evaluators-pytorchevaluator-module" title="Permalink to this heading"></a></h2>
+<section id="module-evaluators.pytorchEvaluator">
+<span id="evaluators-pytorchevaluator-module"></span><h2>evaluators.pytorchEvaluator module<a class="headerlink" href="#module-evaluators.pytorchEvaluator" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="evaluators.pytorchEvaluator.PytorchEvaluator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evaluators.pytorchEvaluator.</span></span><span class="sig-name descname"><span class="pre">PytorchEvaluator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataloader</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.pytorchEvaluator.PytorchEvaluator" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Evaluator generic class</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="evaluators.pytorchEvaluator.PytorchEvaluator.adapt_input">
+<span class="sig-name descname"><span class="pre">adapt_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.pytorchEvaluator.PytorchEvaluator.adapt_input" title="Permalink to this definition"></a></dt>
+<dd><p>Adapt input size for evaluation purposes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evaluators.pytorchEvaluator.PytorchEvaluator.connect_events">
+<span class="sig-name descname"><span class="pre">connect_events</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">events</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.pytorchEvaluator.PytorchEvaluator.connect_events" title="Permalink to this definition"></a></dt>
+<dd><p>events at less than min_dist are given the same label
+Min distance is spatial only</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evaluators.pytorchEvaluator.PytorchEvaluator.define_events">
+<span class="sig-name descname"><span class="pre">define_events</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inference_outputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.pytorchEvaluator.PytorchEvaluator.define_events" title="Permalink to this definition"></a></dt>
+<dd><p>Identify events and get their ids (unique values)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evaluators.pytorchEvaluator.PytorchEvaluator.evaluate">
+<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inference_outputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.pytorchEvaluator.PytorchEvaluator.evaluate" title="Permalink to this definition"></a></dt>
+<dd><p>Evaluate model</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evaluators.pytorchEvaluator.PytorchEvaluator.inference">
+<span class="sig-name descname"><span class="pre">inference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subset</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.pytorchEvaluator.PytorchEvaluator.inference" title="Permalink to this definition"></a></dt>
+<dd><p>Infere results</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evaluators.pytorchEvaluator.PytorchEvaluator.remove_scant_labels">
+<span class="sig-name descname"><span class="pre">remove_scant_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tmp_test_outputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connectivity</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.pytorchEvaluator.PytorchEvaluator.remove_scant_labels" title="Permalink to this definition"></a></dt>
+<dd><p>Removes scant labels</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evaluators.pytorchEvaluator.PytorchEvaluator.set_threshold">
+<span class="sig-name descname"><span class="pre">set_threshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.pytorchEvaluator.PytorchEvaluator.set_threshold" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<section id="module-evaluators">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-evaluators" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 
@@ -217,9 +348,27 @@
 <li><a class="reference internal" href="#">evaluators package</a><ul>
 <li><a class="reference internal" href="#subpackages">Subpackages</a></li>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#evaluators-pyodevaluator-module">evaluators.pyodEvaluator module</a></li>
-<li><a class="reference internal" href="#evaluators-pytorchevaluator-module">evaluators.pytorchEvaluator module</a></li>
-<li><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li><a class="reference internal" href="#module-evaluators.pyodEvaluator">evaluators.pyodEvaluator module</a><ul>
+<li><a class="reference internal" href="#evaluators.pyodEvaluator.PyodEvaluator"><code class="docutils literal notranslate"><span class="pre">PyodEvaluator</span></code></a><ul>
+<li><a class="reference internal" href="#evaluators.pyodEvaluator.PyodEvaluator.evaluate"><code class="docutils literal notranslate"><span class="pre">PyodEvaluator.evaluate()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-evaluators.pytorchEvaluator">evaluators.pytorchEvaluator module</a><ul>
+<li><a class="reference internal" href="#evaluators.pytorchEvaluator.PytorchEvaluator"><code class="docutils literal notranslate"><span class="pre">PytorchEvaluator</span></code></a><ul>
+<li><a class="reference internal" href="#evaluators.pytorchEvaluator.PytorchEvaluator.adapt_input"><code class="docutils literal notranslate"><span class="pre">PytorchEvaluator.adapt_input()</span></code></a></li>
+<li><a class="reference internal" href="#evaluators.pytorchEvaluator.PytorchEvaluator.connect_events"><code class="docutils literal notranslate"><span class="pre">PytorchEvaluator.connect_events()</span></code></a></li>
+<li><a class="reference internal" href="#evaluators.pytorchEvaluator.PytorchEvaluator.define_events"><code class="docutils literal notranslate"><span class="pre">PytorchEvaluator.define_events()</span></code></a></li>
+<li><a class="reference internal" href="#evaluators.pytorchEvaluator.PytorchEvaluator.evaluate"><code class="docutils literal notranslate"><span class="pre">PytorchEvaluator.evaluate()</span></code></a></li>
+<li><a class="reference internal" href="#evaluators.pytorchEvaluator.PytorchEvaluator.inference"><code class="docutils literal notranslate"><span class="pre">PytorchEvaluator.inference()</span></code></a></li>
+<li><a class="reference internal" href="#evaluators.pytorchEvaluator.PytorchEvaluator.remove_scant_labels"><code class="docutils literal notranslate"><span class="pre">PytorchEvaluator.remove_scant_labels()</span></code></a></li>
+<li><a class="reference internal" href="#evaluators.pytorchEvaluator.PytorchEvaluator.set_threshold"><code class="docutils literal notranslate"><span class="pre">PytorchEvaluator.set_threshold()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-evaluators">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -263,6 +412,9 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="evaluators.characterizers.html" title="evaluators.characterizers package"
              >next</a> |</li>
         <li class="right" >
@@ -279,7 +431,7 @@
               <a href="index.html">AIDE 0.0.1 documentation</a> &#187;
               
           </li>
-          <li class="nav-item nav-item-1"><a href="modules.html" >XAIDA4Detection</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >AIDE</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">evaluators package</a></li>
                 <li class="right">
                     

@@ -7,7 +7,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../../XAIDA4Detection/'))
+sys.path.insert(0, os.path.abspath('../../AIDE/'))
 import sphinx_rtd_theme
 
 project = 'AIDE'

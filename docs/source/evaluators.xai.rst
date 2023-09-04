@@ -5,7 +5,7 @@ Submodules
 ----------
 
 evaluators.xai.XAI module
----------------------------------------
+-------------------------
 
 .. automodule:: evaluators.xai.XAI
    :members:

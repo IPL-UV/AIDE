@@ -66,8 +66,15 @@
     <ul>
 <li><a class="reference internal" href="#">evaluators.characterizers package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#evaluators-characterizers-classificationcharacterizer-module">evaluators.characterizers.classificationCharacterizer module</a></li>
-<li><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li><a class="reference internal" href="#module-evaluators.characterizers.classificationCharacterizer">evaluators.characterizers.classificationCharacterizer module</a><ul>
+<li><a class="reference internal" href="#evaluators.characterizers.classificationCharacterizer.ClassificationCharacterizer"><code class="docutils literal notranslate"><span class="pre">ClassificationCharacterizer</span></code></a><ul>
+<li><a class="reference internal" href="#evaluators.characterizers.classificationCharacterizer.ClassificationCharacterizer.charact_set_results"><code class="docutils literal notranslate"><span class="pre">ClassificationCharacterizer.charact_set_results()</span></code></a></li>
+<li><a class="reference internal" href="#evaluators.characterizers.classificationCharacterizer.ClassificationCharacterizer.characterize"><code class="docutils literal notranslate"><span class="pre">ClassificationCharacterizer.characterize()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-evaluators.characterizers">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -111,6 +118,9 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="evaluators.visualizers.html" title="evaluators.visualizers package"
              accesskey="N">next</a> |</li>
         <li class="right" >
@@ -127,7 +137,7 @@
               <a href="index.html">AIDE 0.0.1 documentation</a> &#187;
               
           </li>
-          <li class="nav-item nav-item-1"><a href="modules.html" >XAIDA4Detection</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >AIDE</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="evaluators.html" accesskey="U">evaluators package</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">evaluators.characterizers package</a></li>
                 <li class="right">
@@ -164,11 +174,31 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
-<section id="evaluators-characterizers-classificationcharacterizer-module">
-<h2>evaluators.characterizers.classificationCharacterizer module<a class="headerlink" href="#evaluators-characterizers-classificationcharacterizer-module" title="Permalink to this heading"></a></h2>
+<section id="module-evaluators.characterizers.classificationCharacterizer">
+<span id="evaluators-characterizers-classificationcharacterizer-module"></span><h2>evaluators.characterizers.classificationCharacterizer module<a class="headerlink" href="#module-evaluators.characterizers.classificationCharacterizer" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="evaluators.characterizers.classificationCharacterizer.ClassificationCharacterizer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evaluators.characterizers.classificationCharacterizer.</span></span><span class="sig-name descname"><span class="pre">ClassificationCharacterizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.characterizers.classificationCharacterizer.ClassificationCharacterizer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Evaluator generic class</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="evaluators.characterizers.classificationCharacterizer.ClassificationCharacterizer.charact_set_results">
+<span class="sig-name descname"><span class="pre">charact_set_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">events</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.characterizers.classificationCharacterizer.ClassificationCharacterizer.charact_set_results" title="Permalink to this definition"></a></dt>
+<dd><p>Computes characteristics for each sample, all classes and their corresponding events
+The output file contains the stats for each sample divided according to the class of the events.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evaluators.characterizers.classificationCharacterizer.ClassificationCharacterizer.characterize">
+<span class="sig-name descname"><span class="pre">characterize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inference_outputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">events</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluators.characterizers.classificationCharacterizer.ClassificationCharacterizer.characterize" title="Permalink to this definition"></a></dt>
+<dd><p>Evaluate model and visualize results</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<section id="module-evaluators.characterizers">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-evaluators.characterizers" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 
@@ -184,8 +214,15 @@
     <ul>
 <li><a class="reference internal" href="#">evaluators.characterizers package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#evaluators-characterizers-classificationcharacterizer-module">evaluators.characterizers.classificationCharacterizer module</a></li>
-<li><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li><a class="reference internal" href="#module-evaluators.characterizers.classificationCharacterizer">evaluators.characterizers.classificationCharacterizer module</a><ul>
+<li><a class="reference internal" href="#evaluators.characterizers.classificationCharacterizer.ClassificationCharacterizer"><code class="docutils literal notranslate"><span class="pre">ClassificationCharacterizer</span></code></a><ul>
+<li><a class="reference internal" href="#evaluators.characterizers.classificationCharacterizer.ClassificationCharacterizer.charact_set_results"><code class="docutils literal notranslate"><span class="pre">ClassificationCharacterizer.charact_set_results()</span></code></a></li>
+<li><a class="reference internal" href="#evaluators.characterizers.classificationCharacterizer.ClassificationCharacterizer.characterize"><code class="docutils literal notranslate"><span class="pre">ClassificationCharacterizer.characterize()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-evaluators.characterizers">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -229,6 +266,9 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="evaluators.visualizers.html" title="evaluators.visualizers package"
              >next</a> |</li>
         <li class="right" >
@@ -245,7 +285,7 @@
               <a href="index.html">AIDE 0.0.1 documentation</a> &#187;
               
           </li>
-          <li class="nav-item nav-item-1"><a href="modules.html" >XAIDA4Detection</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >AIDE</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="evaluators.html" >evaluators package</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">evaluators.characterizers package</a></li>
                 <li class="right">

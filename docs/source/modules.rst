@@ -1,5 +1,5 @@
-XAIDA4Detection
-===============
+AIDE
+====
 
 .. toctree::
    :maxdepth: 4

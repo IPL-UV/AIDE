@@ -21,7 +21,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="backbones.models package" href="backbones.models.html" />
-    <link rel="prev" title="XAIDA4Detection" href="modules.html" /><link rel="stylesheet" href="_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="prev" title="AIDE" href="modules.html" /><link rel="stylesheet" href="_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
     <link rel="shortcut icon" type="image/png" href="_static/py.svg" />
             <script type="text/javascript" src="_static/copybutton.js"></script>
             <script type="text/javascript" src="_static/menu.js"></script>
@@ -67,10 +67,40 @@
 <li><a class="reference internal" href="#">backbones package</a><ul>
 <li><a class="reference internal" href="#subpackages">Subpackages</a></li>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#backbones-genericbackbone-module">backbones.genericBackbone module</a></li>
-<li><a class="reference internal" href="#backbones-pyodbackbone-module">backbones.pyodBackbone module</a></li>
-<li><a class="reference internal" href="#backbones-pytorchbackbone-module">backbones.pytorchBackbone module</a></li>
-<li><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li><a class="reference internal" href="#module-backbones.genericBackbone">backbones.genericBackbone module</a><ul>
+<li><a class="reference internal" href="#backbones.genericBackbone.GenericBackbone"><code class="docutils literal notranslate"><span class="pre">GenericBackbone</span></code></a><ul>
+<li><a class="reference internal" href="#backbones.genericBackbone.GenericBackbone.implement_model"><code class="docutils literal notranslate"><span class="pre">GenericBackbone.implement_model()</span></code></a></li>
+<li><a class="reference internal" href="#backbones.genericBackbone.GenericBackbone.inference"><code class="docutils literal notranslate"><span class="pre">GenericBackbone.inference()</span></code></a></li>
+<li><a class="reference internal" href="#backbones.genericBackbone.GenericBackbone.load_data"><code class="docutils literal notranslate"><span class="pre">GenericBackbone.load_data()</span></code></a></li>
+<li><a class="reference internal" href="#backbones.genericBackbone.GenericBackbone.test"><code class="docutils literal notranslate"><span class="pre">GenericBackbone.test()</span></code></a></li>
+<li><a class="reference internal" href="#backbones.genericBackbone.GenericBackbone.train"><code class="docutils literal notranslate"><span class="pre">GenericBackbone.train()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-backbones.pyodBackbone">backbones.pyodBackbone module</a><ul>
+<li><a class="reference internal" href="#backbones.pyodBackbone.PyodBackbone"><code class="docutils literal notranslate"><span class="pre">PyodBackbone</span></code></a><ul>
+<li><a class="reference internal" href="#backbones.pyodBackbone.PyodBackbone.implement_model"><code class="docutils literal notranslate"><span class="pre">PyodBackbone.implement_model()</span></code></a></li>
+<li><a class="reference internal" href="#backbones.pyodBackbone.PyodBackbone.inference"><code class="docutils literal notranslate"><span class="pre">PyodBackbone.inference()</span></code></a></li>
+<li><a class="reference internal" href="#backbones.pyodBackbone.PyodBackbone.load_data"><code class="docutils literal notranslate"><span class="pre">PyodBackbone.load_data()</span></code></a></li>
+<li><a class="reference internal" href="#backbones.pyodBackbone.PyodBackbone.test"><code class="docutils literal notranslate"><span class="pre">PyodBackbone.test()</span></code></a></li>
+<li><a class="reference internal" href="#backbones.pyodBackbone.PyodBackbone.train"><code class="docutils literal notranslate"><span class="pre">PyodBackbone.train()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-backbones.pytorchBackbone">backbones.pytorchBackbone module</a><ul>
+<li><a class="reference internal" href="#backbones.pytorchBackbone.PytorchBackbone"><code class="docutils literal notranslate"><span class="pre">PytorchBackbone</span></code></a><ul>
+<li><a class="reference internal" href="#backbones.pytorchBackbone.PytorchBackbone.implement_model"><code class="docutils literal notranslate"><span class="pre">PytorchBackbone.implement_model()</span></code></a></li>
+<li><a class="reference internal" href="#backbones.pytorchBackbone.PytorchBackbone.inference"><code class="docutils literal notranslate"><span class="pre">PytorchBackbone.inference()</span></code></a></li>
+<li><a class="reference internal" href="#backbones.pytorchBackbone.PytorchBackbone.load_data"><code class="docutils literal notranslate"><span class="pre">PytorchBackbone.load_data()</span></code></a></li>
+<li><a class="reference internal" href="#backbones.pytorchBackbone.PytorchBackbone.test"><code class="docutils literal notranslate"><span class="pre">PytorchBackbone.test()</span></code></a></li>
+<li><a class="reference internal" href="#backbones.pytorchBackbone.PytorchBackbone.train"><code class="docutils literal notranslate"><span class="pre">PytorchBackbone.train()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-backbones">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -79,7 +109,7 @@
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="modules.html"
-                          title="previous chapter">XAIDA4Detection</a></p>
+                          title="previous chapter">AIDE</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
@@ -114,10 +144,13 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="backbones.models.html" title="backbones.models package"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="modules.html" title="XAIDA4Detection"
+          <a href="modules.html" title="AIDE"
              accesskey="P">previous</a> |</li>
           <li><img src="_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
@@ -130,7 +163,7 @@
               <a href="index.html">AIDE 0.0.1 documentation</a> &#187;
               
           </li>
-          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">XAIDA4Detection</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">AIDE</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">backbones package</a></li>
                 <li class="right">
                     
@@ -169,9 +202,35 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="backbones.models.html">backbones.models package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="backbones.models.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="backbones.models.html#backbones-models-pyodmodel-module">backbones.models.pyodModel module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="backbones.models.html#backbones-models-pytorchmodel-module">backbones.models.pytorchModel module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="backbones.models.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backbones.models.html#module-backbones.models.pyodModel">backbones.models.pyodModel module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="backbones.models.html#backbones.models.pyodModel.PyodModel"><code class="docutils literal notranslate"><span class="pre">PyodModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="backbones.models.html#backbones.models.pyodModel.PyodModel.forward"><code class="docutils literal notranslate"><span class="pre">PyodModel.forward()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="backbones.models.html#backbones.models.pyodModel.PyodModel.get_model"><code class="docutils literal notranslate"><span class="pre">PyodModel.get_model()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="backbones.models.html#module-backbones.models.pytorchModel">backbones.models.pytorchModel module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="backbones.models.html#backbones.models.pytorchModel.PytorchModel"><code class="docutils literal notranslate"><span class="pre">PytorchModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="backbones.models.html#backbones.models.pytorchModel.PytorchModel.adapt_variables_for_metric"><code class="docutils literal notranslate"><span class="pre">PytorchModel.adapt_variables_for_metric()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="backbones.models.html#backbones.models.pytorchModel.PytorchModel.configure_optimizers"><code class="docutils literal notranslate"><span class="pre">PytorchModel.configure_optimizers()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="backbones.models.html#backbones.models.pytorchModel.PytorchModel.define_model"><code class="docutils literal notranslate"><span class="pre">PytorchModel.define_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="backbones.models.html#backbones.models.pytorchModel.PytorchModel.epoch_metrics"><code class="docutils literal notranslate"><span class="pre">PytorchModel.epoch_metrics()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="backbones.models.html#backbones.models.pytorchModel.PytorchModel.forward"><code class="docutils literal notranslate"><span class="pre">PytorchModel.forward()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="backbones.models.html#backbones.models.pytorchModel.PytorchModel.log_metric"><code class="docutils literal notranslate"><span class="pre">PytorchModel.log_metric()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="backbones.models.html#backbones.models.pytorchModel.PytorchModel.on_test_epoch_end"><code class="docutils literal notranslate"><span class="pre">PytorchModel.on_test_epoch_end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="backbones.models.html#backbones.models.pytorchModel.PytorchModel.on_train_epoch_end"><code class="docutils literal notranslate"><span class="pre">PytorchModel.on_train_epoch_end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="backbones.models.html#backbones.models.pytorchModel.PytorchModel.on_validation_epoch_end"><code class="docutils literal notranslate"><span class="pre">PytorchModel.on_validation_epoch_end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="backbones.models.html#backbones.models.pytorchModel.PytorchModel.shared_step"><code class="docutils literal notranslate"><span class="pre">PytorchModel.shared_step()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="backbones.models.html#backbones.models.pytorchModel.PytorchModel.step_metrics"><code class="docutils literal notranslate"><span class="pre">PytorchModel.step_metrics()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="backbones.models.html#backbones.models.pytorchModel.PytorchModel.test_step"><code class="docutils literal notranslate"><span class="pre">PytorchModel.test_step()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="backbones.models.html#backbones.models.pytorchModel.PytorchModel.training_step"><code class="docutils literal notranslate"><span class="pre">PytorchModel.training_step()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="backbones.models.html#backbones.models.pytorchModel.PytorchModel.validation_step"><code class="docutils literal notranslate"><span class="pre">PytorchModel.validation_step()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="backbones.models.html#module-backbones.models">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -180,17 +239,110 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
-<section id="backbones-genericbackbone-module">
-<h2>backbones.genericBackbone module<a class="headerlink" href="#backbones-genericbackbone-module" title="Permalink to this heading"></a></h2>
+<section id="module-backbones.genericBackbone">
+<span id="backbones-genericbackbone-module"></span><h2>backbones.genericBackbone module<a class="headerlink" href="#module-backbones.genericBackbone" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="backbones.genericBackbone.GenericBackbone">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">backbones.genericBackbone.</span></span><span class="sig-name descname"><span class="pre">GenericBackbone</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#backbones.genericBackbone.GenericBackbone" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.genericBackbone.GenericBackbone.implement_model">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">implement_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#backbones.genericBackbone.GenericBackbone.implement_model" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.genericBackbone.GenericBackbone.inference">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">inference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#backbones.genericBackbone.GenericBackbone.inference" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.genericBackbone.GenericBackbone.load_data">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#backbones.genericBackbone.GenericBackbone.load_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.genericBackbone.GenericBackbone.test">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#backbones.genericBackbone.GenericBackbone.test" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.genericBackbone.GenericBackbone.train">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#backbones.genericBackbone.GenericBackbone.train" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="backbones-pyodbackbone-module">
-<h2>backbones.pyodBackbone module<a class="headerlink" href="#backbones-pyodbackbone-module" title="Permalink to this heading"></a></h2>
+<section id="module-backbones.pyodBackbone">
+<span id="backbones-pyodbackbone-module"></span><h2>backbones.pyodBackbone module<a class="headerlink" href="#module-backbones.pyodBackbone" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="backbones.pyodBackbone.PyodBackbone">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">backbones.pyodBackbone.</span></span><span class="sig-name descname"><span class="pre">PyodBackbone</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#backbones.pyodBackbone.PyodBackbone" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#backbones.genericBackbone.GenericBackbone" title="backbones.genericBackbone.GenericBackbone"><code class="xref py py-class docutils literal notranslate"><span class="pre">GenericBackbone</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.pyodBackbone.PyodBackbone.implement_model">
+<span class="sig-name descname"><span class="pre">implement_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#backbones.pyodBackbone.PyodBackbone.implement_model" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.pyodBackbone.PyodBackbone.inference">
+<span class="sig-name descname"><span class="pre">inference</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#backbones.pyodBackbone.PyodBackbone.inference" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.pyodBackbone.PyodBackbone.load_data">
+<span class="sig-name descname"><span class="pre">load_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#backbones.pyodBackbone.PyodBackbone.load_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.pyodBackbone.PyodBackbone.test">
+<span class="sig-name descname"><span class="pre">test</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#backbones.pyodBackbone.PyodBackbone.test" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.pyodBackbone.PyodBackbone.train">
+<span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#backbones.pyodBackbone.PyodBackbone.train" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="backbones-pytorchbackbone-module">
-<h2>backbones.pytorchBackbone module<a class="headerlink" href="#backbones-pytorchbackbone-module" title="Permalink to this heading"></a></h2>
+<section id="module-backbones.pytorchBackbone">
+<span id="backbones-pytorchbackbone-module"></span><h2>backbones.pytorchBackbone module<a class="headerlink" href="#module-backbones.pytorchBackbone" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="backbones.pytorchBackbone.PytorchBackbone">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">backbones.pytorchBackbone.</span></span><span class="sig-name descname"><span class="pre">PytorchBackbone</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#backbones.pytorchBackbone.PytorchBackbone" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#backbones.genericBackbone.GenericBackbone" title="backbones.genericBackbone.GenericBackbone"><code class="xref py py-class docutils literal notranslate"><span class="pre">GenericBackbone</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.pytorchBackbone.PytorchBackbone.implement_model">
+<span class="sig-name descname"><span class="pre">implement_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#backbones.pytorchBackbone.PytorchBackbone.implement_model" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.pytorchBackbone.PytorchBackbone.inference">
+<span class="sig-name descname"><span class="pre">inference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'test'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#backbones.pytorchBackbone.PytorchBackbone.inference" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.pytorchBackbone.PytorchBackbone.load_data">
+<span class="sig-name descname"><span class="pre">load_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#backbones.pytorchBackbone.PytorchBackbone.load_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.pytorchBackbone.PytorchBackbone.test">
+<span class="sig-name descname"><span class="pre">test</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#backbones.pytorchBackbone.PytorchBackbone.test" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.pytorchBackbone.PytorchBackbone.train">
+<span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#backbones.pytorchBackbone.PytorchBackbone.train" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<section id="module-backbones">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-backbones" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 
@@ -207,10 +359,40 @@
 <li><a class="reference internal" href="#">backbones package</a><ul>
 <li><a class="reference internal" href="#subpackages">Subpackages</a></li>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#backbones-genericbackbone-module">backbones.genericBackbone module</a></li>
-<li><a class="reference internal" href="#backbones-pyodbackbone-module">backbones.pyodBackbone module</a></li>
-<li><a class="reference internal" href="#backbones-pytorchbackbone-module">backbones.pytorchBackbone module</a></li>
-<li><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li><a class="reference internal" href="#module-backbones.genericBackbone">backbones.genericBackbone module</a><ul>
+<li><a class="reference internal" href="#backbones.genericBackbone.GenericBackbone"><code class="docutils literal notranslate"><span class="pre">GenericBackbone</span></code></a><ul>
+<li><a class="reference internal" href="#backbones.genericBackbone.GenericBackbone.implement_model"><code class="docutils literal notranslate"><span class="pre">GenericBackbone.implement_model()</span></code></a></li>
+<li><a class="reference internal" href="#backbones.genericBackbone.GenericBackbone.inference"><code class="docutils literal notranslate"><span class="pre">GenericBackbone.inference()</span></code></a></li>
+<li><a class="reference internal" href="#backbones.genericBackbone.GenericBackbone.load_data"><code class="docutils literal notranslate"><span class="pre">GenericBackbone.load_data()</span></code></a></li>
+<li><a class="reference internal" href="#backbones.genericBackbone.GenericBackbone.test"><code class="docutils literal notranslate"><span class="pre">GenericBackbone.test()</span></code></a></li>
+<li><a class="reference internal" href="#backbones.genericBackbone.GenericBackbone.train"><code class="docutils literal notranslate"><span class="pre">GenericBackbone.train()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-backbones.pyodBackbone">backbones.pyodBackbone module</a><ul>
+<li><a class="reference internal" href="#backbones.pyodBackbone.PyodBackbone"><code class="docutils literal notranslate"><span class="pre">PyodBackbone</span></code></a><ul>
+<li><a class="reference internal" href="#backbones.pyodBackbone.PyodBackbone.implement_model"><code class="docutils literal notranslate"><span class="pre">PyodBackbone.implement_model()</span></code></a></li>
+<li><a class="reference internal" href="#backbones.pyodBackbone.PyodBackbone.inference"><code class="docutils literal notranslate"><span class="pre">PyodBackbone.inference()</span></code></a></li>
+<li><a class="reference internal" href="#backbones.pyodBackbone.PyodBackbone.load_data"><code class="docutils literal notranslate"><span class="pre">PyodBackbone.load_data()</span></code></a></li>
+<li><a class="reference internal" href="#backbones.pyodBackbone.PyodBackbone.test"><code class="docutils literal notranslate"><span class="pre">PyodBackbone.test()</span></code></a></li>
+<li><a class="reference internal" href="#backbones.pyodBackbone.PyodBackbone.train"><code class="docutils literal notranslate"><span class="pre">PyodBackbone.train()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-backbones.pytorchBackbone">backbones.pytorchBackbone module</a><ul>
+<li><a class="reference internal" href="#backbones.pytorchBackbone.PytorchBackbone"><code class="docutils literal notranslate"><span class="pre">PytorchBackbone</span></code></a><ul>
+<li><a class="reference internal" href="#backbones.pytorchBackbone.PytorchBackbone.implement_model"><code class="docutils literal notranslate"><span class="pre">PytorchBackbone.implement_model()</span></code></a></li>
+<li><a class="reference internal" href="#backbones.pytorchBackbone.PytorchBackbone.inference"><code class="docutils literal notranslate"><span class="pre">PytorchBackbone.inference()</span></code></a></li>
+<li><a class="reference internal" href="#backbones.pytorchBackbone.PytorchBackbone.load_data"><code class="docutils literal notranslate"><span class="pre">PytorchBackbone.load_data()</span></code></a></li>
+<li><a class="reference internal" href="#backbones.pytorchBackbone.PytorchBackbone.test"><code class="docutils literal notranslate"><span class="pre">PytorchBackbone.test()</span></code></a></li>
+<li><a class="reference internal" href="#backbones.pytorchBackbone.PytorchBackbone.train"><code class="docutils literal notranslate"><span class="pre">PytorchBackbone.train()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-backbones">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -219,7 +401,7 @@
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="modules.html"
-                          title="previous chapter">XAIDA4Detection</a></p>
+                          title="previous chapter">AIDE</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
@@ -254,10 +436,13 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="backbones.models.html" title="backbones.models package"
              >next</a> |</li>
         <li class="right" >
-          <a href="modules.html" title="XAIDA4Detection"
+          <a href="modules.html" title="AIDE"
              >previous</a> |</li>
           <li><img src="_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
@@ -270,7 +455,7 @@
               <a href="index.html">AIDE 0.0.1 documentation</a> &#187;
               
           </li>
-          <li class="nav-item nav-item-1"><a href="modules.html" >XAIDA4Detection</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >AIDE</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">backbones package</a></li>
                 <li class="right">
                     

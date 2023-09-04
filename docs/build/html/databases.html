@@ -66,10 +66,19 @@
     <ul>
 <li><a class="reference internal" href="#">databases package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#databases-drought-database-module">databases.DROUGHT_database module</a></li>
-<li><a class="reference internal" href="#databases-droughted-database-module">databases.DroughtED_database module</a></li>
-<li><a class="reference internal" href="#databases-xaida-database-module">databases.XAIDA_database module</a></li>
-<li><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li><a class="reference internal" href="#module-databases.DroughtED_database">databases.DroughtED_database module</a><ul>
+<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED"><code class="docutils literal notranslate"><span class="pre">DroughtED</span></code></a><ul>
+<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.binarize_data"><code class="docutils literal notranslate"><span class="pre">DroughtED.binarize_data()</span></code></a></li>
+<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.interpolate_nans"><code class="docutils literal notranslate"><span class="pre">DroughtED.interpolate_nans()</span></code></a></li>
+<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.loadXY"><code class="docutils literal notranslate"><span class="pre">DroughtED.loadXY()</span></code></a></li>
+<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.normalize"><code class="docutils literal notranslate"><span class="pre">DroughtED.normalize()</span></code></a></li>
+<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.read_database_files"><code class="docutils literal notranslate"><span class="pre">DroughtED.read_database_files()</span></code></a></li>
+<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.select_slice"><code class="docutils literal notranslate"><span class="pre">DroughtED.select_slice()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-databases">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -113,6 +122,9 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="evaluators.html" title="evaluators package"
              accesskey="N">next</a> |</li>
         <li class="right" >
@@ -129,7 +141,7 @@
               <a href="index.html">AIDE 0.0.1 documentation</a> &#187;
               
           </li>
-          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">XAIDA4Detection</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">AIDE</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">databases package</a></li>
                 <li class="right">
                     
@@ -165,17 +177,134 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
-<section id="databases-drought-database-module">
-<h2>databases.DROUGHT_database module<a class="headerlink" href="#databases-drought-database-module" title="Permalink to this heading"></a></h2>
+<section id="module-databases.DroughtED_database">
+<span id="databases-droughted-database-module"></span><h2>databases.DroughtED_database module<a class="headerlink" href="#module-databases.DroughtED_database" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="databases.DroughtED_database.DroughtED">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">databases.DroughtED_database.</span></span><span class="sig-name descname"><span class="pre">DroughtED</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#databases.DroughtED_database.DroughtED" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></p>
+<p>This class is used to load the DroughtED dataset using PyTorch’s Dataset class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> (<em>dict</em>) – The configuration file</p></li>
+<li><p><strong>period</strong> (<em>str</em><em>, </em><em>optional</em>) – The period of the dataset to load, defaults to ‘train’</p></li>
+<li><p><strong>window_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The window size of the dataset, defaults to 12</p></li>
+<li><p><strong>features_selected</strong> (<em>list</em><em>, </em><em>optional</em>) – The features to be used, defaults to [‘NDVI’, ‘precipitation’, ‘temperature’]</p></li>
+<li><p><strong>num_classes</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of classes, defaults to 6</p></li>
+<li><p><strong>train_slice</strong> (<em>dict</em><em>, </em><em>optional</em>) – The time period of the training set, defaults to {‘start’: 1982, ‘end’: 2006}</p></li>
+<li><p><strong>val_slice</strong> (<em>dict</em><em>, </em><em>optional</em>) – The time period of the validation set, defaults to {‘start’: 2007, ‘end’: 2011}</p></li>
+<li><p><strong>test_slice</strong> (<em>dict</em><em>, </em><em>optional</em>) – The time period of the test set, defaults to {‘start’: 2012, ‘end’: 2016}</p></li>
+<li><p><strong>id2class</strong> (<em>dict</em><em>, </em><em>optional</em>) – The dictionary of class IDs, defaults to {‘None’: 0, ‘D0’: 1, ‘D1’: 2, ‘D2’: 3, ‘D3’: 4, ‘D4’: 5}</p></li>
+<li><p><strong>weights</strong> (<em>list</em><em>, </em><em>optional</em>) – The weights of each class, defaults to [100-ones_percentage, ones_percentage]</p></li>
+<li><p><strong>dfs</strong> (<em>pandas.core.frame.DataFrame</em><em>, </em><em>optional</em>) – The dataframe of the dataset, defaults to None</p></li>
+<li><p><strong>X</strong> (<em>numpy.ndarray</em><em>, </em><em>optional</em>) – The input data, defaults to None</p></li>
+<li><p><strong>y</strong> (<em>numpy.ndarray</em><em>, </em><em>optional</em>) – The output data, defaults to None</p></li>
+<li><p><strong>class_bound</strong> (<em>int</em><em>, </em><em>optional</em>) – The boundary of the classes, defaults to 2</p></li>
+<li><p><strong>start</strong> (<em>datetime</em><em>, </em><em>optional</em>) – The start date of the dataset, defaults to None</p></li>
+<li><p><strong>end</strong> (<em>datetime</em><em>, </em><em>optional</em>) – The end date of the dataset, defaults to None</p></li>
+<li><p><strong>dates</strong> (<em>pandas.core.indexes.datetimes.DatetimeIndex</em><em>, </em><em>optional</em>) – The dates of the dataset, defaults to None</p></li>
+<li><p><strong>ones_percentage</strong> (<em>float</em><em>, </em><em>optional</em>) – The percentage of the positive class in the binarise function, defaults to None</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="databases.DroughtED_database.DroughtED.binarize_data">
+<span class="sig-name descname"><span class="pre">binarize_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#databases.DroughtED_database.DroughtED.binarize_data" title="Permalink to this definition"></a></dt>
+<dd><p>_summary_</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="databases.DroughtED_database.DroughtED.interpolate_nans">
+<span class="sig-name descname"><span class="pre">interpolate_nans</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">padata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pkind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'linear'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#databases.DroughtED_database.DroughtED.interpolate_nans" title="Permalink to this definition"></a></dt>
+<dd><p>Interpolate over nans in a 1D array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>padata</strong> (<em>numpy.ndarray</em>) – 1D array with nans to interpolate over</p></li>
+<li><p><strong>pkind</strong> (<em>str</em><em>, </em><em>optional</em>) – Interpolation method, defaults to ‘linear’</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Interpolated array</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+<p>see: <a class="reference external" href="https://stackoverflow.com/a/53050216/2167159">https://stackoverflow.com/a/53050216/2167159</a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="databases.DroughtED_database.DroughtED.loadXY">
+<span class="sig-name descname"><span class="pre">loadXY</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#databases.DroughtED_database.DroughtED.loadXY" title="Permalink to this definition"></a></dt>
+<dd><p>Load the data and split it into X and y, and a conditional normalisation statement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>period</strong> (<em>str</em><em>, </em><em>optional</em>) – The period of the dataset to load, defaults to ‘train’</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The input and output data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray, numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="databases.DroughtED_database.DroughtED.normalize">
+<span class="sig-name descname"><span class="pre">normalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#databases.DroughtED_database.DroughtED.normalize" title="Permalink to this definition"></a></dt>
+<dd><p>Normalise the data using a standard scaler.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X_time</strong> (<em>numpy.ndarray</em>) – The input data</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The normalised data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="databases.DroughtED_database.DroughtED.read_database_files">
+<span class="sig-name descname"><span class="pre">read_database_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#databases.DroughtED_database.DroughtED.read_database_files" title="Permalink to this definition"></a></dt>
+<dd><p>Read the database files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The dataframe of the dataset</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.core.frame.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="databases.DroughtED_database.DroughtED.select_slice">
+<span class="sig-name descname"><span class="pre">select_slice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dfs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#databases.DroughtED_database.DroughtED.select_slice" title="Permalink to this definition"></a></dt>
+<dd><p>Select the time period of the dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dfs</strong> (<em>pandas.core.frame.DataFrame</em>) – The dataframe of the dataset</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The dataframe of the dataset</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.core.frame.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="databases-droughted-database-module">
-<h2>databases.DroughtED_database module<a class="headerlink" href="#databases-droughted-database-module" title="Permalink to this heading"></a></h2>
-</section>
-<section id="databases-xaida-database-module">
-<h2>databases.XAIDA_database module<a class="headerlink" href="#databases-xaida-database-module" title="Permalink to this heading"></a></h2>
-</section>
-<section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<section id="module-databases">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-databases" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 
@@ -191,10 +320,19 @@
     <ul>
 <li><a class="reference internal" href="#">databases package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#databases-drought-database-module">databases.DROUGHT_database module</a></li>
-<li><a class="reference internal" href="#databases-droughted-database-module">databases.DroughtED_database module</a></li>
-<li><a class="reference internal" href="#databases-xaida-database-module">databases.XAIDA_database module</a></li>
-<li><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li><a class="reference internal" href="#module-databases.DroughtED_database">databases.DroughtED_database module</a><ul>
+<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED"><code class="docutils literal notranslate"><span class="pre">DroughtED</span></code></a><ul>
+<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.binarize_data"><code class="docutils literal notranslate"><span class="pre">DroughtED.binarize_data()</span></code></a></li>
+<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.interpolate_nans"><code class="docutils literal notranslate"><span class="pre">DroughtED.interpolate_nans()</span></code></a></li>
+<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.loadXY"><code class="docutils literal notranslate"><span class="pre">DroughtED.loadXY()</span></code></a></li>
+<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.normalize"><code class="docutils literal notranslate"><span class="pre">DroughtED.normalize()</span></code></a></li>
+<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.read_database_files"><code class="docutils literal notranslate"><span class="pre">DroughtED.read_database_files()</span></code></a></li>
+<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.select_slice"><code class="docutils literal notranslate"><span class="pre">DroughtED.select_slice()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-databases">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -238,6 +376,9 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="evaluators.html" title="evaluators package"
              >next</a> |</li>
         <li class="right" >
@@ -254,7 +395,7 @@
               <a href="index.html">AIDE 0.0.1 documentation</a> &#187;
               
           </li>
-          <li class="nav-item nav-item-1"><a href="modules.html" >XAIDA4Detection</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >AIDE</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">databases package</a></li>
                 <li class="right">
                     

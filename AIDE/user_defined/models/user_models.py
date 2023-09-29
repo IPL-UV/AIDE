@@ -109,7 +109,7 @@ class UD_LSTM_IA(nn.Module):
     def __init__(self, config):
         super().__init__()
         
-        input_dim = np.prod(config['data']['input_size'])
+        input_dim = np.prod(config['arch']['params']['input_size'])
         
         # Hidden dimensions
         self.hidden_dim = config['arch']['params']['hidden_dim']
@@ -122,15 +122,16 @@ class UD_LSTM_IA(nn.Module):
         # batch_first=True causes input/output tensors to be of shape
         # (batch_dim, seq_dim, feature_dim)
         self.lstm = nn.LSTM(input_dim, self.hidden_dim, self.n_layer, batch_first = True)
+        self.lstm_ln = nn.LayerNorm(self.hidden_dim)
         
         # Readout layer
         self.fc = nn.Linear(self.hidden_dim, self.fc_hidden_dim)
-        self.fc2 = nn.Linear(self.fc_hidden_dim, 1)
-        #self.fc2 = nn.Linear(self.hidden_dim, 1)
+        self.fc_ln = nn.LayerNorm(self.fc_hidden_dim)
+        self.fc_top = nn.Linear(self.fc_hidden_dim, 1)
         
         # Dropout
-        self.fc_dropout_p = config['arch']['params']['fc_dropout_p']
-        self.fc_dropout = nn.Dropout(p=self.fc_dropout_p)
+        self.dropout_p = config['arch']['params']['dropout_p']
+        self.dropout = nn.Dropout(p=self.dropout_p)
         
         # Weight initialization
         self.apply(self._weights_init)
@@ -139,26 +140,80 @@ class UD_LSTM_IA(nn.Module):
         """
         Forward pass
         """
-
-        # Initialize hidden state with zeros
-        #h0 = torch.zeros(self.n_layer, x.size(0), self.hidden_dim).requires_grad_()
-    
-        # Initialize cell state
-        #c0 = torch.zeros(self.n_layer, x.size(0), self.hidden_dim).requires_grad_()
-    
-        # 28 time steps
-        # We need to detach as we are doing truncated backpropagation through time (BPTT)
-        # If we don't, we'll backprop all the way to the start even after going through another batch
-        #out, (hn, cn) = self.lstm(x, (h0.detach(), c0.detach()))
+        # x, mask = x
         x = x.permute(0,2,1)
         out, _ = self.lstm(x)
         
-        # Index hidden state of last time step
-        # out.size() --> 100, 28, 100
-        # out[:, -1, :] --> 100, 100 --> just want last time step hidden states! 
-        out = self.fc2(self.fc_dropout(F.relu(self.fc(out[:, -1, :]))))
-        #out = self.fc2(self.fc_dropout(out[:, -1]))
-        # out.size() --> 100, 10
+        #mask = torch.cat((mask,torch.zeros(mask.shape[0],1).to(mask.device)),axis=1)
+        #tend = torch.where((mask[:,1:]-mask[:,:-1])==-1)
+        
+        #out = self.fc_top(self.dropout(F.relu(self.fc_ln(self.fc(self.dropout(self.lstm_ln(out[tend[0], tend[1], :])))))))
+        #out = self.fc_top(self.dropout(F.relu(self.fc(self.dropout(out[tend[0], tend[1], :])))))
+        out = self.fc_top(self.dropout(F.relu(self.fc(self.dropout(out[:, -1, :])))))
+        return out
+
+    def _weights_init(self, m): 
+        # same initialization as keras. Adapted from the initialization developed 
+        # by JUN KODA (https://www.kaggle.com/junkoda) in this notebook
+        # https://www.kaggle.com/junkoda/pytorch-lstm-with-tensorflow-like-initialization
+        for name, params in m.named_parameters():
+            if "weight_ih" in name: 
+                nn.init.xavier_normal_(params)
+            elif 'weight_hh' in name: 
+                nn.init.orthogonal_(params)
+            elif 'bias_ih' in name:
+                params.data.fill_(0)
+                # Set forget-gate bias to 1
+                n = params.size(0)
+                params.data[(n // 4):(n // 2)].fill_(1)
+            elif 'bias_hh' in name:
+                params.data.fill_(0)
+                                
+class UD_LSTM_IA_GP(nn.Module):
+    """
+    LSTM for extreme event detection
+    """
+    def __init__(self, config):
+        super().__init__()
+        
+        input_dim = np.prod(config['arch']['params']['input_size'])
+        
+        # Hidden dimensions
+        self.lstm_hidden_dim = config['arch']['params']['lstm_hidden_dim']
+        self.num_lstm_layers = config['arch']['params']['num_lstm_layers']
+        self.fc_hidden_dim = config['arch']['params']['fc_hidden_dim']
+        self.num_fc_layers = config['arch']['params']['num_fc_layers']
+        self.fc_top_dim = config['arch']['params']['fc_top_dim']
+        
+        # LSTM definition
+        # batch_first=True causes input/output tensors to be of shape
+        # (batch_dim, seq_dim, feature_dim)
+        self.lstm = nn.LSTM(input_dim, self.lstm_hidden_dim, self.num_lstm_layers, batch_first = True)
+        
+        # Readout layer
+        self.fc = nn.ModuleList()
+        for f in np.arange(self.num_fc_layers):
+            self.fc.append(nn.Linear(self.lstm_hidden_dim if f==0 else self.fc_hidden_dim, self.fc_hidden_dim))
+        self.fc.append(nn.Linear(self.fc_hidden_dim,self.fc_top_dim))
+        
+        # Dropout
+        self.dropout_p = config['arch']['params']['dropout_p']
+        self.dropout = nn.Dropout(p=self.dropout_p)
+        
+        # Weight initialization
+        self.apply(self._weights_init)
+    
+    def forward(self, x):
+        """
+        Forward pass
+        """
+        x = x.permute(0,2,1)
+        out, _ = self.lstm(x)
+        out = out[:, -1, :]
+        for f in np.arange(self.num_fc_layers):
+            out = self.fc[f](out)
+            out = nn.ReLU()(out) if f==0 else self.dropout(nn.ReLU()(out))
+        out = self.fc[-1](out)
         return out
 
     def _weights_init(self, m): 

@@ -31,7 +31,7 @@ class PytorchBackbone(GenericBackbone):
 
     def implement_model(self):
         # Model
-        self.model = PytorchModel(self.config)
+        self.model = PytorchModel(self.config, num_data_train=len(self.train_loader.dataset))
 
         # Loggers
         # wandb_logger = pl_loggers.WandbLogger(save_dir = config['trainer']['save_dir'] + '/logs/', 

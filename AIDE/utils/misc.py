@@ -50,7 +50,7 @@ def plot_temporal_results(path, xticks_labels, labels, outputs_when_event, outpu
     plt.close()
 
 
-def plot_spatial_aggregation(path, output, labels, coordinates, num_classes):
+def plot_spatial_aggregation(path, output, label, mask, coordinates, num_classes):
     """
     Plot extreme event detection saliency map for a given time step
     """
@@ -63,20 +63,20 @@ def plot_spatial_aggregation(path, output, labels, coordinates, num_classes):
     norm = mpl.colors.BoundaryNorm(boundaries, cmap.N)
     im = ax.contourf(np.linspace(coordinates[0],coordinates[1],output.shape[1]),
                      np.linspace(coordinates[3],coordinates[2],output.shape[0])[::-1],
-                     output, transform=ccrs.PlateCarree(), cmap=plt.cm.Reds, vmin=0, vmax=num_classes, levels = boundaries, norm=norm)
+                     output*mask if mask!=None else output, transform=ccrs.PlateCarree(), cmap=plt.cm.Reds, vmin=0, vmax=num_classes, levels = boundaries, norm=norm)
 
     cb = plt.colorbar(im, ticks=ticks, ax=ax)    
     cb.ax.set_title('Class')
     ax.set_extent(coordinates)
     ax.coastlines(resolution='50m')
-    line_c = ax.contour(labels, extent=coordinates, colors=['black'], transform = ccrs.PlateCarree())
+    line_c = ax.contour(label, extent=coordinates, colors=['black'], transform = ccrs.PlateCarree())
     gl = ax.gridlines(crs=ccrs.PlateCarree(), draw_labels=True, linewidth=1, color='gray', alpha=0.25, linestyle='--')
     gl.top_labels = False
     gl.right_labels = False
     plt.savefig(path+'_spatialEvolution.png', dpi=300)
     plt.close()
 
-def plot_spatial_signal(path, output, labels, coordinates):
+def plot_spatial_signal(path, output, label, mask, coordinates):
     """
     Plot extreme event detection categorical map for a given time step
     """
@@ -87,7 +87,7 @@ def plot_spatial_signal(path, output, labels, coordinates):
     v = np.linspace(0, 1.0, 11, endpoint=True)
     im = ax.contourf(np.linspace(coordinates[0],coordinates[1],output.shape[1]),
                      np.linspace(coordinates[3],coordinates[2],output.shape[0])[::-1],
-                     output, v, transform=ccrs.PlateCarree(), cmap=plt.cm.Reds, vmin=0, vmax=1)
+                     output*mask if mask!=None else output, v, transform=ccrs.PlateCarree(), cmap=plt.cm.Reds, vmin=0, vmax=1)
     cb = plt.colorbar(im, ax=ax, ticks=v)
     cb.ax.set_title('P(t)')
     ax.set_extent(coordinates)
@@ -95,7 +95,7 @@ def plot_spatial_signal(path, output, labels, coordinates):
     gl = ax.gridlines(crs=ccrs.PlateCarree(), draw_labels=True, linewidth=1, color='gray', alpha=0.25, linestyle='--')
     gl.top_labels = False
     gl.right_labels = False
-    line_c = ax.contour(labels, extent=coordinates, colors=['black'], transform = ccrs.PlateCarree())
+    line_c = ax.contour(label, extent=coordinates, colors=['black'], transform = ccrs.PlateCarree())
     plt.savefig(path+'_spatialEvolution.png', dpi=300)
     plt.close()
 

@@ -29,6 +29,7 @@ class ClassificationVisualizerAbstract(ABC):
         labels = inference_outputs['labels']
         time = inference_outputs['time']
         event_names= inference_outputs['event_names']
+        masks= inference_outputs['masks'] if self.config['implementation']['loss']['masked'] else [None]*len(event_names)
 
         if self.config['task'] == 'Classification' and self.final_activation == 'linear':
             if self.num_classes == 1:
@@ -36,7 +37,7 @@ class ClassificationVisualizerAbstract(ABC):
             else:
                 output = [getattr(torch.nn.functional, 'softmax')(o, dim=1) for o in output]
         
-        self.per_sample_operations(output, labels, time, event_names)
+        self.per_sample_operations(output, labels, time, event_names, masks)
         self.global_operations()
     
     @abstractmethod

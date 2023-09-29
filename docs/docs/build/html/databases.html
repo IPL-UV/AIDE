@@ -1,0 +1,519 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>databases package &#8212; AIDE 0.0.1 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?digest=845a48175c3935ba0d7ff16b8ed0072d62fd099f" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="_static/pygments_dark.css" />
+    
+    <script src="_static/jquery.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="evaluators package" href="evaluators.html" />
+    <link rel="prev" title="backbones.models package" href="backbones.models.html" /><link rel="stylesheet" href="_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="_static/py.svg" />
+            <script type="text/javascript" src="_static/copybutton.js"></script>
+            <script type="text/javascript" src="_static/menu.js"></script>
+            <script type="text/javascript" src="_static/themetoggle.js"></script> 
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
+    <nav class="nav-content" role="navigation">
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="_static/py.svg" alt="Logo"/>
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" />
+                <input type="submit" value="Go"/>
+            </form>
+        </span>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">databases package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-databases.DROUGHT_database">databases.DROUGHT_database module</a><ul>
+<li><a class="reference internal" href="#databases.DROUGHT_database.DROUGHT"><code class="docutils literal notranslate"><span class="pre">DROUGHT</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-databases.DroughtED_database">databases.DroughtED_database module</a><ul>
+<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED"><code class="docutils literal notranslate"><span class="pre">DroughtED</span></code></a><ul>
+<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.binarize_data"><code class="docutils literal notranslate"><span class="pre">DroughtED.binarize_data()</span></code></a></li>
+<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.interpolate_nans"><code class="docutils literal notranslate"><span class="pre">DroughtED.interpolate_nans()</span></code></a></li>
+<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.loadXY"><code class="docutils literal notranslate"><span class="pre">DroughtED.loadXY()</span></code></a></li>
+<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.normalize"><code class="docutils literal notranslate"><span class="pre">DroughtED.normalize()</span></code></a></li>
+<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.read_database_files"><code class="docutils literal notranslate"><span class="pre">DroughtED.read_database_files()</span></code></a></li>
+<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.select_slice"><code class="docutils literal notranslate"><span class="pre">DroughtED.select_slice()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-databases.XAIDA_database">databases.XAIDA_database module</a><ul>
+<li><a class="reference internal" href="#databases.XAIDA_database.XAIDA"><code class="docutils literal notranslate"><span class="pre">XAIDA</span></code></a><ul>
+<li><a class="reference internal" href="#databases.XAIDA_database.XAIDA.get_data"><code class="docutils literal notranslate"><span class="pre">XAIDA.get_data()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-databases">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="backbones.models.html"
+                          title="previous chapter">backbones.models package</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="evaluators.html"
+                          title="next chapter">evaluators package</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/databases.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </nav>
+    </div>
+</div>
+  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="evaluators.html" title="evaluators package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="backbones.models.html" title="backbones.models package"
+             accesskey="P">previous</a> |</li>
+          <li><img src="_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="index.html">AIDE 0.0.1 documentation</a> &#187;
+              
+          </li>
+          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">XAIDA4Detection</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">databases package</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" />
+          <input type="submit" value="Go" />
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="databases-package">
+<h1>databases package<a class="headerlink" href="#databases-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-databases.DROUGHT_database">
+<span id="databases-drought-database-module"></span><h2>databases.DROUGHT_database module<a class="headerlink" href="#module-databases.DROUGHT_database" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="databases.DROUGHT_database.DROUGHT">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">databases.DROUGHT_database.</span></span><span class="sig-name descname"><span class="pre">DROUGHT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#databases.DROUGHT_database.DROUGHT" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></p>
+<p>DROUGHT database</p>
+</dd></dl>
+
+</section>
+<section id="module-databases.DroughtED_database">
+<span id="databases-droughted-database-module"></span><h2>databases.DroughtED_database module<a class="headerlink" href="#module-databases.DroughtED_database" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="databases.DroughtED_database.DroughtED">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">databases.DroughtED_database.</span></span><span class="sig-name descname"><span class="pre">DroughtED</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#databases.DroughtED_database.DroughtED" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></p>
+<p>This class is used to load the DroughtED dataset using PyTorch’s Dataset class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> (<em>dict</em>) – The configuration file</p></li>
+<li><p><strong>period</strong> (<em>str</em><em>, </em><em>optional</em>) – The period of the dataset to load, defaults to ‘train’</p></li>
+<li><p><strong>window_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The window size of the dataset, defaults to 12</p></li>
+<li><p><strong>features_selected</strong> (<em>list</em><em>, </em><em>optional</em>) – The features to be used, defaults to [‘NDVI’, ‘precipitation’, ‘temperature’]</p></li>
+<li><p><strong>num_classes</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of classes, defaults to 6</p></li>
+<li><p><strong>train_slice</strong> (<em>dict</em><em>, </em><em>optional</em>) – The time period of the training set, defaults to {‘start’: 1982, ‘end’: 2006}</p></li>
+<li><p><strong>val_slice</strong> (<em>dict</em><em>, </em><em>optional</em>) – The time period of the validation set, defaults to {‘start’: 2007, ‘end’: 2011}</p></li>
+<li><p><strong>test_slice</strong> (<em>dict</em><em>, </em><em>optional</em>) – The time period of the test set, defaults to {‘start’: 2012, ‘end’: 2016}</p></li>
+<li><p><strong>id2class</strong> (<em>dict</em><em>, </em><em>optional</em>) – The dictionary of class IDs, defaults to {‘None’: 0, ‘D0’: 1, ‘D1’: 2, ‘D2’: 3, ‘D3’: 4, ‘D4’: 5}</p></li>
+<li><p><strong>weights</strong> (<em>list</em><em>, </em><em>optional</em>) – The weights of each class, defaults to [100-ones_percentage, ones_percentage]</p></li>
+<li><p><strong>dfs</strong> (<em>pandas.core.frame.DataFrame</em><em>, </em><em>optional</em>) – The dataframe of the dataset, defaults to None</p></li>
+<li><p><strong>X</strong> (<em>numpy.ndarray</em><em>, </em><em>optional</em>) – The input data, defaults to None</p></li>
+<li><p><strong>y</strong> (<em>numpy.ndarray</em><em>, </em><em>optional</em>) – The output data, defaults to None</p></li>
+<li><p><strong>class_bound</strong> (<em>int</em><em>, </em><em>optional</em>) – The boundary of the classes, defaults to 2</p></li>
+<li><p><strong>start</strong> (<em>datetime</em><em>, </em><em>optional</em>) – The start date of the dataset, defaults to None</p></li>
+<li><p><strong>end</strong> (<em>datetime</em><em>, </em><em>optional</em>) – The end date of the dataset, defaults to None</p></li>
+<li><p><strong>dates</strong> (<em>pandas.core.indexes.datetimes.DatetimeIndex</em><em>, </em><em>optional</em>) – The dates of the dataset, defaults to None</p></li>
+<li><p><strong>ones_percentage</strong> (<em>float</em><em>, </em><em>optional</em>) – The percentage of the positive class in the binarise function, defaults to None</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="databases.DroughtED_database.DroughtED.binarize_data">
+<span class="sig-name descname"><span class="pre">binarize_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#databases.DroughtED_database.DroughtED.binarize_data" title="Permalink to this definition"></a></dt>
+<dd><p>_summary_</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="databases.DroughtED_database.DroughtED.interpolate_nans">
+<span class="sig-name descname"><span class="pre">interpolate_nans</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">padata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pkind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'linear'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#databases.DroughtED_database.DroughtED.interpolate_nans" title="Permalink to this definition"></a></dt>
+<dd><p>Interpolate over nans in a 1D array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>padata</strong> (<em>numpy.ndarray</em>) – 1D array with nans to interpolate over</p></li>
+<li><p><strong>pkind</strong> (<em>str</em><em>, </em><em>optional</em>) – Interpolation method, defaults to ‘linear’</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Interpolated array</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+<p>see: <a class="reference external" href="https://stackoverflow.com/a/53050216/2167159">https://stackoverflow.com/a/53050216/2167159</a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="databases.DroughtED_database.DroughtED.loadXY">
+<span class="sig-name descname"><span class="pre">loadXY</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#databases.DroughtED_database.DroughtED.loadXY" title="Permalink to this definition"></a></dt>
+<dd><p>Load the data and split it into X and y, and a conditional normalisation statement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>period</strong> (<em>str</em><em>, </em><em>optional</em>) – The period of the dataset to load, defaults to ‘train’</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The input and output data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray, numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="databases.DroughtED_database.DroughtED.normalize">
+<span class="sig-name descname"><span class="pre">normalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#databases.DroughtED_database.DroughtED.normalize" title="Permalink to this definition"></a></dt>
+<dd><p>Normalise the data using a standard scaler.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X_time</strong> (<em>numpy.ndarray</em>) – The input data</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The normalised data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="databases.DroughtED_database.DroughtED.read_database_files">
+<span class="sig-name descname"><span class="pre">read_database_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#databases.DroughtED_database.DroughtED.read_database_files" title="Permalink to this definition"></a></dt>
+<dd><p>Read the database files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The dataframe of the dataset</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.core.frame.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="databases.DroughtED_database.DroughtED.select_slice">
+<span class="sig-name descname"><span class="pre">select_slice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dfs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#databases.DroughtED_database.DroughtED.select_slice" title="Permalink to this definition"></a></dt>
+<dd><p>Select the time period of the dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dfs</strong> (<em>pandas.core.frame.DataFrame</em>) – The dataframe of the dataset</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The dataframe of the dataset</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.core.frame.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-databases.XAIDA_database">
+<span id="databases-xaida-database-module"></span><h2>databases.XAIDA_database module<a class="headerlink" href="#module-databases.XAIDA_database" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="databases.XAIDA_database.XAIDA">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">databases.XAIDA_database.</span></span><span class="sig-name descname"><span class="pre">XAIDA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#databases.XAIDA_database.XAIDA" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></p>
+<p>Load XAIDA dataset for extreme events classification and impact prediction tasks using PyTorch Dataset class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> (<em>dict</em>) – The configuration file</p></li>
+<li><p><strong>period</strong> (<em>str</em><em>, </em><em>optional</em>) – The period of the dataset to load, defaults to ‘train’</p></li>
+<li><p><strong>num_classes</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of classes to load, defaults to 5</p></li>
+<li><p><strong>steps_per_batch</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of steps per batch, defaults to 100</p></li>
+<li><p><strong>rng</strong> (<em>numpy.random.Generator</em><em>, </em><em>optional</em>) – The random number generator, defaults to None</p></li>
+<li><p><strong>index_df</strong> (<em>pandas.DataFrame</em><em>, </em><em>optional</em>) – The index dataframe</p></li>
+<li><p><strong>data</strong> (<em>xarray.Dataset</em><em>, </em><em>optional</em>) – The climate data</p></li>
+<li><p><strong>start_year</strong> (<em>int</em><em>, </em><em>optional</em>) – The start year of the dataset, defaults to 1980</p></li>
+<li><p><strong>end_year</strong> (<em>int</em><em>, </em><em>optional</em>) – The end year of the dataset, defaults to 2010</p></li>
+<li><p><strong>classes</strong> (<em>list</em><em>, </em><em>optional</em>) – The classes to load, defaults to None</p></li>
+<li><p><strong>selected_events</strong> (<em>pandas.DataFrame</em><em>, </em><em>optional</em>) – The selected events, defaults to None</p></li>
+<li><p><strong>event_durations</strong> (<em>pandas.Series</em><em>, </em><em>optional</em>) – The event durations, defaults to None</p></li>
+<li><p><strong>impacts</strong> (<em>pandas.Series</em><em>, </em><em>optional</em>) – The impacts, defaults to None</p></li>
+<li><p><strong>type_extreme</strong> (<em>pandas.Series</em><em>, </em><em>optional</em>) – The type of extreme event, defaults to None</p></li>
+<li><p><strong>dataframe</strong> (<em>pandas.DataFrame</em><em>, </em><em>optional</em>) – The dataframe, defaults to None</p></li>
+<li><p><strong>max_len</strong> (<em>int</em><em>, </em><em>optional</em>) – The maximum length of the dataset, defaults to None</p></li>
+<li><p><strong>before_event</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of days before the event, defaults to 30</p></li>
+<li><p><strong>after_event</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of days after the event, defaults to 30</p></li>
+<li><p><strong>random_lead_time</strong> (<em>int</em><em>, </em><em>optional</em>) – The random lead time, defaults to 0</p></li>
+<li><p><strong>whole_ts</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to use the whole time series, defaults to False</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="databases.XAIDA_database.XAIDA.get_data">
+<span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#databases.XAIDA_database.XAIDA.get_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-databases">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-databases" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">databases package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-databases.DROUGHT_database">databases.DROUGHT_database module</a><ul>
+<li><a class="reference internal" href="#databases.DROUGHT_database.DROUGHT"><code class="docutils literal notranslate"><span class="pre">DROUGHT</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-databases.DroughtED_database">databases.DroughtED_database module</a><ul>
+<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED"><code class="docutils literal notranslate"><span class="pre">DroughtED</span></code></a><ul>
+<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.binarize_data"><code class="docutils literal notranslate"><span class="pre">DroughtED.binarize_data()</span></code></a></li>
+<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.interpolate_nans"><code class="docutils literal notranslate"><span class="pre">DroughtED.interpolate_nans()</span></code></a></li>
+<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.loadXY"><code class="docutils literal notranslate"><span class="pre">DroughtED.loadXY()</span></code></a></li>
+<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.normalize"><code class="docutils literal notranslate"><span class="pre">DroughtED.normalize()</span></code></a></li>
+<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.read_database_files"><code class="docutils literal notranslate"><span class="pre">DroughtED.read_database_files()</span></code></a></li>
+<li><a class="reference internal" href="#databases.DroughtED_database.DroughtED.select_slice"><code class="docutils literal notranslate"><span class="pre">DroughtED.select_slice()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-databases.XAIDA_database">databases.XAIDA_database module</a><ul>
+<li><a class="reference internal" href="#databases.XAIDA_database.XAIDA"><code class="docutils literal notranslate"><span class="pre">XAIDA</span></code></a><ul>
+<li><a class="reference internal" href="#databases.XAIDA_database.XAIDA.get_data"><code class="docutils literal notranslate"><span class="pre">XAIDA.get_data()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-databases">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="backbones.models.html"
+                          title="previous chapter">backbones.models package</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="evaluators.html"
+                          title="next chapter">evaluators package</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/databases.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="evaluators.html" title="evaluators package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="backbones.models.html" title="backbones.models package"
+             >previous</a> |</li>
+          <li><img src="_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="index.html">AIDE 0.0.1 documentation</a> &#187;
+              
+          </li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >XAIDA4Detection</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">databases package</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" />
+          <input type="submit" value="Go" />
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; Copyright 2023, Cortés-Andrés, J., Gonzalez-Calabuig, M., Zhang, M., Williams, T., Pellicer-Valero, O. J., Fernández-Torres, M.-Á., and Camps-Valls, G..
+    <br />
+    This page is licensed under the Python Software Foundation License Version 2.
+    <br />
+    Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
+    <br />
+    
+    <br />
+
+    The Python Software Foundation is a non-profit corporation.
+<a href="https://www.python.org/psf/donations/">Please donate.</a>
+<br />
+    <br />
+
+    Last updated on None.
+    
+    <br />
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+    </div>
+
+  </body>
+</html>

@@ -25,6 +25,7 @@ class PytorchEvaluator():
         self.loader = dataloader
         self.num_classes = self.config['data']['num_classes'] if self.task == 'Classification' else 1
         self.threshold = 0.5
+        self.final_activation = self.config['implementation']['loss']['activation']['type']
     
     def evaluate(self, inference_outputs, subset):
         """
@@ -61,6 +62,10 @@ class PytorchEvaluator():
         Infere results
         """
         test_outputs = []
+        if self.final_activation in ['ExactGP', 'ApproximateGP']:
+            test_outputs_lower = []
+            test_outputs_upper = []
+        test_masks = []
         test_labels = []
         test_time = []
         test_event_names = []
@@ -78,6 +83,15 @@ class PytorchEvaluator():
 
                 x, masks, labels = adapt_variables(self.config, sample['x'], sample['masks'], sample['labels'])
                 output = self.model(x)
+                if self.config['task'] == 'Classification' and self.final_activation == 'linear':
+                    if self.num_classes == 2:
+                        output = getattr(torch.nn.functional, 'sigmoid')(output)
+                    else:
+                        output = getattr(torch.nn.functional, 'softmax')(output, dim=1)
+                if self.final_activation in ['ExactGP', 'ApproximateGP']:
+                    output_lower = self.model.likelihood(output).confidence_region()[0].squeeze()
+                    output_upper = self.model.likelihood(output).confidence_region()[1].squeeze()
+                    output = self.model.likelihood(output).mean
 
                 if isinstance(output, tuple):
                     output = output[-1]
@@ -85,12 +99,20 @@ class PytorchEvaluator():
                 output, labels, time, event_name = self.adapt_input(output, labels, sample['time'], sample['event_name'])
                 
                 test_outputs.append(output)
+                if self.final_activation in ['ExactGP', 'ApproximateGP']:
+                    test_outputs_lower.append(output_lower)
+                    test_outputs_upper.append(output_upper)
+                test_masks.append(masks)
                 test_labels.append(labels)
                 test_time.append(time)
                 test_event_names.append(event_name)
                 if self.debug and index == int(self.debug-1): break
-                        
-            return {'outputs':test_outputs, 'labels':test_labels, 'time':test_time, 'event_names': test_event_names}
+            
+            out = {'outputs':test_outputs, 'masks': test_masks, 'labels':test_labels, 'time':test_time, 'event_names': test_event_names}
+            if self.final_activation in ['ExactGP', 'ApproximateGP']:
+                out['outputs_lower'] = test_outputs_lower
+                out['outputs_upper'] = test_outputs_upper
+            return out
     
     def adapt_input(self, output, labels, time, event_name):
         """

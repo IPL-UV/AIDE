@@ -21,7 +21,6 @@ def set_loss(parameters):
         else:
             # If function, create class wrapper 
             loss = Loss(package, parameters)
-        
     else:
         # Create user defined loss class
         loss = globals()[parameters['type']](**parameters['params'])

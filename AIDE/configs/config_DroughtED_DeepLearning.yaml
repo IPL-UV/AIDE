@@ -72,7 +72,8 @@ implementation:
         user_defined: False # Select user-defined model (true/false)
         type: "binary_cross_entropy" # Type
         package: 'torch.nn.functional' # Package, none for user defined   torchvision.ops
-        activation: 'sigmoid' # Activation before computing the loss function
+        activation: 
+            type: 'sigmoid' # Activation before computing the loss function
         masked: false # Use masks to compute loss
         # Parameters for the loss function
         params:

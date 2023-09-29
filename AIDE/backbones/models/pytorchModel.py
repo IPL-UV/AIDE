@@ -5,6 +5,7 @@ import numpy as np
 import torch
 import torchmetrics
 import torch.nn.functional as F
+import gpytorch
 import pytorch_lightning as pl
 import segmentation_models_pytorch as smp
 import tsai.all as tsai_models
@@ -13,12 +14,13 @@ from utils.adapt_variables import adapt_variables
 from utils.loss import *
 from user_defined.models.user_models import *
 from utils.metrics_pytorch import init_metrics
+from .gpytorchModel import GaussianProcessLayer
     
 class PytorchModel(pl.LightningModule):
     """
     Template class for deep learning architectures
     """    
-    def __init__(self, config):
+    def __init__(self, config, num_data_train=None):
         super().__init__()
         
         # Save hyperparameters
@@ -35,10 +37,24 @@ class PytorchModel(pl.LightningModule):
             self.num_targets = self.config['data']['num_targets']
         
         # Define model
+        self.final_activation = self.config['implementation']['loss']['activation']
         self.define_model()
                 
         # Loss
-        self.loss = set_loss(self.config['implementation']['loss'])
+        if self.final_activation['type'] not in ['ExactGP', 'ApproximateGP']:
+            self.loss = set_loss(self.config['implementation']['loss'])
+        elif self.final_activation['type'] == 'ExactGP':
+            pass
+        elif self.final_activation['type'] == 'ApproximateGP':
+            self.likelihood = getattr(gpytorch.likelihoods, 
+                                      list(self.final_activation['likelihood'].keys())[0])(**list(self.final_activation['likelihood'].values())[0])
+            # Import python package containig the loss
+            loss_package = __import__(self.config['implementation']['loss']['package'], fromlist=[''])
+            self.loss = getattr(loss_package, self.config['implementation']['loss']['type'])(self.likelihood,
+                                                                                             self.GP, 
+                                                                                             num_data_train, 
+                                                                                             beta=1.0, 
+                                                                                             combine_terms=True)
 
         # Initialize Logger Variables
         self.loss_train = []
@@ -61,7 +77,7 @@ class PytorchModel(pl.LightningModule):
                 
                 module = globals()[self.config['arch']['type'].split('.')[0]]
                 model_type = self.config['arch']['type'].split('.')[1]
-                self.model = getattr(module, model_type)(**self.config['arch']['args'])
+                self.model = getattr(module, model_type)(**self.config['arch']['params'])
 
             elif self.config['arch']['input_model_dim'] == 2:
                                 
@@ -82,20 +98,30 @@ class PytorchModel(pl.LightningModule):
                     
                 self.model = smp.create_model(self.config['arch']['type'], **self.config['arch']['params'], aux_params = aux_params)  
                 
-
-        self.final_activation = self.config['implementation']['loss']['activation']
+        if self.final_activation['type'] == 'ExactGP':
+            pass
+        elif self.final_activation['type'] == 'ApproximateGP':
+            self.GP = GaussianProcessLayer(self.config['implementation']['loss']['activation']['params'],
+                                           self.config['implementation']['loss']['activation']['input_size'])
 
     def forward(self, x):
         """
         Forward pass for model prediction
         """
-        x = self.model(x)
-       
-        if self.final_activation != 'linear':
-            if self.final_activation == 'sigmoid':
-                x = getattr(torch.nn.functional, self.final_activation)(x)
-            else:
-                x = getattr(torch.nn.functional, self.final_activation)(x, dim=1)
+        
+        if self.final_activation['type'] not in ['ExactGP', 'ApproximateGP']:
+            x = self.model(x)
+           
+            if self.final_activation['type'] != 'linear':
+                if self.final_activation['type'] == 'sigmoid':
+                    x = getattr(torch.nn.functional, self.final_activation['type'])(x)
+                elif self.final_activation['type'] == 'softmax':
+                    x = getattr(torch.nn.functional, self.final_activation['type'])(x, dim=1)
+        else:
+            x = self.model(x)
+            if self.GP.grid_bounds: 
+                x = gpytorch.utils.grid.ScaleToBounds(self.GP.grid_bounds[0], self.GP.grid_bounds[1])(x)
+            x = self.GP(x)
             
         return x
     
@@ -113,28 +139,46 @@ class PytorchModel(pl.LightningModule):
             
         # Adapt_variables
         x, masks, labels = adapt_variables(self.config, x, masks, labels)
+        masked = self.config['implementation']['loss']['masked'] 
         
         # Forward
-        output = self(x)
-
-        if isinstance(output, tuple):
-            output = output[-1]
+        if self.final_activation['type'] not in ['ExactGP', 'ApproximateGP']:
+            output = self(x)
+            
+            if isinstance(output, tuple):
+                output = output[-1]
+                    
+            # Compute loss
+            if 'weight' in self.config['implementation']['loss']['params'].keys():
+                self.config['implementation']['loss']['params']['weight'] = torch.Tensor(self.config['implementation']['loss']['params']['weight'])
+    
+            if len(labels.shape) == 1: labels = labels.unsqueeze(dim=1)
+            loss= self.loss(output, labels) 
+    
+            if masked:
+                # Correct for locations where we don't have values and take the mean
+                loss = loss.squeeze(dim=1)
+                loss[(torch.prod(masks, 1)==0)] = 0
+                loss = loss.sum()/(loss.numel() - torch.sum(torch.prod(masks, 1)==0) + 1e-7)
+            else: 
+                loss = loss.mean() 
                 
-        # Compute loss
-        if 'weight' in self.config['implementation']['loss']['params'].keys():
-            self.config['implementation']['loss']['params']['weight'] = torch.Tensor(self.config['implementation']['loss']['params']['weight'])
-
-        if len(labels.shape) == 1: labels = labels.unsqueeze(dim=1)
-        loss= self.loss(output, labels) 
-
-        masked = self.config['implementation']['loss']['masked']
-        if masked:
-            # Correct for locations where we don't have values and take the mean
-            loss = loss.squeeze(dim=1)
-            loss[(torch.prod(masks, 1)==0)] = 0
-            loss = loss.sum()/(loss.numel() - torch.sum(torch.prod(masks, 1)==0) + 1e-7)
-        else: 
-            loss = loss.mean() 
+            if self.config['task'] == 'Classification' and self.final_activation['type'] == 'linear':
+                if self.num_classes == 1:
+                    output = getattr(torch.nn.functional, 'sigmoid')(output)
+                else:
+                    output = getattr(torch.nn.functional, 'softmax')(output, dim=1)
+        else:
+            for s_key, s_val in self.final_activation['settings'][mode].items():
+                getattr(gpytorch.settings, s_key)(s_val) 
+            gp_output = self(x)
+            loss = -self.loss(gp_output, labels).mean() # -mll
+            
+            with torch.no_grad():
+                output_samples = self.likelihood(self(x))
+                output = output_samples.mean.squeeze()
+                output_lower = output_samples.confidence_region()[0].squeeze()
+                output_upper = output_samples.confidence_region()[1].squeeze()
                    
         # Log loss
         self.log(f'{mode}_loss', loss, on_step = True, on_epoch = True, prog_bar = True, logger = True, 
@@ -142,7 +186,11 @@ class PytorchModel(pl.LightningModule):
         # Log metrics
         self.step_metrics(output.detach(), labels, mode = mode, masks=torch.prod(masks, 1) if masked else None)
         
-        return {'loss': loss, 'output': output.detach(), 'labels': labels}
+        out = {'loss': loss, 'output': output.detach(), 'labels': labels}
+        if self.final_activation['type'] in ['ExactGP', 'ApproximateGP']:
+            out['output_lower'] = output_lower.detach()
+            out['output_upper'] = output_upper.detach()
+        return out
     
     def step_metrics(self, outputs, labels, mode, masks=None):
         """
@@ -153,7 +201,8 @@ class PytorchModel(pl.LightningModule):
             if adapted_masks !=None:
                 adapted_outputs = adapted_outputs[adapted_masks==1]
                 adapted_labels = adapted_labels[adapted_masks==1]
-            metric.to(self.device).update(adapted_outputs, adapted_labels)
+            if len(adapted_outputs) > 0:
+                metric.to(self.device).update(adapted_outputs, adapted_labels)
             
     def adapt_variables_for_metric(self, metric_name, outputs, labels, masks=None):
         if self.config['task'] == 'Classification' and self.num_classes > 2:
@@ -192,7 +241,11 @@ class PytorchModel(pl.LightningModule):
     def training_step(self, batch, batch_idx):
         res = self.shared_step(batch, mode = 'train')
         self.loss_train.append(res['loss'])
-        return {'loss': res['loss'], 'output': res['output'], 'labels': res['labels']}
+        out = {'loss': res['loss'], 'output': res['output'], 'labels': res['labels']}
+        if self.final_activation['type'] in ['ExactGP', 'ApproximateGP']:
+            out['output_lower'] = res['output_lower']
+            out['output_upper'] = res['output_upper']
+        return out
 
     def on_train_epoch_end(self):
         self.epoch_metrics(mode = 'train')
@@ -200,7 +253,11 @@ class PytorchModel(pl.LightningModule):
     def validation_step(self, batch, batch_idx): 
         res = self.shared_step(batch, mode = 'val')
         self.loss_val.append(res['loss'])
-        return {'val_loss': res['loss'], 'output': res['output'], 'labels': res['labels']}
+        out = {'val_loss': res['loss'], 'output': res['output'], 'labels': res['labels']}
+        if self.final_activation['type'] in ['ExactGP', 'ApproximateGP']:
+            out['output_lower'] = res['output_lower']
+            out['output_upper'] = res['output_upper']
+        return out
 
     def on_validation_epoch_end(self):
         self.epoch_metrics(mode = 'val')
@@ -210,7 +267,11 @@ class PytorchModel(pl.LightningModule):
     
     def test_step(self, batch, batch_idx):
         res = self.shared_step(batch, mode = 'test')        
-        return {'test_loss': res['loss'], 'output': res['output'], 'labels': res['labels']}
+        out = {'test_loss': res['loss'], 'output': res['output'], 'labels': res['labels']}
+        if self.final_activation['type'] in ['ExactGP', 'ApproximateGP']:
+            out['output_lower'] = res['output_lower']
+            out['output_upper'] = res['output_upper']
+        return out
 
     def on_test_epoch_end(self):
         self.epoch_metrics(mode = 'test')
@@ -221,5 +282,14 @@ class PytorchModel(pl.LightningModule):
         """
         # build optimizer
         trainable_params = filter(lambda p: p.requires_grad, self.parameters())
-        optimizer = torch.optim.Adam(trainable_params, lr = self.config['implementation']['optimizer']['lr'], weight_decay = self.config['implementation']['optimizer']['weight_decay'])
+        if self.final_activation['type'] not in ['ExactGP', 'ApproximateGP']:
+            optimizer = torch.optim.Adam(trainable_params, \
+                                         lr = self.config['implementation']['optimizer']['lr'],
+                                         weight_decay = self.config['implementation']['optimizer']['weight_decay'])
+        else:
+            optimizer = torch.optim.Adam([{'params': self.model.parameters()},
+                                          {'params': self.GP.parameters()},
+                                          {'params': self.likelihood.parameters()}], \
+                                         lr = self.config['implementation']['optimizer']['lr'],
+                                         weight_decay = self.config['implementation']['optimizer']['weight_decay'])            
         return optimizer

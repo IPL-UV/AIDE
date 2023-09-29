@@ -34,11 +34,11 @@ class ClassificationVisualizer1D(ClassificationVisualizerAbstract):
         if not os.path.isdir(self.save_path+'/temporal_visualization'):
             os.mkdir(self.save_path+'/temporal_visualization')
     
-    def per_sample_operations(self, outputs, labels, time_indexes, event_names):
+    def per_sample_operations(self, outputs, labels, time_indexes, event_names, masks):
         """
         Performs per sample plot of the extreme event detection maps and the variables' saving for the global operations
         """
-        for output, label, time, event_name in (pbar := tqdm(zip(outputs, labels, time_indexes, event_names), total=len(outputs))):
+        for output, label, time, event_name, mask in (pbar := tqdm(zip(outputs, labels, time_indexes, event_names, masks), total=len(outputs))):
             pbar.set_description('Performing visualization')
             if self.num_classes != 1:
                 self.__plot_per_class_detection(output, label, event_name)

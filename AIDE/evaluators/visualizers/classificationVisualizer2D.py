@@ -48,15 +48,15 @@ class ClassificationVisualizer2D(ClassificationVisualizerAbstract):
         if not os.path.isdir(self.save_path+'/spatial_visualization'):
             os.mkdir(self.save_path+'/spatial_visualization')
     
-    def per_sample_operations(self, outputs, labels, time_indexes, event_names):
+    def per_sample_operations(self, outputs, labels, time_indexes, event_names, masks):
         """
         Performs per sample plot of the extreme event detection maps and the variables' saving for the global operations
         """
-        for output, label, time, event_name in (pbar := tqdm(zip(outputs, labels, time_indexes, event_names), total=len(outputs))):
+        for output, label, time, event_name, mask in (pbar := tqdm(zip(outputs, labels, time_indexes, event_names, masks), total=len(outputs))):
             pbar.set_description('Performing visualization')
-            self.__plot_per_class_detection(output, time)
-            self.__plot_aggregated_detection(self.__categorize(output), time)
-            self.__save_global_results(output, label, time)
+            self.__plot_per_class_detection(output, time, mask)
+            self.__plot_aggregated_detection(self.__categorize(output), time, mask)
+            self.__save_global_results(output, mask, label, time)
     
     def __categorize(self,output):
         if self.num_classes == 1:
@@ -64,41 +64,52 @@ class ClassificationVisualizer2D(ClassificationVisualizerAbstract):
         else:
             return torch.max(output, dim=0)[1]
 
-    def __save_global_results(self,  output, labels, time):
+    def __save_global_results(self,  output, mask, labels, time):
         self.test_outputs.extend([x.item() for x in self.__categorize(output).flatten()])
         self.test_labels.extend([x.item() for x in labels.flatten().long()])
-
+        if mask!=None: 
+            mask = torch.prod(torch.prod(mask, 1),0)
+            mask[mask==0] = np.nan
+            
         if self.config['evaluation']['visualization']['params']['time_aggregation']:
             self.temporal_plot_xticks_labels.append(str(time))
             for num_class in self.data_classes:
-                self.__save_data_to_plot_temporal(output[num_class-1], labels, num_class)
+                self.__save_data_to_plot_temporal(output[num_class-1], mask, labels, num_class)
                 
-    def __plot_per_class_detection(self, output, sample_name):
+    def __plot_per_class_detection(self, output, sample_name, mask):
         """
         Plot extreme event detection saliency map for each class and a given time step
         """
+        if mask!=None: 
+            mask = torch.prod(torch.prod(mask, 1),0)
+            mask[mask==0] = np.nan
         for num_class in self.data_classes:
-            mask = self.test_loader.dataset.labels['mask'].where(self.test_loader.dataset.labels['mask'] != num_class, 0).any(dim='time').values
-            misc.plot_spatial_signal(self.save_path+'/spatial_visualization/c'+str(num_class)+'_'+sample_name, output[num_class-1], mask, self.coordinates)
+            label = self.test_loader.dataset.labels['mask'].where(self.test_loader.dataset.labels['mask'] != num_class, 0).any(dim='time').values
+            misc.plot_spatial_signal(self.save_path+'/spatial_visualization/c'+str(num_class)+'_'+sample_name, output[num_class-1], 
+                                     label, mask, self.coordinates)
 
-    def __plot_aggregated_detection(self, output, sample_name):
+    def __plot_aggregated_detection(self, output, sample_name, mask):
         """
         Plot extreme event detection categorical map for a given time step
         """
-        mask = self.test_loader.dataset.labels['mask'].any(
+        if mask!=None: 
+            mask = torch.prod(torch.prod(mask, 1),0)
+            mask[mask==0] = np.nan
+        label = self.test_loader.dataset.labels['mask'].any(
             dim='time').values.astype(int)
         misc.plot_spatial_aggregation(self.save_path+'/spatial_visualization/'+sample_name+'_aggregation',
-                                      output, mask, self.coordinates, self.config['data']['num_classes'])
+                                      output, label, mask, self.coordinates, self.config['data']['num_classes'])
 
-    def __save_data_to_plot_temporal(self, output, labels, num_class):
+    def __save_data_to_plot_temporal(self, output, mask, labels, num_class):
         """ 
         Prepare data for visualization through time (aggregation mean)
         """
-        mask = self.test_loader.dataset.labels['mask'].where(
+        label_mask = self.test_loader.dataset.labels['mask'].where(
             self.test_loader.dataset.labels['mask'] != num_class, 0).any(dim='time').values
-
-        self.test_outputs_mean_when_event[num_class].append(torch.mean(output[mask == 1]))
-        self.test_outputs_mean_without_event[num_class].append(torch.mean(output[mask == 0]))
+        output = output*mask if mask!=None else output
+        
+        self.test_outputs_mean_when_event[num_class].append(torch.nanmean(output[label_mask == 1]))
+        self.test_outputs_mean_without_event[num_class].append(torch.nanmean(output[label_mask == 0]))
         self.test_labels_when_event[num_class].append(int(labels[labels == num_class].any()))
 
     def global_operations(self):

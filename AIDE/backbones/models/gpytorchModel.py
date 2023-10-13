@@ -42,7 +42,7 @@ class GaussianProcessLayer(gpytorch.models.ApproximateGP):
             covariance = list(self.params['covar'])[0] if first else list(nested)[0]
             covariance_params = self.params['covar'][covariance]['params'] if first else nested[covariance]['params']
             for pk, pv in covariance_params.items():
-                if 'package' in pv:
+                if isinstance(pv, dict) and 'package' in pv:
                     paux = getattr(eval(covariance_params[pk]['package']),
                                    covariance_params[pk]['type'])(**{pkey: eval(pvalue) \
                                                                      for pkey, pvalue in covariance_params[pk]['params'].items()})

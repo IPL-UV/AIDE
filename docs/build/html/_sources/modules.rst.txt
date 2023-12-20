@@ -1,5 +1,5 @@
 AIDE
-====
+===============
 
 .. toctree::
    :maxdepth: 4

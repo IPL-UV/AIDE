@@ -1,4 +1,4 @@
 sphinx_rtd_theme
 python_docs_theme
 numpy
-yaml
+pyyaml

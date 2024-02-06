@@ -2,3 +2,5 @@ sphinx_rtd_theme
 python_docs_theme
 numpy
 pyyaml
+matplotlib
+pandas

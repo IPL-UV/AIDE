@@ -5,4 +5,4 @@ pyyaml
 matplotlib
 pandas
 tqdm
-seaborn
+seaborn==0.12.2

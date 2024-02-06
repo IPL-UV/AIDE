@@ -10,7 +10,7 @@ torchmetrics==0.11.1
 tqdm==4.64.0
 xarray==2022.6.0
 pyod~=1.0.5
-cartopy==0.21.0
+cartopy
 scikit-image~=0.20.0
 scikit-learn~=1.1.1
 pytorch_lightning~=1.7.6

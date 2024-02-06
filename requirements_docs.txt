@@ -4,3 +4,4 @@ numpy
 pyyaml
 matplotlib
 pandas
+tqdm

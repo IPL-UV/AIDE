@@ -24,11 +24,18 @@ pip install -r requirements.txt install libs
 
 # 4) Run main.py of AIDE using a config file. Some examples:
 
+# To execute the DroughtED tutorial please download the dataset:
+# https://www.kaggle.com/datasets/cdminix/us-drought-meteorological-data . 
+# Three files constitue the whole dataset (train_timeseries.csv, validation_timeseries.csv, test_timeseries.csv).
+# Rename these files to train.csv, val.csv and test.csv respectively and place them in the following path AIDE>databases>DroughtED>data.
+
 # DroughtED database and K-Nearest Neighbors (KNN) model (from PyOD) 
 python main.py --config=./configs/config_DroughtED_OutlierDetection.yaml
 
 # DroughtED database and LSTM-based architecture (user-defined) 
 python main.py --config=./configs/config_DroughtED_DeepLearning.yaml
+
+# A step-by-step tutorial of the DroughtED example can be found at AIDE>tutorials. 
 ```
 
 Documentation can be found on [**Read the Docs**](http://aidextremes.readthedocs.org/en/latest), as well as in the [`docs/`](https://github.com/IPL-UV/AIDE/tree/main/docs) on the toolbox source.

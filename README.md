@@ -28,7 +28,7 @@ pip install -r requirements.txt install libs
 python main.py --config=./configs/config_DroughtED_OutlierDetection.yaml
 
 # DroughtED database and LSTM-based architecture (user-defined) 
-python main.py --config=./configs/config_DroughtED_DeepLearning.yam
+python main.py --config=./configs/config_DroughtED_DeepLearning.yaml
 ```
 
 Documentation can be found on [**Read the Docs**](http://aidextremes.readthedocs.org/en/latest), as well as in the [`docs/`](https://github.com/IPL-UV/AIDE/tree/main/docs) on the toolbox source.

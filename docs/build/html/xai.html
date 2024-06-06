@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XAI &mdash; AIDE 0.0.2 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=c1dcd045"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Advanced features" href="advanced.html" />
+    <link rel="prev" title="Characterization" href="characterization.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            AIDE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customization.html">Toolbox customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Available models</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="evaluations.html">Evaluations</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="metrics.html">Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualizations.html">Visualizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="characterization.html">Characterization</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">XAI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#methods">Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#input-parameters">Input Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#outputs">Outputs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api_ref.html">API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="detection.html">Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impacts.html">Impact Assessment</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AIDE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="evaluations.html">Evaluations</a></li>
+      <li class="breadcrumb-item active">XAI</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/xai.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="xai">
+<h1>XAI<a class="headerlink" href="#xai" title="Permalink to this heading"></a></h1>
+<p>The eXplainable AI (XAI) is a way to make AI models more transparent, allowing
+the user to go beyond their intuitions about how the model works and use SOTA techniques to look
+under the lid. We focus on feature attribution methods as the foundation for the XAI module.</p>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading"></a></h2>
+<p>As a backbone for the XAI module, we use Python’s <a href="#id1"><span class="problematic" id="id2">`Captum &lt; https://captum.ai/&gt;`_</span></a> library, a well-known open-source library for model interpretability built on
+PyTorch, that efficiently implements the majority of the attribution methods proposed in
+literature. Here are Captum’s attribution methods that are currently supported in the AIDE
+toolbox:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="raw-html"><font color="#CC0033">Saliency</font></span> one of the simplest attribution methods, computes the gradient of the output with respect to the input, hence providing the coefficients of a version of the model that has been linearized at that given input point. Therefore, the magnitude of the gradient indicates which pixels need to be changed the least to affect the output the most.</p></li>
+<li><p><span class="raw-html"><font color="#CC0033">InputXGradient</font></span> computes the total contribution of a feature to the linearised model’s output by multiplying the saliency by the input values.</p></li>
+<li><p><span class="raw-html"><font color="#CC0033">IntegratedGradients</font></span> wherein attributions are computed as the integral of the gradients of the outputs with respect to the inputs along the path from a given baseline (e.g., 0) to the input.</p></li>
+<li><p><span class="raw-html"><font color="#CC0033">FeatureAblation</font></span> is a simple perturbation-based method, consisting of replacing each input feature with a given baseline value (e.g., 0), and computing the difference in output, hence considering a feature more important the more the prediction suffers as this feature is replaced.</p></li>
+<li><p><span class="raw-html"><font color="#CC0033">ShapleyValueSampling</font></span> extends the previous method by considering each permutation of the input features, such that the output difference after adding each feature corresponds to its contribution.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="input-parameters">
+<h2>Input Parameters<a class="headerlink" href="#input-parameters" title="Permalink to this heading"></a></h2>
+<p>To activate the XAI module, the user needs to set the <span class="raw-html"><font color="#008000">activate</font></span> parameter to <span class="raw-html"><font color="#CC0033">True</font></span>.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">xai</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">activate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="w">    </span><span class="nt">params</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">        </span><span class="nt">params</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nv">...</span><span class="p p-Indicator">}</span>
+<span class="w">        </span><span class="nt">out_agg_dim</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">        </span><span class="nt">mask</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">        </span><span class="nt">threshold</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">F1Score</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nv">...</span><span class="p p-Indicator">}</span>
+<span class="w">        </span><span class="nt">threshold_lower_is_best</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">        </span><span class="nt">min_distance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">        </span><span class="nt">time_aggregation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+<dl>
+<dt>The <span class="raw-html"><font color="#008000">params</font></span> parameter is a dictionary that contains the following:</dt><dd><ul>
+<li><p><span class="raw-html"><font color="#008000">type</font></span>: type defines the name of the attribution method to be used, which must be one of the aforementioned methods: <span class="raw-html"><font color="#CC0033">“Saliency”</font></span>, <span class="raw-html"><font color="#CC0033">“InputXGradient”</font></span>, <span class="raw-html"><font color="#CC0033">“IntegratedGradients”</font></span>, <span class="raw-html"><font color="#CC0033">“FeatureAblation”</font></span>, or <span class="raw-html"><font color="#CC0033">“ShapleyValueSampling”</font></span>.</p></li>
+<li><p><span class="raw-html"><font color="#008000">params</font></span>: params could contain a dictionary of the arguments to pass to a given Captum’s attribution class, or be left empty to use the default parameters.</p></li>
+<li><p><span class="raw-html"><font color="#008000">out_agg_dim</font></span>: could be a tuple of dimensions with respect to which we aggregate the output for explanation purposes, or None, to perform no aggregation. This is useful if input is highly dimentional and we want to reduce the dimensionality of the output.</p></li>
+<li><p><span class="raw-html"><font color="#008000">mask</font></span>: serves the same purpose as the previous parameter (i.e., to aggregate some values) but it is much more configurable. It must have one of the following values: <span class="raw-html"><font color="#CC0033">"none"</font></span>, <span class="raw-html"><font color="#CC0033">"events"</font></span>, <span class="raw-html"><font color="#CC0033">"correctness"</font></span>, <span class="raw-html"><font color="#CC0033">"labels"</font></span>, <span class="raw-html"><font color="#CC0033">"custom"</font></span>. As long as the mask is not <span class="raw-html"><font color="#CC0033">"none"</font></span>, out_agg_dim will be ignored, and instead of axis-based aggregation, the mask-based aggregation will be performed:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="raw-html"><font color="#CC0033">none</font></span>: no mask is applied.</p></li>
+<li><p><span class="raw-html"><font color="#CC0033">events</font></span>: considers those event blobs obtained by the <a class="reference internal" href="characterization.html#section-identifier-characterization"><span class="std std-ref">Characterization</span></a> module to compute a binary mask for attribution purposes. Configuration parameters threshold, threshold_lower_is_better, min_distance, and time_aggregation have to be defined in the xai subsection of the configuration file again, but the detected blobs are not recomputed if their values are the same.</p></li>
+<li><p><span class="raw-html"><font color="#CC0033">correctness</font></span>: selects, for every output class/feature to be explained, the output elements for which the prediction has a low error, i.e., it selects correct predictions. By default, a prediction is correct if its difference with respect to the GT value is equal to or less than 0.5. Intuitively, correct predictions could be more insightful than incorrect ones.</p></li>
+<li><p><span class="raw-html"><font color="#CC0033">labels</font></span>: considers, for every output class/feature to be explained, only the elements where the class to be explained coincides with the true output class. Here the idea is to reduce the noise in the explanation by eliminating all the output elements that do not correspond to the class(es) of interest.</p></li>
+<li><p><span class="raw-html"><font color="#CC0033">custom</font></span>: allows the user, for every output class/feature, to provide a custom aggregation mask (must be returned by the dataloader with key agg_mask), with the same dimensions as the output and a value (e.g., for 4 classes, numbers from 1-4) selecting the samples to be aggregated for each of the classes. This could be used, for instance, to analyse the impact of each class over class-specific land covers.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><span class="raw-html"><font color="#008000">threshold</font></span>: the threshold to be used for the visualization. It can be a predefined threshold or a selected threshold metric for characterization, such as <span class="raw-html"><font color="#CC0033">0.5</font></span> or <span class="raw-html"><font color="#CC0033">f1_score</font></span>.</p></li>
+<li><p><span class="raw-html"><font color="#008000">threshold_lower_is_best</font></span>: a boolean indicating whether a lower threshold is better.</p></li>
+<li><p><span class="raw-html"><font color="#008000">min_distance</font></span>: the minimum Euclidean distance between pixels to consider two True pixels connected.</p></li>
+<li><p><span class="raw-html"><font color="#008000">time_aggregation</font></span>: a boolean indicating whether time aggregation should be applied for visualization purposes.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="outputs">
+<h2>Outputs<a class="headerlink" href="#outputs" title="Permalink to this heading"></a></h2>
+<p>The XAI module generates figures to visualize the attribution values dependning on the parameters set by the user.
+Here we show some examples of the generated figures:</p>
+<a class="reference internal image-reference" href="_images/avg_xai.png"><img alt="Average XAI" class="align-center" src="_images/avg_xai.png" style="width: 800px;" /></a>
+<p>The above figure shows the average attribution values for the selected method per input feature. Positive values indicate that the feature has a positive impact on the prediction, while negative values indicate the opposite.
+Below, we show an example of the temporal XAI visualization in which the attribution values are displayed per feature over time for a selected event.</p>
+<a class="reference internal image-reference" href="_images/temp_xai.png"><img alt="Temporal XAI" class="align-center" src="_images/temp_xai.png" style="width: 800px;" /></a>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="characterization.html" class="btn btn-neutral float-left" title="Characterization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="advanced.html" class="btn btn-neutral float-right" title="Advanced features" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Gonzalez-Calabuig, M., Cortés-Andrés, J., Williams, T., Zhang, M., Pellicer-Valero, O.J., Fernández-Torres, M.Á., Camps-Valls, G..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>databases package &mdash; AIDE 0.0.2 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=c1dcd045"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="backbones package" href="backbones.html" />
+    <link rel="prev" title="API Reference" href="api_ref.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            AIDE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customization.html">Toolbox customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Available models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaluations.html">Evaluations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="api_ref.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">databases package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-databases.DROUGHT_database">databases.DROUGHT_database module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#databases.DROUGHT_database.DROUGHT"><code class="docutils literal notranslate"><span class="pre">DROUGHT</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-databases.DroughtED_database">databases.DroughtED_database module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#databases.DroughtED_database.DroughtED"><code class="docutils literal notranslate"><span class="pre">DroughtED</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-databases.XAIDA_database">databases.XAIDA_database module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#databases.XAIDA_database.XAIDA"><code class="docutils literal notranslate"><span class="pre">XAIDA</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-databases">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="backbones.html">backbones package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backbones.models.html">backbones.models package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluators.html">evaluators package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluators.visualizers.html">evaluators.visualizers package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluators.characterizers.html">evaluators.characterizers package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluators.xai.html">evaluators.xai package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">utils package</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="detection.html">Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impacts.html">Impact Assessment</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AIDE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="api_ref.html">API Reference</a></li>
+      <li class="breadcrumb-item active">databases package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/databases.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="databases-package">
+<h1>databases package<a class="headerlink" href="#databases-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-databases.DROUGHT_database">
+<span id="databases-drought-database-module"></span><h2>databases.DROUGHT_database module<a class="headerlink" href="#module-databases.DROUGHT_database" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="databases.DROUGHT_database.DROUGHT">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">databases.DROUGHT_database.</span></span><span class="sig-name descname"><span class="pre">DROUGHT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">32</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#databases.DROUGHT_database.DROUGHT" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></p>
+<p>This class is used to load the DROUGHT dataset using PyTorch’s Dataset class.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="databases.DROUGHT_database.DROUGHT.block_lat">
+<span class="sig-name descname"><span class="pre">block_lat</span></span><a class="headerlink" href="#databases.DROUGHT_database.DROUGHT.block_lat" title="Permalink to this definition"></a></dt>
+<dd><p>elif self.task == “ImpactAssessment”:
+self.block_lat, self.block_lon = np.meshgrid(np.arange(len(self.data.lat.values)),</p>
+<blockquote>
+<div><p>np.arange(len(self.data.lon.values)),
+indexing=’ij’)</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="databases.DROUGHT_database.DROUGHT.block_lon">
+<span class="sig-name descname"><span class="pre">block_lon</span></span><a class="headerlink" href="#databases.DROUGHT_database.DROUGHT.block_lon" title="Permalink to this definition"></a></dt>
+<dd><p>elif self.task == “ImpactAssessment”:
+self.block_lat, self.block_lon = np.meshgrid(np.arange(len(self.data.lat.values)),</p>
+<blockquote>
+<div><p>np.arange(len(self.data.lon.values)),
+indexing=’ij’)</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="databases.DROUGHT_database.DROUGHT.block_time">
+<span class="sig-name descname"><span class="pre">block_time</span></span><a class="headerlink" href="#databases.DROUGHT_database.DROUGHT.block_time" title="Permalink to this definition"></a></dt>
+<dd><p>elif self.task == “ImpactAssessment”:
+self.block_lat, self.block_lon = np.meshgrid(np.arange(len(self.data.lat.values)),</p>
+<blockquote>
+<div><p>np.arange(len(self.data.lon.values)),
+indexing=’ij’)</p>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-databases.DroughtED_database">
+<span id="databases-droughted-database-module"></span><h2>databases.DroughtED_database module<a class="headerlink" href="#module-databases.DroughtED_database" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="databases.DroughtED_database.DroughtED">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">databases.DroughtED_database.</span></span><span class="sig-name descname"><span class="pre">DroughtED</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#databases.DroughtED_database.DroughtED" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></p>
+<p>This class is used to load the DroughtED dataset using PyTorch’s Dataset class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> (<em>dict</em>) – The configuration file</p></li>
+<li><p><strong>period</strong> (<em>str</em><em>, </em><em>optional</em>) – The period of the dataset to load, defaults to ‘train’</p></li>
+<li><p><strong>window_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The window size of the dataset, defaults to 12</p></li>
+<li><p><strong>features_selected</strong> (<em>list</em><em>, </em><em>optional</em>) – The features to be used, defaults to [‘NDVI’, ‘precipitation’, ‘temperature’]</p></li>
+<li><p><strong>num_classes</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of classes, defaults to 6</p></li>
+<li><p><strong>train_slice</strong> (<em>dict</em><em>, </em><em>optional</em>) – The time period of the training set, defaults to {‘start’: 1982, ‘end’: 2006}</p></li>
+<li><p><strong>val_slice</strong> (<em>dict</em><em>, </em><em>optional</em>) – The time period of the validation set, defaults to {‘start’: 2007, ‘end’: 2011}</p></li>
+<li><p><strong>test_slice</strong> (<em>dict</em><em>, </em><em>optional</em>) – The time period of the test set, defaults to {‘start’: 2012, ‘end’: 2016}</p></li>
+<li><p><strong>id2class</strong> (<em>dict</em><em>, </em><em>optional</em>) – The dictionary of class IDs, defaults to {‘None’: 0, ‘D0’: 1, ‘D1’: 2, ‘D2’: 3, ‘D3’: 4, ‘D4’: 5}</p></li>
+<li><p><strong>weights</strong> (<em>list</em><em>, </em><em>optional</em>) – The weights of each class, defaults to [100-ones_percentage, ones_percentage]</p></li>
+<li><p><strong>dfs</strong> (<em>pandas.core.frame.DataFrame</em><em>, </em><em>optional</em>) – The dataframe of the dataset, defaults to None</p></li>
+<li><p><strong>X</strong> (<em>numpy.ndarray</em><em>, </em><em>optional</em>) – The input data, defaults to None</p></li>
+<li><p><strong>y</strong> (<em>numpy.ndarray</em><em>, </em><em>optional</em>) – The output data, defaults to None</p></li>
+<li><p><strong>class_bound</strong> (<em>int</em><em>, </em><em>optional</em>) – The boundary of the classes, defaults to 2</p></li>
+<li><p><strong>start</strong> (<em>datetime</em><em>, </em><em>optional</em>) – The start date of the dataset, defaults to None</p></li>
+<li><p><strong>end</strong> (<em>datetime</em><em>, </em><em>optional</em>) – The end date of the dataset, defaults to None</p></li>
+<li><p><strong>dates</strong> (<em>pandas.core.indexes.datetimes.DatetimeIndex</em><em>, </em><em>optional</em>) – The dates of the dataset, defaults to None</p></li>
+<li><p><strong>ones_percentage</strong> (<em>float</em><em>, </em><em>optional</em>) – The percentage of the positive class in the binarise function, defaults to None</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="databases.DroughtED_database.DroughtED.binarize_data">
+<span class="sig-name descname"><span class="pre">binarize_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#databases.DroughtED_database.DroughtED.binarize_data" title="Permalink to this definition"></a></dt>
+<dd><p>Binaries the data based off a threshold set by the class_bound parameter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>class_bound</strong> (<em>int</em><em>, </em><em>optional</em>) – The boundary of the classes, defaults to 2</p>
+</dd>
+</dl>
+<p>return: The binarised data
+:rtype: pandas.core.frame.DataFrame</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="databases.DroughtED_database.DroughtED.interpolate_nans">
+<span class="sig-name descname"><span class="pre">interpolate_nans</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">padata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pkind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'linear'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#databases.DroughtED_database.DroughtED.interpolate_nans" title="Permalink to this definition"></a></dt>
+<dd><p>Interpolate over nans in a 1D array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>padata</strong> (<em>numpy.ndarray</em>) – 1D array with nans to interpolate over</p></li>
+<li><p><strong>pkind</strong> (<em>str</em><em>, </em><em>optional</em>) – Interpolation method, defaults to ‘linear’</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Interpolated array</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+<p>see: <a class="reference external" href="https://stackoverflow.com/a/53050216/2167159">https://stackoverflow.com/a/53050216/2167159</a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="databases.DroughtED_database.DroughtED.loadXY">
+<span class="sig-name descname"><span class="pre">loadXY</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#databases.DroughtED_database.DroughtED.loadXY" title="Permalink to this definition"></a></dt>
+<dd><p>Load the data and split it into X and y, and a conditional normalisation statement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>period</strong> (<em>str</em><em>, </em><em>optional</em>) – The period of the dataset to load, defaults to ‘train’</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The input and output data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray, numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="databases.DroughtED_database.DroughtED.normalize">
+<span class="sig-name descname"><span class="pre">normalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#databases.DroughtED_database.DroughtED.normalize" title="Permalink to this definition"></a></dt>
+<dd><p>Normalise the data using a standard scaler.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X_time</strong> (<em>numpy.ndarray</em>) – The input data</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The normalised data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="databases.DroughtED_database.DroughtED.read_database_files">
+<span class="sig-name descname"><span class="pre">read_database_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#databases.DroughtED_database.DroughtED.read_database_files" title="Permalink to this definition"></a></dt>
+<dd><p>Read the database files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The dataframe of the dataset</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.core.frame.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="databases.DroughtED_database.DroughtED.select_slice">
+<span class="sig-name descname"><span class="pre">select_slice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dfs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#databases.DroughtED_database.DroughtED.select_slice" title="Permalink to this definition"></a></dt>
+<dd><p>Select the time period of the dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dfs</strong> (<em>pandas.core.frame.DataFrame</em>) – The dataframe of the dataset</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Slice of the dataframe</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.core.frame.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-databases.XAIDA_database">
+<span id="databases-xaida-database-module"></span><h2>databases.XAIDA_database module<a class="headerlink" href="#module-databases.XAIDA_database" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="databases.XAIDA_database.XAIDA">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">databases.XAIDA_database.</span></span><span class="sig-name descname"><span class="pre">XAIDA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#databases.XAIDA_database.XAIDA" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></p>
+<p>Load XAIDA dataset for extreme events classification and impact prediction tasks using PyTorch Dataset class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> (<em>dict</em>) – The configuration file</p></li>
+<li><p><strong>period</strong> (<em>str</em><em>, </em><em>optional</em>) – The period of the dataset to load, defaults to ‘train’</p></li>
+<li><p><strong>num_classes</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of classes to load, defaults to 5</p></li>
+<li><p><strong>steps_per_batch</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of steps per batch, defaults to 100</p></li>
+<li><p><strong>rng</strong> (<em>numpy.random.Generator</em><em>, </em><em>optional</em>) – The random number generator, defaults to None</p></li>
+<li><p><strong>index_df</strong> (<em>pandas.DataFrame</em><em>, </em><em>optional</em>) – The index dataframe</p></li>
+<li><p><strong>data</strong> (<em>xarray.Dataset</em><em>, </em><em>optional</em>) – The climate data</p></li>
+<li><p><strong>start_year</strong> (<em>int</em><em>, </em><em>optional</em>) – The start year of the dataset, defaults to 1980</p></li>
+<li><p><strong>end_year</strong> (<em>int</em><em>, </em><em>optional</em>) – The end year of the dataset, defaults to 2010</p></li>
+<li><p><strong>classes</strong> (<em>list</em><em>, </em><em>optional</em>) – The classes to load, defaults to None</p></li>
+<li><p><strong>selected_events</strong> (<em>pandas.DataFrame</em><em>, </em><em>optional</em>) – The selected events, defaults to None</p></li>
+<li><p><strong>event_durations</strong> (<em>pandas.Series</em><em>, </em><em>optional</em>) – The event durations, defaults to None</p></li>
+<li><p><strong>impacts</strong> (<em>pandas.Series</em><em>, </em><em>optional</em>) – The impacts, defaults to None</p></li>
+<li><p><strong>type_extreme</strong> (<em>pandas.Series</em><em>, </em><em>optional</em>) – The type of extreme event, defaults to None</p></li>
+<li><p><strong>dataframe</strong> (<em>pandas.DataFrame</em><em>, </em><em>optional</em>) – The dataframe, defaults to None</p></li>
+<li><p><strong>max_len</strong> (<em>int</em><em>, </em><em>optional</em>) – The maximum length of the dataset, defaults to None</p></li>
+<li><p><strong>before_event</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of days before the event, defaults to 30</p></li>
+<li><p><strong>after_event</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of days after the event, defaults to 30</p></li>
+<li><p><strong>random_lead_time</strong> (<em>int</em><em>, </em><em>optional</em>) – The random lead time, defaults to 0</p></li>
+<li><p><strong>whole_ts</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to use the whole time series, defaults to False</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="databases.XAIDA_database.XAIDA.get_data">
+<span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#databases.XAIDA_database.XAIDA.get_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-databases">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-databases" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api_ref.html" class="btn btn-neutral float-left" title="API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="backbones.html" class="btn btn-neutral float-right" title="backbones package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Gonzalez-Calabuig, M., Cortés-Andrés, J., Williams, T., Zhang, M., Pellicer-Valero, O.J., Fernández-Torres, M.Á., Camps-Valls, G..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

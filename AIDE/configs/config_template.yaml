@@ -1,0 +1,78 @@
+# Configuration file
+name: 'AIDE'
+# Addressed task, choices: Classification, OutlierDetection
+task: 'Classification'
+# Use a previously saved model to skip train phase
+from_scratch: ...
+# Path to the best model, required if from_scrath: false
+best_run_path: ''
+# Directory to save model outputs and results
+save_path: "experiments/" 
+
+# Database and DataLoader definition
+data:
+    name: ...
+    data_dim: ... # Data dimension
+    input_size: ... # Number of features
+    features: # Name of the features of the database
+    features_selected: ... # Features selected from the whole set of features
+    num_classes: ... # Number of categories in the database (drought, non-drought, e.g.)
+    time_aggregation: ... # Time aggregation for visualization purposes (true/false)
+    lon_slice_test: ... # If visualization 2D enabled, min/max longitude coordinates (test)
+    lat_slice_test: ... # If visualization 2D enabled, min/max latitude coordinates (test)
+
+# Architecture definition
+arch:
+    # Select user-defined model (true/false)
+    user_defined: ...
+    # Type of architecture to be used (e.g., 'UNET')
+    type: ...
+    # Parameters to configure the architecture
+    params:
+        param_1: ...
+    # Model input dimension (1: 1D, 2: 2D)
+    input_model_dim: ...
+    # Model output dimension (1: 1D, 2: 2D)
+    output_model_dim: ...
+
+# Definition of the training stage
+implementation:
+    # Loss function
+    loss: 
+        # Select user-defined loss (true/false)
+        user_defined: ...
+        type: ... # 'binary_cross_entropy' # # Type
+        package: ... # 'torch.nn.functional' #
+        masked: ... # Use masks to compute loss
+        # Parameters for the loss function
+        params:
+            reduction: 'none'
+            param_1: ...
+    # Definition of the optimizer
+    optimizer:
+        type: ... # Optimizer type
+        lr: ... # Learning rate
+        weight_decay: ... # Weight decay
+        gclip_value: ... # Gradient clipping values
+    
+    # Definition of Pytorch trainer
+    trainer:  
+        num_gpus: ... # Number of GPUs to be used
+        epochs: ... # Number of epochs
+        batch_size: ... # Batch size
+        monitor: # Metric to be monitored during training
+            split: ... # Choices: train/val/test
+            metric: ... # Either loss or a metric's name to monitor for early stopping and checkpoints
+        monitor_mode: ... # Monitor mode (increase or decrease monitored metric value)
+        early_stop: ... # Number of steps to perform early stopping
+        save_dir: "experiments/" # Directory to save model outputs and results
+    # Definition of Pytorch data loader
+    data_loader: 
+        num_workers: ...
+
+# Types of choosen evaluations, choices: Visualization, Characterization, XAI
+evaluation:
+    metrics:
+        Metric_1: {param_1: ...} # Metric for evaluation, from torchmetrics. Metric_1 has to be the name of the metric as in torhcmetrics docs
+    # Perform visualization (true/false)
+    visualization: true

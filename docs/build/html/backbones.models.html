@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>backbones.models package &mdash; AIDE 0.0.2 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=c1dcd045"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="evaluators package" href="evaluators.html" />
+    <link rel="prev" title="backbones package" href="backbones.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            AIDE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customization.html">Toolbox customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Available models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaluations.html">Evaluations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="api_ref.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="databases.html">databases package</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="backbones.html">backbones package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="backbones.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">backbones.models package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="backbones.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="backbones.html#module-backbones.genericBackbone">backbones.genericBackbone module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="backbones.html#module-backbones.pyodBackbone">backbones.pyodBackbone module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="backbones.html#module-backbones.pytorchBackbone">backbones.pytorchBackbone module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="backbones.html#module-backbones">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">backbones.models package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-backbones.models.pyodModel">backbones.models.pyodModel module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#backbones.models.pyodModel.PyodModel"><code class="docutils literal notranslate"><span class="pre">PyodModel</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-backbones.models.pytorchModel">backbones.models.pytorchModel module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#backbones.models.pytorchModel.PytorchModel"><code class="docutils literal notranslate"><span class="pre">PytorchModel</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-backbones.models">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evaluators.html">evaluators package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluators.visualizers.html">evaluators.visualizers package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluators.characterizers.html">evaluators.characterizers package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluators.xai.html">evaluators.xai package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">utils package</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="detection.html">Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impacts.html">Impact Assessment</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AIDE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="api_ref.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="backbones.html">backbones package</a></li>
+      <li class="breadcrumb-item active">backbones.models package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/backbones.models.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="backbones-models-package">
+<h1>backbones.models package<a class="headerlink" href="#backbones-models-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-backbones.models.pyodModel">
+<span id="backbones-models-pyodmodel-module"></span><h2>backbones.models.pyodModel module<a class="headerlink" href="#module-backbones.models.pyodModel" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="backbones.models.pyodModel.PyodModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">backbones.models.pyodModel.</span></span><span class="sig-name descname"><span class="pre">PyodModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#backbones.models.pyodModel.PyodModel" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Template class for outlier detection models</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config</strong> (<em>dict</em>) – configuration file</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.models.pyodModel.PyodModel.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#backbones.models.pyodModel.PyodModel.forward" title="Permalink to this definition"></a></dt>
+<dd><p>Forward pass to get the model outputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset</strong> (<em>numpy.ndarray</em>) – dataset variables</p></li>
+<li><p><strong>mode</strong> (<em>str</em>) – type of step: train, val or test</p></li>
+<li><p><strong>step_samples</strong> (<em>int</em><em>, </em><em>optional</em>) – sampling interval to subset the dataset, defaults to 1</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>results of the model</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.models.pyodModel.PyodModel.get_model">
+<span class="sig-name descname"><span class="pre">get_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#backbones.models.pyodModel.PyodModel.get_model" title="Permalink to this definition"></a></dt>
+<dd><p>Calls for the handler of the model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Pyod model</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pyod.models</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-backbones.models.pytorchModel">
+<span id="backbones-models-pytorchmodel-module"></span><h2>backbones.models.pytorchModel module<a class="headerlink" href="#module-backbones.models.pytorchModel" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="backbones.models.pytorchModel.PytorchModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">backbones.models.pytorchModel.</span></span><span class="sig-name descname"><span class="pre">PytorchModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_data_train</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#backbones.models.pytorchModel.PytorchModel" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">LightningModule</span></code></p>
+<p>Template class for deep learning architectures</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config</strong> (<em>dict</em>) – configuration file</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.models.pytorchModel.PytorchModel.adapt_variables_for_metric">
+<span class="sig-name descname"><span class="pre">adapt_variables_for_metric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metric_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">masks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#backbones.models.pytorchModel.PytorchModel.adapt_variables_for_metric" title="Permalink to this definition"></a></dt>
+<dd><p>Adapts the sizes of the outputs and masks to the task</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>metric_name</strong> (<em>str</em>) – name of the metric to fetch for</p></li>
+<li><p><strong>outputs</strong> (<em>torch.Tensor</em>) – outputs of the model</p></li>
+<li><p><strong>labels</strong> (<em>torch.Tensor</em>) – target variables</p></li>
+<li><p><strong>masks</strong> (<em>torch.Tensor</em><em>, </em><em>optional</em>) – mask indicating where we have valid
+values in the input variables and where
+to compute the metrics, defaults to None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>computed metric</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.models.pytorchModel.PytorchModel.configure_optimizers">
+<span class="sig-name descname"><span class="pre">configure_optimizers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#backbones.models.pytorchModel.PytorchModel.configure_optimizers" title="Permalink to this definition"></a></dt>
+<dd><p>Configures the optimizer for the training stage</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>optimitzer object with the definition of the training hyperparameters</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>torch.optim.Optimizer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.models.pytorchModel.PytorchModel.define_model">
+<span class="sig-name descname"><span class="pre">define_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#backbones.models.pytorchModel.PytorchModel.define_model" title="Permalink to this definition"></a></dt>
+<dd><p>Builds the model from an external file (user defined)
+or from the libraries of deep learning. Creates the auxiliary
+parameters according to the user specifications and modifies the
+architecture to fit the required task</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.models.pytorchModel.PytorchModel.epoch_metrics">
+<span class="sig-name descname"><span class="pre">epoch_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#backbones.models.pytorchModel.PytorchModel.epoch_metrics" title="Permalink to this definition"></a></dt>
+<dd><p>Computes and logs average metrics. Resets each epoch.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mode</strong> (<em>str</em>) – type of step: train, val or test</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.models.pytorchModel.PytorchModel.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#backbones.models.pytorchModel.PytorchModel.forward" title="Permalink to this definition"></a></dt>
+<dd><p>Forward pass to get the model outputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>torch.Tensor</em>) – input variables</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>predictions of the model</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.models.pytorchModel.PytorchModel.log_metric">
+<span class="sig-name descname"><span class="pre">log_metric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prog_bar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#backbones.models.pytorchModel.PytorchModel.log_metric" title="Permalink to this definition"></a></dt>
+<dd><p>Logs the metric</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>metric</strong> (<em>torch.Tensor</em>) – computed metric</p></li>
+<li><p><strong>mode</strong> (<em>str</em>) – type of step: train, val or test</p></li>
+<li><p><strong>metric_name</strong> (<em>str</em>) – name of the metric</p></li>
+<li><p><strong>prog_bar</strong> (<em>bool</em><em>, </em><em>optional</em>) – bolean to activate the progress bar, defaults to True</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.models.pytorchModel.PytorchModel.on_test_epoch_end">
+<span class="sig-name descname"><span class="pre">on_test_epoch_end</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#backbones.models.pytorchModel.PytorchModel.on_test_epoch_end" title="Permalink to this definition"></a></dt>
+<dd><p>Calls the computation of the epoch metrics</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.models.pytorchModel.PytorchModel.on_train_epoch_end">
+<span class="sig-name descname"><span class="pre">on_train_epoch_end</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#backbones.models.pytorchModel.PytorchModel.on_train_epoch_end" title="Permalink to this definition"></a></dt>
+<dd><p>Calls the computation of the metrics for each epoch</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.models.pytorchModel.PytorchModel.on_validation_epoch_end">
+<span class="sig-name descname"><span class="pre">on_validation_epoch_end</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#backbones.models.pytorchModel.PytorchModel.on_validation_epoch_end" title="Permalink to this definition"></a></dt>
+<dd><p>Calls the computation of the epoch metrics and its logging</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.models.pytorchModel.PytorchModel.shared_step">
+<span class="sig-name descname"><span class="pre">shared_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#backbones.models.pytorchModel.PytorchModel.shared_step" title="Permalink to this definition"></a></dt>
+<dd><p>Adapts the variables for the iteration, calls the forward step,
+computes the loss and metrics and logs their value to the logger.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>batch</strong> (<em>dict</em>) – batch of variables given by the Dataloader in the current iteration</p></li>
+<li><p><strong>mode</strong> (<em>str</em>) – type of step: train, val or test</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>results of the iteration and reference variables.
+This includes the loss and the ouput and labels for the iteration.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.models.pytorchModel.PytorchModel.step_metrics">
+<span class="sig-name descname"><span class="pre">step_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">masks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#backbones.models.pytorchModel.PytorchModel.step_metrics" title="Permalink to this definition"></a></dt>
+<dd><p>Adapts, computes and logs evaluation metrics</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>outputs</strong> (<em>torch.Tensor</em>) – outputs of the model</p></li>
+<li><p><strong>labels</strong> (<em>torch.Tensor</em>) – target variables</p></li>
+<li><p><strong>mode</strong> (<em>str</em>) – type of step: train, val or test</p></li>
+<li><p><strong>masks</strong> (<em>torch.Tensor</em><em>, </em><em>optional</em>) – mask indicating where we have valid
+values in the input variables and where
+to compute the metrics, defaults to None</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.models.pytorchModel.PytorchModel.test_step">
+<span class="sig-name descname"><span class="pre">test_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#backbones.models.pytorchModel.PytorchModel.test_step" title="Permalink to this definition"></a></dt>
+<dd><p>Testing step</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>batch</strong> (<em>dict</em>) – batch of variables given by the Pytorch Dataloader</p></li>
+<li><p><strong>batch_idx</strong> (<em>int</em>) – index of the batch</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>results of the step</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="backbones.models.pytorchModel.PytorchModel.training">
+<span class="sig-name descname"><span class="pre">training</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#backbones.models.pytorchModel.PytorchModel.training" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.models.pytorchModel.PytorchModel.training_step">
+<span class="sig-name descname"><span class="pre">training_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#backbones.models.pytorchModel.PytorchModel.training_step" title="Permalink to this definition"></a></dt>
+<dd><p>Training step</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>batch</strong> (<em>dict</em>) – batch of variables given by the Pytorch Dataloader</p></li>
+<li><p><strong>batch_idx</strong> (<em>int</em>) – index of the batch</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>results of the step</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backbones.models.pytorchModel.PytorchModel.validation_step">
+<span class="sig-name descname"><span class="pre">validation_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#backbones.models.pytorchModel.PytorchModel.validation_step" title="Permalink to this definition"></a></dt>
+<dd><p>Validation step</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>batch</strong> (<em>dict</em>) – batch of variables given by the Pytorch Dataloader</p></li>
+<li><p><strong>batch_idx</strong> (<em>int</em>) – index of the batch</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>results of the step</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-backbones.models">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-backbones.models" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="backbones.html" class="btn btn-neutral float-left" title="backbones package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="evaluators.html" class="btn btn-neutral float-right" title="evaluators package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Gonzalez-Calabuig, M., Cortés-Andrés, J., Williams, T., Zhang, M., Pellicer-Valero, O.J., Fernández-Torres, M.Á., Camps-Valls, G..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

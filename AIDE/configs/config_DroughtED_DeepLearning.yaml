@@ -1,0 +1,128 @@
+# Configuration file
+name: 'AIDE'
+# Addressed task, choices: Classification, OutlierDetection
+task: 'Classification'
+# Use a previously saved model to skip train phase
+from_scratch: true
+# Path to the best model, required if from_scrath: false
+best_run_path: ""
+# Directory to save model outputs and results
+save_path: "experiments/" 
+# Debug mode: sets inference / xai to only two samples and prints extra info
+debug: false
+
+# Database and DataLoader definition
+data:
+    name: 'DroughtED' 
+    data_dim: 1 # Data dimension
+    root: './databases/DroughtED' # Database root
+    data_file: 'data' # Database folder inside database root
+    input_size: 18  # Number of input features 18
+    num_classes: 2 # Number of categories
+    class_bound: 1 # Threshold for binarisation
+    window_size: 60 # How many days in the past as input (default: 180)  20
+    train_slice:
+        start: '2018-04-01'
+        end: '2018-08-31'
+    val_slice:
+        start: '2019-08-01'
+        end: '2019-12-31'
+    test_slice:
+        start: '2020-04-01'
+        end: '2020-09-31'
+    features: # ECVs included in the database
+        - 'PRECTOT'
+        - 'PS'
+        - 'QV2M'
+        - 'T2M'
+        - 'T2MDEW'
+        - 'T2M_MAX'
+        - 'T2M_MIN'
+        - 'T2M_RANGE'
+        - 'T2MWET'
+        - 'TS'
+        - 'WS10M'
+        - 'WS10M_MAX'
+        - 'WS10M_MIN'
+        - 'WS10M_RANGE'
+        - 'WS50M'
+        - 'WS50M_MAX'
+        - 'WS50M_MIN'
+        - 'WS50M_RANGE'
+    features_selected: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17] # ECVs selected 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17
+
+# Architecture definition
+arch:
+    # Select user-defined model (true/false)
+    user_defined: true
+    # Type of architecture to be used (e.g., 'UNET')
+    type: "UD_LSTM"
+    # Parameters to configure the architecture
+    params:
+        hidden_dim: 50 
+    # Model input dimension (1: 1D, 2: 2D)
+    input_model_dim: 2
+    # Model output dimension (1: 1D, 2: 2D)
+    output_model_dim: 1
+
+# Definition of the training stage
+implementation:
+    # Loss function
+    loss: 
+        user_defined: False # Select user-defined model (true/false)
+        type: "binary_cross_entropy" # Type
+        package: 'torch.nn.functional' # Package, none for user defined   torchvision.ops
+        activation: 
+            type: 'sigmoid' # Activation before computing the loss function
+        masked: false # Use masks to compute loss
+        # Parameters for the loss function
+        params:
+            reduction: 'none'
+    # Definition of the optimizer
+    optimizer:
+        type: "Adam" # Optimizer type
+        params:
+            lr: 0.001 # Learning rate 0.0001
+            weight_decay: 0 # Weight decay
+        gclip_value: 1. # Gradient clipping values
+    
+    # Definition of Pytorch trainer
+    trainer:  
+        accelerator: 'cpu' #Pytorch Lightning 2.0
+        devices: 1 #Pytorch Lightning 2.0
+        epochs: 200 # Number of epochs 50
+        batch_size: 64 # Batch size
+        monitor: # Metric to be monitored during training
+            split: 'val'
+            metric: 'loss' 
+        monitor_mode: 'min' # Monitor mode (increase or decrease monitored metric value)
+        early_stop: 10 # Number of steps to perform early stopping
+    # Definition of Pytorch data loader
+    data_loader: 
+        num_workers: 16
+
+# Types of choosen evaluations, choices: Visualization, Characterization, XAI
+evaluation:
+    metrics:
+        Accuracy: {task: 'binary', num_classes: 2}
+        F1Score: {task: 'binary', num_classes: 2}
+        Precision: {task: 'binary', num_classes: 2}
+        Recall: {task: 'binary', num_classes: 2}
+        CohenKappa: {task: 'binary', num_classes: 2}
+    visualization: 
+        activate: true
+        params:
+            time_aggregation: true # Time aggregation for visualization purposes
+            spatial_aggregation: false # Spatial aggregation for visualization purposes (false or tuple specifying shape h,w,t)
+    characterization: 
+        activate: false
+    xai: 
+        activate: true
+        params:
+            type: 'InputXGradient' #'IntegratedGradients'
+            params: ~
+            mask: "none" # One of ["none", "events[-full]", "correctness[-full]", "labels[-full]", "custom[-full]"]
+
+    custom:
+        activate: false
+        params: ~ 

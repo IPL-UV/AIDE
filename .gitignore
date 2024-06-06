@@ -1,0 +1,30 @@
+# Temp files
+*.pyc
+*.ipynb_checkpoints
+*.vscode
+
+# Weight files
+*.pkl
+*.ckpt
+
+# Database files
+*.hdf
+*.zarr
+*.npz
+*.nc
+
+# Folders
+aide_env
+AIDE/checkpoints
+
+# experiments
+AIDE/lightning_logs
+AIDE/databases/Italy
+AIDE/databases/Syria
+AIDE/databases/DroughtED
+AIDE/databases/XAIDA
+AIDE/experiments/*
+
+# pycache
+__pycache__
+*/__pycache__

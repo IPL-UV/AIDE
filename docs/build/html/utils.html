@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>utils package &mdash; AIDE 0.0.2 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=c1dcd045"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Detection" href="detection.html" />
+    <link rel="prev" title="evaluators.xai package" href="evaluators.xai.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            AIDE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customization.html">Toolbox customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Available models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaluations.html">Evaluations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="api_ref.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="databases.html">databases package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backbones.html">backbones package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backbones.models.html">backbones.models package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluators.html">evaluators package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluators.visualizers.html">evaluators.visualizers package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluators.characterizers.html">evaluators.characterizers package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluators.xai.html">evaluators.xai package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">utils package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-utils.adapt_variables">utils.adapt_variables module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#utils.adapt_variables.adapt_variables"><code class="docutils literal notranslate"><span class="pre">adapt_variables()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-utils.determine_threshold">utils.determine_threshold module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#utils.determine_threshold.determine_threshold"><code class="docutils literal notranslate"><span class="pre">determine_threshold()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-utils.loss">utils.loss module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#utils.loss.Loss"><code class="docutils literal notranslate"><span class="pre">Loss</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utils.loss.set_loss"><code class="docutils literal notranslate"><span class="pre">set_loss()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-utils.metrics_pyod">utils.metrics_pyod module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#utils.metrics_pyod.evaluate_print"><code class="docutils literal notranslate"><span class="pre">evaluate_print()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-utils.metrics_pytorch">utils.metrics_pytorch module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#utils.metrics_pytorch.init_metrics"><code class="docutils literal notranslate"><span class="pre">init_metrics()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-utils.misc">utils.misc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#utils.misc.plot_confusion_matrix"><code class="docutils literal notranslate"><span class="pre">plot_confusion_matrix()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utils.misc.plot_spatial_aggregation"><code class="docutils literal notranslate"><span class="pre">plot_spatial_aggregation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utils.misc.plot_spatial_signal"><code class="docutils literal notranslate"><span class="pre">plot_spatial_signal()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utils.misc.plot_temporal_results"><code class="docutils literal notranslate"><span class="pre">plot_temporal_results()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-utils.setup_config">utils.setup_config module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#utils.setup_config.setup"><code class="docutils literal notranslate"><span class="pre">setup()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utils.setup_config.setup_config"><code class="docutils literal notranslate"><span class="pre">setup_config()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-utils.validate_config">utils.validate_config module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#utils.validate_config.validate_config"><code class="docutils literal notranslate"><span class="pre">validate_config()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-utils">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="detection.html">Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impacts.html">Impact Assessment</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AIDE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="api_ref.html">API Reference</a></li>
+      <li class="breadcrumb-item active">utils package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/utils.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="utils-package">
+<h1>utils package<a class="headerlink" href="#utils-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-utils.adapt_variables">
+<span id="utils-adapt-variables-module"></span><h2>utils.adapt_variables module<a class="headerlink" href="#module-utils.adapt_variables" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.adapt_variables.adapt_variables">
+<span class="sig-prename descclassname"><span class="pre">utils.adapt_variables.</span></span><span class="sig-name descname"><span class="pre">adapt_variables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">masks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.adapt_variables.adapt_variables" title="Permalink to this definition"></a></dt>
+<dd><p>Adapts the variables to fit the dimension of the model selected</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> (<em>configuration dictionary.</em>) – </p></li>
+<li><p><strong>x</strong> (<em>input data</em><em> of </em><em>dims</em>) – </p></li>
+<li><p><strong>masks</strong> (<em>masks locating where we have values</em><em> or </em><em>not.</em>) – </p></li>
+<li><p><strong>labels</strong> (<em>ground truth data.</em>) – </p></li>
+<li><p><strong>form</strong> (<em>Inputs</em><em> of </em><em>the</em>) – <p>1D: (batch, variables, time)</p>
+<dl class="simple">
+<dt>2D: (batch, variables, time, x)</dt><dd><p>can be converted to:
+-&gt; 1D: (batch * x, variables, time)</p>
+</dd>
+<dt>3D: (batch, variables, time, lat, lon)</dt><dd><p>can be converted to:
+-&gt; 1D: (batch * (lat * lon), variables, time)
+-&gt; 2D: (batch * time, variables, lat, lon)</p>
+</dd>
+</dl>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>x</strong> (<em>adapted input.</em>)</p></li>
+<li><p><strong>masks</strong> (<em>adapted masks.</em>)</p></li>
+<li><p><strong>labels</strong> (<em>adapted labels.</em>)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-utils.determine_threshold">
+<span id="utils-determine-threshold-module"></span><h2>utils.determine_threshold module<a class="headerlink" href="#module-utils.determine_threshold" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.determine_threshold.determine_threshold">
+<span class="sig-prename descclassname"><span class="pre">utils.determine_threshold.</span></span><span class="sig-name descname"><span class="pre">determine_threshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'f1_score'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_is_better</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.determine_threshold.determine_threshold" title="Permalink to this definition"></a></dt>
+<dd><p>Find optimal threshold based on defined metric.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y_pred</strong> (<em>Array</em>) – Prediction/output variables by your model.</p></li>
+<li><p><strong>y_true</strong> (<em>Array</em>) – Target/ground-truth labels.</p></li>
+<li><p><strong>metric_name</strong> (<em>Str</em>) – Torchmetrics for threshold optimization, defaults to “f1_score”.</p></li>
+<li><p><strong>metric_params</strong> (<em>Dict</em>) – Parameters for Torchmetrics, defaults to {}.</p></li>
+<li><p><strong>num</strong> (<em>Int</em>) – Number of candidates for threshold optimization, defaults to 100.</p></li>
+<li><p><strong>lower_is_better</strong> (<em>Float</em>) – Indicate whether or not lower metric value is better, defaults to False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with metrics from torchmetrics to be evaluated.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-utils.loss">
+<span id="utils-loss-module"></span><h2>utils.loss module<a class="headerlink" href="#module-utils.loss" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="utils.loss.Loss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">utils.loss.</span></span><span class="sig-name descname"><span class="pre">Loss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">package</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">configuration</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.loss.Loss" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></p>
+<p>This class is used for wrapping for Torch loss functions.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="utils.loss.Loss.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.loss.Loss.forward" title="Permalink to this definition"></a></dt>
+<dd><p>Forward function of the loss, playing the same role as __call__ does for a regular python class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>outputs</strong> (<em>Torch.Tensor</em>) – Prediction/output variables by your model.</p></li>
+<li><p><strong>labels</strong> (<em>Torch.Tensor</em>) – Target/ground-truth labels.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The loss with respect to all Tensors.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="utils.loss.Loss.training">
+<span class="sig-name descname"><span class="pre">training</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#utils.loss.Loss.training" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.loss.set_loss">
+<span class="sig-prename descclassname"><span class="pre">utils.loss.</span></span><span class="sig-name descname"><span class="pre">set_loss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.loss.set_loss" title="Permalink to this definition"></a></dt>
+<dd><p>Check if loss is user defined.</p>
+</dd></dl>
+
+</section>
+<section id="module-utils.metrics_pyod">
+<span id="utils-metrics-pyod-module"></span><h2>utils.metrics_pyod module<a class="headerlink" href="#module-utils.metrics_pyod" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.metrics_pyod.evaluate_print">
+<span class="sig-prename descclassname"><span class="pre">utils.metrics_pyod.</span></span><span class="sig-name descname"><span class="pre">evaluate_print</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clf_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scores</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.metrics_pyod.evaluate_print" title="Permalink to this definition"></a></dt>
+<dd><p>Utility function for evaluating and printing the results obtained given a PyOD model.
+Default metrics include ROC, Accuracy, Precision, Recall and Average Precision.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>clf_name</strong> (<em>str</em>) – Name for the experiment.</p></li>
+<li><p><strong>y</strong> (<em>np.array</em>) – Target/ground-truth labels.</p></li>
+<li><p><strong>scores</strong> (<em>np.array</em>) – Output scores provided by the model.</p></li>
+<li><p><strong>threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – Threshold to compute binary scores for evaluation purposes, defaults to 0.5</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-utils.metrics_pytorch">
+<span id="utils-metrics-pytorch-module"></span><h2>utils.metrics_pytorch module<a class="headerlink" href="#module-utils.metrics_pytorch" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.metrics_pytorch.init_metrics">
+<span class="sig-prename descclassname"><span class="pre">utils.metrics_pytorch.</span></span><span class="sig-name descname"><span class="pre">init_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.metrics_pytorch.init_metrics" title="Permalink to this definition"></a></dt>
+<dd><p>Initialization of metric objects for evaluation purposes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config</strong> (<em>dict</em>) – A dictionary containing all the configuration variables for the experiment.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with metrics from torchmetrics to be evaluated.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-utils.misc">
+<span id="utils-misc-module"></span><h2>utils.misc module<a class="headerlink" href="#module-utils.misc" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.misc.plot_confusion_matrix">
+<span class="sig-prename descclassname"><span class="pre">utils.misc.</span></span><span class="sig-name descname"><span class="pre">plot_confusion_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.misc.plot_confusion_matrix" title="Permalink to this definition"></a></dt>
+<dd><p>Compute and plot confusion matrix for evaluation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cm</strong> (<em>class: 'torchmetrics.ConfusionMatrix'</em>) – Confusion matrix object</p></li>
+<li><p><strong>outputs</strong> (<em>tensor</em>) – Categorized model output</p></li>
+<li><p><strong>labels</strong> (<em>tensor</em>) – Samples’ ground truth</p></li>
+<li><p><strong>path</strong> (<em>str</em>) – Path to save the generated figures</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.misc.plot_spatial_aggregation">
+<span class="sig-prename descclassname"><span class="pre">utils.misc.</span></span><span class="sig-name descname"><span class="pre">plot_spatial_aggregation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_classes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.misc.plot_spatial_aggregation" title="Permalink to this definition"></a></dt>
+<dd><p>Plot extreme event detection saliency map for a given time step</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – Path to save the generated figures</p></li>
+<li><p><strong>output</strong> – Categorized model output</p></li>
+<li><p><strong>label</strong> – Samples’ ground truth</p></li>
+<li><p><strong>mask</strong> – Quality mask</p></li>
+<li><p><strong>coordinates</strong> (<em>tuple</em>) – Bounding box of the region of interest (lon_min, lon_max, lat_min, lat_max)</p></li>
+<li><p><strong>num_classes</strong> (<em>int</em>) – Number of classess in the classification</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.misc.plot_spatial_signal">
+<span class="sig-prename descclassname"><span class="pre">utils.misc.</span></span><span class="sig-name descname"><span class="pre">plot_spatial_signal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contourf_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.misc.plot_spatial_signal" title="Permalink to this definition"></a></dt>
+<dd><p>Plot extreme event detection categorical map for a given time step</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – Path to save the generated figures</p></li>
+<li><p><strong>output</strong> – Decision scores at the output of the model</p></li>
+<li><p><strong>label</strong> – Samples’ ground truth</p></li>
+<li><p><strong>mask</strong> – Quality mask</p></li>
+<li><p><strong>coordinates</strong> (<em>tuple</em>) – Bounding box of the region of interest (lon_min, lon_max, lat_min, lat_max)</p></li>
+<li><p><strong>contourf_params</strong> (<em>dict</em>) – Dictionary containing customizable parameters for the contourf function</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – Title of the generated visualization</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.misc.plot_temporal_results">
+<span class="sig-prename descclassname"><span class="pre">utils.misc.</span></span><span class="sig-name descname"><span class="pre">plot_temporal_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xticks_labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputs_when_event</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_without_event</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.misc.plot_temporal_results" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Plot extreme event detection signals through time:</dt><dd><ul class="simple">
+<li><p>Ground truth extreme event signal</p></li>
+<li><p>Extreme signal (Aggregated mean over region affected by the extreme event)</p></li>
+<li><p>Non-extreme signal (Aggregated mean over region non-affected by the extreme event)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – Path to save the generated figures</p></li>
+<li><p><strong>xticks_labels</strong> (<em>list</em>) – X axis’ labels</p></li>
+<li><p><strong>labels</strong> (<em>list</em>) – Samples’s ground truth</p></li>
+<li><p><strong>outputs_when_event</strong> (<em>list</em>) – Aggregated mean over region affected by the extreme event</p></li>
+<li><p><strong>output_without_event</strong> (<em>list</em><em>, </em><em>optional</em>) – Aggregated mean over region non-affected by the extreme event, defaults to None</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-utils.setup_config">
+<span id="utils-setup-config-module"></span><h2>utils.setup_config module<a class="headerlink" href="#module-utils.setup_config" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.setup_config.setup">
+<span class="sig-prename descclassname"><span class="pre">utils.setup_config.</span></span><span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.setup_config.setup" title="Permalink to this definition"></a></dt>
+<dd><p>Opens the configuration file as a dictionary</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – path to .yaml configuration file</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>configuration file</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.setup_config.setup_config">
+<span class="sig-prename descclassname"><span class="pre">utils.setup_config.</span></span><span class="sig-name descname"><span class="pre">setup_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utils.setup_config.setup_config" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the configuration for the current experiment and creates the folder structure.
+If provided, some hyperparameters can be added</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>experiment configuration</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-utils.validate_config">
+<span id="utils-validate-config-module"></span><h2>utils.validate_config module<a class="headerlink" href="#module-utils.validate_config" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.validate_config.validate_config">
+<span class="sig-prename descclassname"><span class="pre">utils.validate_config.</span></span><span class="sig-name descname"><span class="pre">validate_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.validate_config.validate_config" title="Permalink to this definition"></a></dt>
+<dd><p>Checks for the consistency between the data dimension,
+the dimension of the model requested and the output dimension</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config</strong> (<em>dict</em>) – configuration file</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-utils">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-utils" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="evaluators.xai.html" class="btn btn-neutral float-left" title="evaluators.xai package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="detection.html" class="btn btn-neutral float-right" title="Detection" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Gonzalez-Calabuig, M., Cortés-Andrés, J., Williams, T., Zhang, M., Pellicer-Valero, O.J., Fernández-Torres, M.Á., Camps-Valls, G..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

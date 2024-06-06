@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Available models &mdash; AIDE 0.0.2 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=c1dcd045"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Evaluations" href="evaluations.html" />
+    <link rel="prev" title="Configuration File" href="config.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            AIDE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customization.html">Toolbox customization</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Available models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pyod">PyOD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smp">SMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tsai">TSAI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gaussian-process-layer">Gaussian Process Layer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="evaluations.html">Evaluations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api_ref.html">API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="detection.html">Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impacts.html">Impact Assessment</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AIDE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Available models</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/models.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="available-models">
+<span id="section-identifier-models"></span><h1>Available models<a class="headerlink" href="#available-models" title="Permalink to this heading"></a></h1>
+<blockquote>
+<div><p>To keep the toolbox updated, we compile a compendium of available models that drews from several widely recognised, externally developed, and highly active libraries:</p>
+</div></blockquote>
+<section id="pyod">
+<h2>PyOD<a class="headerlink" href="#pyod" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><p>For Outlier Detection, the <a class="reference external" href="https://github.com/yzhao062/pyod">Python Outlier Detection</a> (PyOD)  library was selected as the one best fitted to provide tested models and successfully curated products for multivariate data. PyOD includes individual, ensembles, and combinations of detection algorithms, as well as shallow and specific deep neural network methods.</p>
+<p>To use PyOD, specify the following fields on the configuration file:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">arch</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">user_defined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Model_class_name (String) (eg. knn.KNN)</span>
+<span class="w">    </span><span class="nt">args</span><span class="p">:</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="nt">input_model_dim</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="nt">output_model_dim</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="nt">step_samples_train</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="nt">step_samples_evaluation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="smp">
+<h2>SMP<a class="headerlink" href="#smp" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><p>The user can choose a wide range of state-of-the-art models from the <a class="reference external" href="https://github.com/qubvel/segmentation_models.pytorch">Segmentation Models Pytorch</a> (SMP) to address extreme event detection as a binary segmentation task. This library extends the powerful image labelling library of <a class="reference external" href="https://github.com/huggingface/pytorch-image-models">PyTorch Image Models</a>  (timm).</p>
+<p>The SMP library adds decoder structures (based on popular encoder-decoder architectures) to the models found in timm, and others, to be applied for image segmentation.</p>
+<p>To use SMP, specify the following fields on the configuration file:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">arch</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">user_defined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Model_architecture (String) (eg. Unet)</span>
+<span class="w">    </span><span class="nt">params</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">encoder_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Model_encoder (String) (eg. resnet34)</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="nt">input_model_dim</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="nt">output_model_dim</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="tsai">
+<h2>TSAI<a class="headerlink" href="#tsai" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><p>We incorporate the deep learning library for <a class="reference external" href="https://github.com/timeseriesAI/tsai">Time Series and Sequences</a> (TSAI) for handling 1D time series for the classification or impact assessment tasks.</p>
+<p>To use TSAI, specify the following fields on the configuration file:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">arch</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">user_defined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tsai_models.Model_name (String) (eg. tsai_models.LSTM)</span>
+<span class="w">    </span><span class="nt">params</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">out_len</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="nt">input_model_dim</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="nt">output_model_dim</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="gaussian-process-layer">
+<h2>Gaussian Process Layer<a class="headerlink" href="#gaussian-process-layer" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><p>The AIDE toolbox provides the opportunity to implement advanced Deep Gaussian Process-based regression algorithms by integrating <a class="reference external" href="https://gpytorch.ai/">GPyTorch</a> . This is achieved by harmonizing Deep Learning (DL) models with a Gaussian Process (GP) as final layer.</p>
+<p>To add a GP layer on top of your DL model, specify the fields below in the configuration file. Further information about the parameters and available options can be found in the <a class="reference external" href="https://docs.gpytorch.ai/en/stable/">GPyTorch documentation</a> .</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">loss</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">user_defined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;VariationalELBO&#39;</span>
+<span class="w">    </span><span class="nt">package</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;gpytorch.mlls&#39;</span>
+<span class="w">    </span><span class="nt">activation</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;ApproximateGP&#39;</span>
+<span class="w">        </span><span class="nt">input_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">        </span><span class="nt">likelihood</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">GaussianLikelihood</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<span class="w">        </span><span class="nt">settings</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">train</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">num_likelihood_samples</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">            </span><span class="nt">val</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">num_likelihood_samples</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">            </span><span class="nt">test</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">num_likelihood_samples</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">        </span><span class="nt">params</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">variational_strategy</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">GridInterpolationVariationalStrategy</span><span class="p">:</span>
+<span class="w">                    </span><span class="nt">grid_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">                    </span><span class="nt">grid_bounds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">                    </span><span class="nt">variational_distribution</span><span class="p">:</span>
+<span class="w">                        </span><span class="nt">CholeskyVariationalDistribution</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">num_inducing_points</span><span class="p">:</span><span class="w"> </span><span class="nv">...</span><span class="p p-Indicator">}</span>
+<span class="w">                    </span><span class="nt">base</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">            </span><span class="nt">mean</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">ConstantMean</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<span class="w">            </span><span class="nt">covar</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">RBFKernel</span><span class="p">:</span>
+<span class="w">                    </span><span class="nt">params</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<span class="w">                    </span><span class="nt">nested</span><span class="p">:</span>
+<span class="w">                        </span><span class="nt">ScaleKernel</span><span class="p">:</span>
+<span class="w">                            </span><span class="nt">params</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<span class="w">                            </span><span class="nt">nested</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">            </span><span class="nt">scale_to_bounds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">            </span><span class="nt">output_distribution</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">MultivariateNormal</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<span class="w">    </span><span class="nt">masked</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="config.html" class="btn btn-neutral float-left" title="Configuration File" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="evaluations.html" class="btn btn-neutral float-right" title="Evaluations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Gonzalez-Calabuig, M., Cortés-Andrés, J., Williams, T., Zhang, M., Pellicer-Valero, O.J., Fernández-Torres, M.Á., Camps-Valls, G..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

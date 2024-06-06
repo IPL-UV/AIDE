@@ -1,0 +1,144 @@
+# Configuration file
+name: 'AIDE'
+# Addressed task, choices: Classification, OutlierDetection, ImpactAssessment
+task: 'Classification'
+# Use a previously saved model to skip train phase
+from_scratch: true
+# Path to the best model, required if from_scrath: false
+best_run_path: ""
+# Directory to save model outputs and results
+save_path: "experiments/"
+# Debug mode: sets inference / xai to only two samples and prints extra info
+debug: false
+
+# Database and DataLoader definition
+data:
+    name: 'DROUGHT'
+    data_dim: 3 # Data dimension
+    seed_idx: 1
+    root: './databases/Syria' # Database root
+    data_file: 'esdc-syria' # Data filename
+    labels_file: 'Syria_droughts_masks.zarr' # Labels filename
+    lat_slice_train: "42.5, 21.2" # Max/min latitude coordinates (train)
+    lon_slice_train: "29, 50.3" # Min/max longitude coordinates (train)
+    input_size_train: (256,256,1) # Model input size (lat,lon,time)
+    lat_slice_test: "42.5, 21.2" # Min/max latitude coordinates (test)
+    lon_slice_test: "29, 50.3"  # Min/max longitude coordinates (test)
+    input_size_test: (256,256,1) # Model output size (lat,lon,time)
+    time_slice: "'January-2006','December-2012'" # Time interval selected
+    features: # ECVs included in the database
+        - 'root_moisture' 
+        - 'air_temperature_2m'
+    features_selected: [0,1] # ECVs selected
+    # Directory to save climatology mean values
+    climatology_mean_root: './databases/Syria/data_py/climatology_mean'
+    # Directory to save climatology standard deviation values 
+    climatology_std_root: './databases/Syria/data_py/climatology_std'
+    # Clip values after pre-processing based on climatology
+    climatology_clipping: true
+    nexp: "1" # Number of experiment to be performed
+    # Train, validation and test slices for each experiment
+    train_slice:
+        exp1:
+            - "'1-January-2008','31-December-2008'"
+    val_slice:
+        exp1:
+            - "'1-January-2009','31-December-2009'"
+    test_slice:
+        exp1:
+            - "'1-January-2010','31-December-2010'"
+    num_classes: 2 # Number of categories in the database (drought, non-drought)
+
+# Architecture definition
+arch:
+    # Select user-defined model (true/false)
+    user_defined: False 
+    # Type of architecture to be used (e.g., 'UNET')
+    type: 'UNET'
+    # Parameters to configure the architecture
+    args:
+        encoder: "resnet34" # Type of encoder used
+    params:
+        encoder_depth: 5
+        decoder_channels: [256, 128, 64, 32, 16]
+        decoder_use_batchnorm: false 
+    # Model input dimension (1: 1D, 2: 2D)
+    input_model_dim: 2
+    # Model output dimension (1: 1D, 2: 2D)
+    output_model_dim: 2
+    
+# Definition of the training stage
+implementation:
+    # Loss function
+    loss: 
+        user_defined: False # Select user-defined model (true/false)
+        type: "sigmoid_focal_loss" # Type 
+        package: 'torchvision.ops' # Package, none for user defined 
+        activation: 
+            type: 'linear' # Activation before computing the loss function
+        masked: true # Use masks to compute loss
+        # Parameters for the loss function
+        params:
+            reduction: 'none'
+            alpha: 0.99
+            gamma: 2 #4.75
+    # Definition of the optimizer
+    optimizer:
+        type: "Adam" # Optimizer type
+        lr: 0.00001 # Learning rate
+        weight_decay: 0 # Weight decay
+        gclip_value: 0 # Gradient clipping values
+    # Definition of Pytorch trainer
+    trainer:  
+        accelerator: 'gpu' #Pytorch Lightning 2.0
+        devices: 1 #Pytorch Lightning 2.0
+        epochs: 100 # Number of epochs
+        batch_size: 16 # Batch size
+        monitor: # Metric to be monitored during training
+            split: 'val'
+            metric: 'AUROC' 
+        monitor_mode: 'max' # Monitor mode (increase or decrease monitored metric value)
+        early_stop: 10 # Number of steps to perform early stopping
+    # Definition of Pytorch data loader
+    data_loader: 
+        num_workers: 12 # Number of CPUs to read the data in parallel
+
+# Types of choosen evaluations, choices: Visualization, Characterization, XAI            
+evaluation:
+    metrics:
+        AUROC: {task: 'binary'}
+        AveragePrecision: {task: 'binary'}
+        Accuracy: {task: 'binary'}    
+                
+    visualization: 
+        activate: true
+        params: 
+            time_aggregation: true # Time aggregation for visualization purposes
+    
+    characterization: 
+        activate: true
+        params:
+            time_aggregation: true # Time aggregation for characterization purposes
+            min_distance: 100 # minimum euclidean distance between pixels to consider two True pixels connected 
+            remove_scant: false
+            min_area_holes: 64
+            min_area_objects: 64
+            threshold:
+                F1Score: {task: 'multiclass', num_classes: 4} # predefined threshold or selected threshold metrics for characterization, 0.5 or 'f1_score'
+            threshold_lower_is_best: false
+    
+    xai: 
+        activate: true
+        params:
+            type: 'IntegratedGradients'
+            params: ~
+            out_agg_dim: [2,3]
+            mask: 'events' # One of ["none", "events[-full]", "correctness[-full]", "labels[-full]", "custom[-full]"]
+            threshold:
+                F1Score: {task: 'multiclass', num_classes: 4} # predefined threshold or selected threshold metrics for characterization, 0.5 or 'f1_score'
+            threshold_lower_is_best: false
+            time_aggregation: true # Time aggregation for characterization purposes
+            min_distance: 100 # minimum euclidean distance between pixels to consider two True pixels connected 
+            remove_scant: false
+            min_area_holes: 64
+            min_area_objects: 64

@@ -1,0 +1,179 @@
+# Configuration file
+name: 'AIDE'
+# Addressed task, choices: Classification, OutlierDetection
+task: 'ImpactAssessment'
+# Use a previously saved model to skip train phase
+from_scratch: true
+# Path to the best model, required if from_scrath: false
+best_run_path: ""
+# Directory to save model outputs and results
+save_path: "experiments/" 
+# Debug mode: sets inference / xai to only two samples and prints extra info
+debug: 1
+
+# Database and DataLoader definition
+data:
+    name: 'DROUGHT_IA'
+    data_dim: 3 # Data dimension
+    seed_idx: 1
+    root: 'databases/Russia/' # Database root  /data/users/ESDL/
+    data_file: 'ESDC_RUSSIA.nc' # Data filename
+    labels_file: 'GDIS_RUSSIA.nc' # Labels filename
+    lat_slice_train: "51, 39" # Max/min latitude coordinates (train)
+    lon_slice_train: "27.3, 67.3" # Min/max longitude coordinates (train)
+    input_size_train: (48,80,24) #(32,32,8) # (256,256,32) # Model input size (lat,lon,time)
+    lat_slice_val: "63, 51" # Max/min latitude coordinates (val)
+    lon_slice_val: "27.3, 47.3" # Min/max longitude coordinates (val)
+    input_size_val: (48,80,24) #(32,64,8) # (256,256,32) # Model input size (lat,lon,time)
+    #lat_slice_test: "63,39" #"63, 51" # Max/min latitude coordinates (test)
+    #lon_slice_test: "27.3, 67.3" #"47.3, 67.3"  # Min/max longitude coordinates (test)
+    lat_slice_test: "63, 51" # Max/min latitude coordinates (test)
+    lon_slice_test: "47.3, 67.3"  # Min/max longitude coordinates (test)
+    input_size_test: (48,80,24) #(64,128,8)  # (256,256,32) # Model output size (lat,lon,time)
+    time_slice: "'January-2003','December-2018'" # Time interval selected
+    features: # ECVs included in the database
+        - 'surface_moisture'
+        - 'air_temperature_2m'
+        - 'evaporation'
+    features_selected: [0,1,2] # ECVs selected
+    # Directory to save climatology mean values
+    climatology_mean_root: 'databases/Russia/data_py_ia/climatology_mean'
+    # Directory to save climatology standard deviation values
+    climatology_std_root: 'databases/Russia/data_py_ia/climatology_std'
+    # Clip values after pre-processing based on climatology
+    climatology_clipping: true
+    nexp: "1" # Number of experiment to be performed
+    # Train, validation and test slices for each experiment
+    train_slice:
+        exp1:
+            - "'20-April-2010','31-October-2010'"
+    val_slice:
+        exp1:
+            - "'20-April-2010','31-October-2010'"
+    test_slice:
+        exp1:
+            - "'20-April-2010','31-October-2010'"
+    num_targets: 1 # Number of categories
+    target_feature: 'kndvi'
+
+# Architecture definition
+arch:
+    # Select user-defined model (true/false)
+    user_defined: true 
+    # Type of architecture to be used (e.g., 'UNET')
+    type: 'CNN3D_IA'
+    # Model input dimension (1: 1D, 2: 2D)
+    input_model_dim: 3
+    # Model output dimension (1: 1D, 2: 2D)
+    output_model_dim: 2
+    
+# Definition of the training stage
+implementation:
+    # Loss function
+    loss: 
+        # Select user-defined loss (true/false)
+        user_defined: false 
+        # Select loss function
+        type: 'VariationalELBO'
+        # Select package where loss implementation is available
+        package: 'gpytorch.mlls'
+        # Select activation at the output of the model
+        activation: 
+            # Type of the activation (e.g., 'linear', 'sigmoid', 'DeepGP')
+            type: 'DeepGP' 
+            # DeepGP exclusive parameters
+            # Size of the latent representation
+            input_size: 1
+            # Likelihood distribution
+            likelihood: 
+                GaussianLikelihood: {}
+            # GP settings
+            settings:
+                train:
+                    num_likelihood_samples: 8
+                val:
+                    num_likelihood_samples: 8
+                test:
+                    num_likelihood_samples: 16
+            # GP params
+            params: 
+                # Variational strategy
+                variational_strategy:
+                    VariationalStrategy: 
+                        learn_inducing_locations: 'True'
+                        # Variational distribution
+                        variational_distribution:
+                            CholeskyVariationalDistribution: {num_inducing_points: '10'}
+                        base: false # if not false, more params need to be added
+                # Mean vector
+                mean: 'constant' # 'constant', 'linear'
+                # Covariance matrix
+                covar: 
+                    RBFKernel: 
+                        params: {}
+                            #lengthscale_prior: 
+                            #    package: 'gpytorch.priors'
+                            #    type: 'SmoothedBoxPrior' 
+                            #    params: {a: 'np.exp(-1)', b: 'np.exp(1)', sigma: '1', transform: 'torch.exp'}
+                        nested: # if not false, more params need to be added
+                            ScaleKernel:
+                                params: {} 
+                                nested: false   
+                # Normalization at the input of the GP                   
+                scale_to_bounds: (-10., 10.) # false if deactivated
+                # Output/target distribution
+                output_distribution: 
+                    MultivariateNormal: {}    
+            # GP loss samples (-1 if all are considered)
+            num_training_samples: 100        
+        masked: true # Use masks to compute loss
+    # Definition of the optimizer
+    optimizer:
+        type: "Adam" # Optimizer type
+        params:
+            lr: 0.001 # Learning rate
+            weight_decay: 0 # Weight decay
+        gclip_value: 0 # Gradient clipping values
+    
+    # Definition of Pytorch trainer
+    trainer:  
+        accelerator: 'cpu' #Pytorch Lightning 2.0
+        devices: 1 #Pytorch Lightning 2.0
+        epochs: 1000 # Number of epochs 50
+        batch_size: 1 # Batch size
+        monitor: # Metric to be monitored during training
+            split: 'val'
+            metric: 'loss' 
+        monitor_mode: 'min' #'max' # Monitor mode (increase or decrease monitored metric value)
+        early_stop: 20 # Number of steps to perform early stopping
+        save_dir: "experiments/" # Directory to save model outputs and results
+    # Definition of Pytorch data loader
+    data_loader: 
+        num_workers: 16
+        sampler: None
+
+# Types of chosen evaluations, choices: Visualization, Characterization, XAI
+evaluation:
+    metrics:
+        MeanSquaredError: {}
+        PearsonCorrCoef: {}
+        SpearmanCorrCoef: {}
+
+    visualization: 
+        activate: true
+        params: 
+            output_color_map: 'RdYlBu'
+            gt_color_map: 'RdYlBu'
+            uncertainty_color_map: 'RdYlBu'
+            time_aggregation: false # Time aggregation for visualization purposes
+    xai: 
+        activate: true
+        params:
+            type: 'InputXGradient' #'IntegratedGradients'
+            out_agg_dim: [2,3]
+            params: ~
+            mask: "none"
+    
+    custom:
+        activate: false
+        params: ~ 

@@ -1,0 +1,185 @@
+# Configuration file
+name: 'AIDE'
+# Addressed task, choices: Classification, OutlierDetection, ImpactAssessment
+task: 'ImpactAssessment'
+# Use a previously saved model to skip train phas
+from_scratch: true
+# Path to the best model, required if from_scrath: false
+best_run_path: ""
+# Directory to save model outputs and results
+save_path: "experiments/" 
+# Debug mode: sets inference / xai to only two samples and prints extra info
+debug: 1
+
+# Database and DataLoader definition
+data:
+    name: 'XAIDA_IA'
+    seed: 42 # Global seed for random draws
+    data_dim: 1 # Data dimension
+    root: './databases/XAIDA/' # Database root
+    index_data: 'index_data/xaida_impacts_disaster_dataframe.csv' # Database folder inside database root
+    clim_data: 'clim_data/DB_extreme_clim_events_impacts.zarr/'
+    num_targets: 1 # Number of categories
+    whole_ts: false
+    random_lead_time: 0 #Randomly pick up to random_lead_time in the past as input
+    before_event: 0 # How many days in the past as input (default: 180)
+    after_event: 0
+    event_duration: 5
+    steps_per_batch: 'all' #32 # Timesteps per batch
+    input_size: 10
+    train_slice: 
+        start: 1989
+        end: 2010
+    val_slice:
+        start: 2011
+        end: 2014
+    test_slice:
+        start: 2015
+        end: 2021
+    units: 'original' # or original
+    impact_var: 'normalized_affected'
+    extremes:
+        - Flood
+#        - Heat wave
+    continents:
+        - Europe
+    features: # ECVs included in the database
+        - pet
+        - pev
+        - spei_30
+        - spei_90
+        - spei_180
+        - t2m 
+        - t2mmax
+        - t2mmin
+        - tp
+        - smsurf
+    features_selected: [0,1,2,3,4,5,6,7,8,9] # ECVs selected
+    normalize: False
+    standardize_target: True
+    landcover: "all"
+
+# Architecture definition
+arch:
+    # Select user-defined model (true/false)
+    user_defined: True
+    # Type of architecture to be used (e.g., 'UNET')
+    type: "UD_LSTM_IA_GP"
+    # Parameters to configure the architecture
+    params:
+        input_size: 10
+        lstm_hidden_dim: 64
+        num_lstm_layers: 1
+        fc_hidden_dim: 32
+        num_fc_layers: 3
+        fc_top_dim: 2
+        dropout_p: 0.1
+    # Model input dimension (1: 1D, 2: 2D)
+    input_model_dim: 2
+    # Model output dimension (1: 1D, 2: 2D)
+    output_model_dim: 1
+
+# Definition of the training stage
+implementation:
+    # Loss function
+    loss: 
+        # Select user-defined loss (true/false)
+        user_defined: false 
+        # Select loss function
+        type: 'VariationalELBO'
+        # Select package where loss implementation is available
+        package: 'gpytorch.mlls'
+        # Select activation at the output of the model
+        activation: 
+            # Type of the activation (e.g., 'linear', 'sigmoid', 'ApproximateGP')
+            type: 'DeepGP' 
+            # ApproximateGP exclusive parameters
+            # Size of the latent representation
+            input_size: 2
+            # Likelihood distribution
+            likelihood: 
+                GaussianLikelihood: {}
+            # GP settings
+            settings:
+                train:
+                    num_likelihood_samples: 8
+                val:
+                    num_likelihood_samples: 8
+                test:
+                    num_likelihood_samples: 16
+            # GP params
+            params: 
+                # Variational strategy
+                variational_strategy:
+                    VariationalStrategy: 
+                        learn_inducing_locations: 'True'
+                        # Variational distribution
+                        variational_distribution:
+                            CholeskyVariationalDistribution: {num_inducing_points: '8'}
+                        base: false # if not false, more params need to be added
+                # Mean vector
+                mean: 'constant' # 'constant', 'linear'
+                # Covariance matrix
+                covar: 
+                    RBFKernel: 
+                        params: {}
+                            # lengthscale_prior: 
+                            #    package: 'gpytorch.priors'
+                            #    type: 'SmoothedBoxPrior' 
+                            #    params: {a: 'np.exp(-1)', b: 'np.exp(1)', sigma: '0.1', transform: 'torch.exp'}
+                        nested: # if not false, more params need to be added
+                            ScaleKernel:
+                                params: {} 
+                                nested: false   
+                # Normalization at the input of the GP                   
+                scale_to_bounds: false #(-10., 10.) # false if deactivated
+                # Output/target distribution
+                output_distribution: 
+                    MultivariateNormal: {} 
+            # GP loss samples (-1 if all are considered)
+            num_training_samples: 100                
+        masked: false # Use masks to compute loss
+    # Definition of the optimizer
+    optimizer:
+        type: "Adam" # Optimizer type
+        params:
+            lr: 0.0001 # Learning rate
+            weight_decay: 0 # Weight decay
+        gclip_value: -1 # Gradient clipping values
+    
+    # Definition of Pytorch trainer
+    trainer:  
+        accelerator: 'gpu' #Pytorch Lightning 2.0
+        devices: 1 #Pytorch Lightning 2.0
+        epochs: 1000 # Number of epochs 50
+        batch_size: 16 # Batch size
+        monitor: # Metric to be monitored during training
+            split: 'val'
+            metric: 'loss' 
+        monitor_mode: 'min' #'max' # Monitor mode (increase or decrease monitored metric value)
+        early_stop: 50 # Number of steps to perform early stopping
+        save_dir: "experiments/" # Directory to save model outputs and results
+    # Definition of Pytorch data loader
+    data_loader: 
+        num_workers: 16
+        sampler: None
+
+# Types of chosen evaluations, choices: Visualization, Characterization, XAI
+evaluation:
+    metrics:
+        MeanSquaredError: {}
+        PearsonCorrCoef: {}
+        SpearmanCorrCoef: {}
+
+    visualization: 
+            activate: false
+
+    xai: 
+        activate: true
+        params:
+            type: 'Saliency' #'IntegratedGradients'
+            params: ~
+
+    custom:
+        activate: false
+        params: ~ 

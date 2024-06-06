@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced features &mdash; AIDE 0.0.2 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=c1dcd045"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API Reference" href="api_ref.html" />
+    <link rel="prev" title="XAI" href="xai.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            AIDE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customization.html">Toolbox customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Available models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaluations.html">Evaluations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#debug-option">Debug option</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tensorboard">Tensorboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#custom-models">Custom models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#custom-losses">Custom Losses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#custom-evaluation">Custom Evaluation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api_ref.html">API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="detection.html">Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impacts.html">Impact Assessment</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AIDE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Advanced features</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/advanced.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="advanced-features">
+<span id="section-identifier-advanced"></span><h1>Advanced features<a class="headerlink" href="#advanced-features" title="Permalink to this heading"></a></h1>
+<section id="debug-option">
+<h2>Debug option<a class="headerlink" href="#debug-option" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><p>The toolbox includes a debug option which reduces the training to a single number of epochs. To enable this feature, set the parameter <span class="raw-html"><font color="#008000">debug</font></span> to <span class="raw-html"><font color="#CC0033">True</font></span> or to a <span class="raw-html"><font color="#CC0033">number</font></span> in the configuration file. When this option is set, the training is reduced to 1 epoch. If set to a number, the test and inference is reduced to that number of samples.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">debug</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+</pre></div>
+</div>
+<p>The debug option is recommended to use when the model is not performing as expected.</p>
+</div></blockquote>
+</section>
+<section id="tensorboard">
+<h2>Tensorboard<a class="headerlink" href="#tensorboard" title="Permalink to this heading"></a></h2>
+<p>One feature that deserves special mention for its usefulness, mainly during the training
+stage, is the AIDE toolbox-TensorBoard compatibility. <a class="reference external" href="https://www.tensorflow.org/tensorboard?hl=es-419">TensorBoard</a> is an invaluable tool for training DL architectures because it provides real-time insights into model performance, allowing users to visualise and monitor training metrics,
+analyse model architectures, and identify performance bottlenecks. We show an example of the TensorBoard interface in the following figure during training,
+to monitor the loss on the training and validation subsets of the model.</p>
+<a class="reference internal image-reference" href="_images/tensorboard.png"><img alt="Tensorboard training" class="align-center" src="_images/tensorboard.png" style="width: 800px;" /></a>
+</section>
+<section id="custom-models">
+<h2>Custom models<a class="headerlink" href="#custom-models" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><p>Apart from the predefined models, the toolbox includes a user-defined option, i.e., it offers users the possibility of developing and including their own models.</p>
+<p>The implementation in python should be included in the <span class="raw-html"><font color="#CC0033">AIDE</font></span> &gt; <span class="raw-html"><font color="#CC0033">user_defined</font></span> &gt; <span class="raw-html"><font color="#CC0033">models</font></span> &gt; <span class="raw-html"><font color="#CC0033">user_defined.py</font></span> as a Pytorch <span class="raw-html"><font color="#CC0033">nn.Module</font></span> class.</p>
+<p>To use user-defined model, specify the following fields on the configuration file:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">arch</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">user_defined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Model_class_name (String)</span>
+<span class="w">    </span><span class="nt">params</span><span class="p">:</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="nt">input_model_dim</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="nt">output_model_dim</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="custom-losses">
+<h2>Custom Losses<a class="headerlink" href="#custom-losses" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><p>To further tailor the model’s training, the toolbox includes the possibility to ingrate user-defined loss functions. To incorporate your loss, create a file with your Python class <span class="raw-html"><font color="#CC0033">nn.Module</font></span> at <span class="raw-html"><font color="#CC0033">AIDE</font></span> &gt; <span class="raw-html"><font color="#CC0033">user_defined</font></span> &gt; <span class="raw-html"><font color="#CC0033">losses</font></span> &gt; <span class="raw-html"><font color="#CC0033">your_loss_name.py</font></span> and import the class at the <span class="raw-html"><font color="#CC0033">__init_.py</font></span> file of that same folder.</p>
+<p>Then, use the loss section on the configuration file to choose the new loss. The parameter <span class="raw-html"><font color="#008000">type</font></span> has to match with the name of the Python class. The parameter <span class="raw-html"><font color="#008000">package</font></span> has to be <span class="raw-html"><font color="#CC0033">'none'</font></span> to perform a local search of the loss.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">loss</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">user_defined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Loss_class_name (String)</span>
+<span class="w">    </span><span class="nt">package</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;none&#39;</span>
+<span class="w">    </span><span class="nt">activation</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="nt">masked: ... (Options</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True/False)</span>
+<span class="w">    </span><span class="nt">params</span><span class="p">:</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="custom-evaluation">
+<h2>Custom Evaluation<a class="headerlink" href="#custom-evaluation" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><p>At the final stage of developing your model, you may require alternative evaluations of your model. In this case, the toolbox provides an empty class where you can implement any complementary analysis of results.
+This class can be found at <span class="raw-html"><font color="#CC0033">AIDE</font></span> &gt; <span class="raw-html"><font color="#CC0033">evaluators</font></span> &gt; <span class="raw-html"><font color="#CC0033">custom</font></span> &gt; <span class="raw-html"><font color="#CC0033">customEvaluator.py</font></span>.
+It will receive the variable <span class="raw-html"><font color="#008000">inference_outputs</font></span>, a dictionary with the outputs of the model (x), the ground-truth (labels) and masks.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CustomEvaluator</span><span class="p">():</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">dataloader</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_loader</span> <span class="o">=</span> <span class="n">dataloader</span>
+
+    <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inference_outputs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Include your code here</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>This new evaluation block can then be used through the configuration file as follows:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">custom</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">activate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">params</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~</span>
+</pre></div>
+</div>
+<p>The parameter <span class="raw-html"><font color="#008000">params</font></span> allows for the definition of any extra variables that you may want to define from outside the toolbox.</p>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="xai.html" class="btn btn-neutral float-left" title="XAI" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_ref.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Gonzalez-Calabuig, M., Cortés-Andrés, J., Williams, T., Zhang, M., Pellicer-Valero, O.J., Fernández-Torres, M.Á., Camps-Valls, G..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

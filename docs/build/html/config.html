@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configuration File &mdash; AIDE 0.0.2 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=c1dcd045"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Available models" href="models.html" />
+    <link rel="prev" title="Database" href="data.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            AIDE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Quick Start</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="customization.html">Toolbox customization</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="data.html">Database</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Configuration File</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#defining-the-task-and-path">1. Defining the Task and Path</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#defining-the-dataset">2. Defining the Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#defining-the-model">3. Defining the Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#defining-the-training">4. Defining the Training</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#defining-the-evaluation">5. Defining the Evaluation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Available models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaluations.html">Evaluations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api_ref.html">API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="detection.html">Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impacts.html">Impact Assessment</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AIDE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="customization.html">Toolbox customization</a></li>
+      <li class="breadcrumb-item active">Configuration File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/config.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="configuration-file">
+<span id="section-identifier-config"></span><h1>Configuration File<a class="headerlink" href="#configuration-file" title="Permalink to this heading"></a></h1>
+<p>The communication between the user and the toolbox is performed through a configuration file containing a list of tunable system parameters.
+This file is implemented in YAML, a simple and concise language that maps easily into native data structures.
+Its comprehensibility makes it accessible to developers and non-developers and facilitates tracking experiment changes over time.</p>
+<section id="defining-the-task-and-path">
+<h2>1. Defining the Task and Path<a class="headerlink" href="#defining-the-task-and-path" title="Permalink to this heading"></a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;AIDE&#39;</span>
+<span class="c1"># Addressed task, choices: Classification, OutlierDetection, ImpactAssessment</span>
+<span class="nt">task</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="c1"># Use a previously saved model to skip the train phase (True/False)</span>
+<span class="nt">from_scratch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="c1"># Path to the best model, required if from_scratch: False</span>
+<span class="nt">best_run_path</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&#39;</span>
+<span class="c1"># Directory to save model outputs and results</span>
+<span class="nt">save_path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;experiments/&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="defining-the-dataset">
+<h2>2. Defining the Dataset<a class="headerlink" href="#defining-the-dataset" title="Permalink to this heading"></a></h2>
+<p>Pointer to the Dataset class. This section can be customized by adding more variables. See Section <a class="reference internal" href="data.html#section-identifier-data"><span class="std std-ref">Database</span></a> for more details on how to create your own Dataset class.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Database and DataLoader definition</span>
+<span class="nt">data</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w"> </span><span class="c1"># Dataset class name</span>
+<span class="w">    </span><span class="nt">data_dim</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w">  </span><span class="c1"># Data dimension</span>
+<span class="w">    </span><span class="nt">input_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w">  </span><span class="c1"># Number of features</span>
+<span class="w">    </span><span class="nt">features</span><span class="p">:</span><span class="w">  </span><span class="c1"># Name of the features of the database</span>
+<span class="w">    </span><span class="nt">features_selected</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w">  </span><span class="c1"># Features selected from the whole set of features</span>
+<span class="w">    </span><span class="nt">num_classes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w">  </span><span class="c1"># Number of categories in the database (drought, non-drought, e.g.)</span>
+<span class="w">    </span><span class="nt">lon_slice_test</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w">  </span><span class="c1"># If visualization 2D enabled, min/max longitude coordinates (test)</span>
+<span class="w">    </span><span class="nt">lat_slice_test</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w">  </span><span class="c1"># If visualization 2D enabled, min/max latitude coordinates (test)</span>
+</pre></div>
+</div>
+</section>
+<section id="defining-the-model">
+<h2>3. Defining the Model<a class="headerlink" href="#defining-the-model" title="Permalink to this heading"></a></h2>
+<p>To specify the architecture to train, use the parameter <span class="raw-html"><font color="#008000">type</font></span>. This can be a user-defined model or a model available in the toolbox (see Section <a class="reference internal" href="models.html#section-identifier-models"><span class="std std-ref">Available models</span></a> for more details).</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Architecture definition</span>
+<span class="nt">arch</span><span class="p">:</span>
+<span class="w">    </span><span class="c1"># Select a user-defined model (true/false)</span>
+<span class="w">    </span><span class="nt">user_defined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="c1"># Type of architecture to be used (e.g., &#39;UNET&#39;)</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="c1"># Parameters to configure the architecture</span>
+<span class="w">    </span><span class="nt">params</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">param_1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="c1"># Model input dimension (1: 1D, 2: 2D)</span>
+<span class="w">    </span><span class="nt">input_model_dim</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="c1"># Model output dimension (1: 1D, 2: 2D)</span>
+<span class="w">    </span><span class="nt">output_model_dim</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+</section>
+<section id="defining-the-training">
+<h2>4. Defining the Training<a class="headerlink" href="#defining-the-training" title="Permalink to this heading"></a></h2>
+<p>This part of the configuration file allows for specifying the parameters of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="raw-html"><font color="#008000">loss</font></span> function: Can be either custom or from a Python package. To choose from a Python package, set <span class="raw-html"><font color="#008000">user_defined</font></span>: <span class="raw-html"><font color="#CC0033">False</font></span> and specify loss name and package (e.g. <span class="raw-html"><font color="#008000">type</font></span>: <span class="raw-html"><font color="#CC0033">'sigmoid_focal_loss'</font></span> and <span class="raw-html"><font color="#008000">package</font></span>: <span class="raw-html"><font color="#CC0033">'torchvision.ops' </font></span>). For custom losses, see section Custom Loss in <a class="reference internal" href="advanced.html#section-identifier-advanced"><span class="std std-ref">Advanced features</span></a></p></li>
+<li><p><span class="raw-html"><font color="#008000">optimizer</font></span>: Defines the parameters to initialize the optimizer. <span class="raw-html"><font color="#008000">type</font></span> can be any of <a class="reference external" href="https://pytorch.org/docs/stable/optim.html">torch.optim</a>.</p></li>
+<li><p><span class="raw-html"><font color="#008000">trainer</font></span>: Defines the parameters to initialize the Pytorch Lightning trainer.</p></li>
+<li><p><span class="raw-html"><font color="#008000">dataloader</font></span>: Defines the number of workers for the Pytorch Lightning dataloader.</p></li>
+</ul>
+</div></blockquote>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definition of the training stage</span>
+<span class="nt">implementation</span><span class="p">:</span>
+<span class="w">    </span><span class="c1"># Loss function</span>
+<span class="w">    </span><span class="nt">loss</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">user_defined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w"> </span><span class="c1"># Select user-defined model (true/false)</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w">  </span><span class="c1"># Python class name</span>
+<span class="w">        </span><span class="nt">package</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w">  </span><span class="c1"># Python package, none for user defined</span>
+<span class="w">        </span><span class="nt">activation</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w"> </span><span class="c1"># Activation before computing the loss function</span>
+<span class="w">        </span><span class="nt">masked</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w">  </span><span class="c1"># Use masks to compute loss</span>
+<span class="w">        </span><span class="c1"># Parameters for the loss function</span>
+<span class="w">        </span><span class="nt">params</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">reduction</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;none&#39;</span>
+<span class="w">            </span><span class="nt">param_1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="c1"># Definition of the optimizer</span>
+<span class="w">    </span><span class="nt">optimizer</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w">  </span><span class="c1"># Optimizer type</span>
+<span class="w">        </span><span class="nt">lr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w">  </span><span class="c1"># Learning rate</span>
+<span class="w">        </span><span class="nt">weight_decay</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w">  </span><span class="c1"># Weight decay</span>
+<span class="w">        </span><span class="nt">gclip_value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w">  </span><span class="c1"># Gradient clipping values</span>
+<span class="w">    </span><span class="c1"># Definition of PyTorch trainer</span>
+<span class="w">    </span><span class="nt">trainer</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">accelerator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w">  </span><span class="c1"># Choices: gpu/cpu</span>
+<span class="w">        </span><span class="nt">devices</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w"> </span><span class="c1">#</span>
+<span class="w">        </span><span class="nt">epochs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w">  </span><span class="c1"># Number of epochs</span>
+<span class="w">        </span><span class="nt">batch_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w">  </span><span class="c1"># Batch size</span>
+<span class="w">        </span><span class="nt">monitor</span><span class="p">:</span><span class="w">  </span><span class="c1"># Metric to be monitored during training</span>
+<span class="w">            </span><span class="nt">split</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w">  </span><span class="c1"># Choices: train/val/test</span>
+<span class="w">            </span><span class="nt">metric</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w">  </span><span class="c1"># Either loss or a metric&#39;s name to monitor for early stopping and checkpoints</span>
+<span class="w">        </span><span class="nt">monitor_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w">  </span><span class="c1"># Monitor mode (increase or decrease monitored metric value)</span>
+<span class="w">        </span><span class="nt">early_stop</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w">  </span><span class="c1"># Number of steps to perform early stopping</span>
+<span class="w">    </span><span class="c1"># Definition of PyTorch data loader</span>
+<span class="w">    </span><span class="nt">data_loader</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">num_workers</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w"> </span><span class="c1"># Number of CPUs to read the data in parallel</span>
+</pre></div>
+</div>
+</section>
+<section id="defining-the-evaluation">
+<h2>5. Defining the Evaluation<a class="headerlink" href="#defining-the-evaluation" title="Permalink to this heading"></a></h2>
+<p>The toolbox provides several modules for evaluation at inference: metrics, visualizations, characterization and XAI. The metrics module will always be run while the other can be (de)activated. For more details of the capabilities of each module, please refeer to Section <a class="reference internal" href="evaluations.html#section-identifier-evaluations"><span class="std std-ref">Evaluations</span></a>.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Types of chosen evaluations, choices: Visualization, Characterization, XAI</span>
+<span class="nt">evaluation</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">metrics</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">Metric_1</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">param_1</span><span class="p">:</span><span class="w"> </span><span class="nv">...</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># Metric for evaluation, from torchmetrics. Metric_1 has to be the name of the metric as in torchmetrics docs</span>
+
+<span class="w">    </span><span class="nt">visualization</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">activate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w"> </span><span class="c1"># Choices: True/False</span>
+<span class="w">        </span><span class="nt">params</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">param_1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+
+<span class="w">    </span><span class="nt">characterization</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">activate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w"> </span><span class="c1"># Choices: True/False</span>
+<span class="w">        </span><span class="nt">params</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">param_1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+
+<span class="w">    </span><span class="nt">xai</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">activate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w"> </span><span class="c1"># Choices: True/False</span>
+<span class="w">        </span><span class="nt">params</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">param_1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="data.html" class="btn btn-neutral float-left" title="Database" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="models.html" class="btn btn-neutral float-right" title="Available models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Gonzalez-Calabuig, M., Cortés-Andrés, J., Williams, T., Zhang, M., Pellicer-Valero, O.J., Fernández-Torres, M.Á., Camps-Valls, G..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

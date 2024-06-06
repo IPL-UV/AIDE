@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Metrics &mdash; AIDE 0.0.2 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=c1dcd045"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Visualizations" href="visualizations.html" />
+    <link rel="prev" title="Evaluations" href="evaluations.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            AIDE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customization.html">Toolbox customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Available models</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="evaluations.html">Evaluations</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Metrics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#implementation">Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="visualizations.html">Visualizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="characterization.html">Characterization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xai.html">XAI</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api_ref.html">API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="detection.html">Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impacts.html">Impact Assessment</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AIDE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="evaluations.html">Evaluations</a></li>
+      <li class="breadcrumb-item active">Metrics</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/metrics.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="metrics">
+<h1>Metrics<a class="headerlink" href="#metrics" title="Permalink to this heading"></a></h1>
+<p>The metrics module provides a suite of functions to evaluate the performance of the machine learning algorithm. There metrics module is divided into two packages: <a class="reference external" href="https://scikit-learn.org/stable/api/sklearn.metrics.html">scikit-learn</a> for Outlier Detection and <a class="reference external" href="https://lightning.ai/docs/torchmetrics/stable/">TorchMetrics</a> for Detection and Impact Assessment.
+This means over 100+ evaluation metrics are implemented to evaluate the performance of the model.</p>
+<section id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this heading"></a></h2>
+<p>The metrics module is implemented in the <cite>evaluation</cite> module, in which the metrics are defined. To use the metrics from the package, substitute <span class="raw-html"><font color="#008000">Metric_1</font></span> in the code snippets below for the name of the class you want to use (e.g <span class="raw-html"><font color="#008000">roc_auc_score</font></span> for AUROC from scikit-learn or <span class="raw-html"><font color="#008000">AUROC</font></span> for TorchMetrics)</p>
+<p>For OutlierDetection, specify also if the input to the metrics is probabilistic(y_scores) or the predictions(y_pred) with the parameter <span class="raw-html"><font color="#008000">probabilities</font></span> (for more information, see scikit-learn documentation for each specific metric). Then, define as many metrics as you want as follows:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">evaluation</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">metrics</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">Metric_1</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">probabilities</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;True/False&#39;</span><span class="p p-Indicator">,</span><span class="nt"> parameter_1</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;value_parameter_1&#39;</span><span class="p p-Indicator">}</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+<p>For Detection and Impact Assessment, define as many metrics as you want as follows:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">evaluation</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">metrics</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">Metric_1</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">parameter_1</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;value_parameter_1&#39;</span><span class="p p-Indicator">}</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="evaluations.html" class="btn btn-neutral float-left" title="Evaluations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="visualizations.html" class="btn btn-neutral float-right" title="Visualizations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Gonzalez-Calabuig, M., Cortés-Andrés, J., Williams, T., Zhang, M., Pellicer-Valero, O.J., Fernández-Torres, M.Á., Camps-Valls, G..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

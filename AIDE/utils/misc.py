@@ -58,7 +58,7 @@ def plot_temporal_results(path, xticks_labels, labels, outputs_when_event, outpu
     ax.plot(outputs_when_event, c = 'tab:purple', label = 'Event signal', linewidth=3)
     if output_without_event != None:
         ax.plot(output_without_event, c = 'tab:blue', label = 'Background signal', linewidth=3)
-    ax.set_xticks(np.arange(len(xticks_labels))[::5], rotation=60)
+    ax.set_xticks(np.arange(len(xticks_labels))[::5])
     ax.set_xticklabels(xticks_labels[::5], rotation=60)    
     ax.set_ylabel('P(t)', fontsize=20)    
     box = ax.get_position()

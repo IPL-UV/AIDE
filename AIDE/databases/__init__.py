@@ -2,3 +2,5 @@
 # -*- coding: utf-8 -*-
 
 from .DroughtED_database import *
+
+from .DROUGHT_database import *

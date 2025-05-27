@@ -7,7 +7,8 @@ import argparse, yaml
 from datetime import datetime
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-plt.style.use('seaborn-colorblind')
+#plt.style.use('seaborn-colorblind')
+plt.style.use('seaborn-v0_8-colorblind')
 mpl.rcParams['font.size'] = 14
 mpl.rcParams['lines.linewidth'] = 2
 mpl.rcParams['savefig.dpi'] = 300

@@ -746,7 +746,7 @@ def get_multiindex_df(data:np.ndarray, rows:List[List[str]], columns:List[List[s
     row_lens= [len(r) for r in rows]
     column_lens= [len(r) for r in columns]
     assert (*row_lens, *column_lens) == shape, f'{[*row_lens, *column_lens]=} != {shape=} '
-    return pd.DataFrame(data.reshape(np.product(row_lens), np.product(column_lens)), 
+    return pd.DataFrame(data.reshape(np.prod(row_lens), np.prod(column_lens)), 
                         index=row_index, columns=col_index)
 
 def event_at_positon(arr:np.ndarray, t:int, position:str='end') -> np.ndarray: 

@@ -187,7 +187,7 @@ class DROUGHT(torch.utils.data.Dataset):
                                                                             self.data.lon.values[self.block_lon]<lon_boundary_max)))'''
             if self.data_dim > 1:
                 self.block_train = np.zeros((self.block_lat.shape))
-                if self.task == 'Classification':
+                if self.task == 'Classification' or self.task == 'OutlierDetection':
                     self.block_train[0, 0:80] = 1
                 elif self.task == 'ImpactAssessment':
                     self.block_train[0:64, 0:48] = 1
@@ -210,7 +210,7 @@ class DROUGHT(torch.utils.data.Dataset):
 
             self.block_lat = self.block_lat[self.block_idxs]
             self.block_lon = self.block_lon[self.block_idxs]
-            if self.task == "Classification" or self.task == "OutlierDetection":
+            if self.task == "Classification":
                 self.block_time = self.block_time.reshape(-1).astype('int')
                 self.block_time = self.block_time[self.block_idxs]
 
@@ -332,7 +332,7 @@ class DROUGHT(torch.utils.data.Dataset):
         
         for i in np.arange(num_features):
             # Features
-            if self.task == "Classification":
+            if self.task == "Classification" or self.task == "OutlierDetection":
                 # Features
                 feature = self.data[np.array(self.config['features'])[self.config['features_selected'][i]]] \
                     [index:index + eval(self.config['input_size_' + self.period])[2],
@@ -364,7 +364,7 @@ class DROUGHT(torch.utils.data.Dataset):
             (1, eval(self.config['input_size_' + self.period])[2] if self.task=="Classification" else 1,
                 eval(self.config['input_size_' + self.period])[0],
                 eval(self.config['input_size_' + self.period])[1]))
-        if self.task == "Classification":
+        if self.task == "Classification" or self.task == "OutlierDetection":
             item_date = self.data['time'][index:index + eval(self.config['input_size_' + self.mode])[2]].values
             gt_found = np.where(np.in1d(item_date, self.labels['time']))[0]
             gt_aux = self.labels['mask_EMDAT'].sel(lat=self.data.lat[lat:lat + eval(self.config['input_size_' + self.period])[0]],

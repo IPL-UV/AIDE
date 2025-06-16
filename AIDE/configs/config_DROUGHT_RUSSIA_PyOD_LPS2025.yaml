@@ -1,7 +1,7 @@
 # Configuration file
 name: 'AIDE'
 # Addressed task, choices: Classification, OutlierDetection
-task: 'Classification'
+task: 'OutlierDetection'
 # Use a previously saved model to skip train phase
 from_scratch: true
 # Path to the best model, required if from_scrath: false
@@ -66,7 +66,7 @@ arch:
     args:
         contamination: 0.1
         weighted: true
-        white: true
+        whiten: true
         standardization: true
         
     # Model input dimension (1: 1D, 2: 2D)
@@ -88,6 +88,13 @@ implementation:
 
 # Visualization
 evaluation:  
+    metrics:
+        roc_auc_score: {probabilities: True}
+        accuracy_score: {probabilities: False}
+        recall_score: {probabilities: False}
+        average_precision_score: {probabilities: False}
+        precision_score: {probabilities: False}
+        
     visualization:
         activate: true
 

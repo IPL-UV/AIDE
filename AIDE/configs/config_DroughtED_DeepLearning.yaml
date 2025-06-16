@@ -88,7 +88,7 @@ implementation:
     
     # Definition of Pytorch trainer
     trainer:  
-        accelerator: 'cpu' #Pytorch Lightning 2.0
+        accelerator: 'gpu' #Pytorch Lightning 2.0
         devices: 1 #Pytorch Lightning 2.0
         epochs: 200 # Number of epochs 50
         batch_size: 64 # Batch size

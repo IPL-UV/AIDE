@@ -16,21 +16,24 @@ data:
     name: 'DROUGHT'
     data_dim: 3 # Data dimension
     seed_idx: 1
-    root: './databases/Russia' # Database root
-    data_file: 'esdc-russia' # Data filename
-    labels_file: 'Russia_droughts_masks.zarr' # Labels filename
-    lat_slice_train: "59, 43" # Max/min latitude coordinates (train)
-    lon_slice_train: "30, 64.7" # Min/max longitude coordinates (train)
-    input_size_train: (256,256,1) # (256,256,32) # Model input size (lat,lon,time)
-    lat_slice_test: "59, 43" # Max/min latitude coordinates (test)
-    lon_slice_test: "30, 64.7"  # Min/max longitude coordinates (test)
-    input_size_test: (256,256,1)  # (256,256,32) # Model output size (lat,lon,time)
-    time_slice: "'January-2004','December-2013'" # Time interval selected
+    root: './databases/RussiaLPS2025/' # Database root  /data/users/ESDL/
+    data_file: 'ESDC_RUSSIA.nc' # Data filename
+    labels_file: 'GDIS_RUSSIA.nc' # Labels filename
+    lat_slice_train: "51, 39" # Max/min latitude coordinates (train)
+    lon_slice_train: "27.3, 67.3" # Min/max longitude coordinates (train)
+    input_size_train: (48,80,8) # (256,256,32) # Model input size (lat,lon,time)
+    lat_slice_val: "63, 51" # Max/min latitude coordinates (val)
+    lon_slice_val: "27.3, 47.3" # Min/max longitude coordinates (val)
+    input_size_val: (48,80,8) # (256,256,32) # Model input size (lat,lon,time)
+    lat_slice_test: "63, 51" # Max/min latitude coordinates (test)
+    lon_slice_test: "47.3, 67.3"  # Min/max longitude coordinates (test)
+    input_size_test: (48,80,8)  # (256,256,32) # Model output size (lat,lon,time)
+    time_slice: "'January-2003','December-2012'" # Time interval selected
     features: # ECVs included in the database
-        - 'root_moisture'
+        - 'surface_moisture'
         - 'air_temperature_2m'
         - 'evaporation'
-        - 'transpiration'
+        - 'ndvi'
     features_selected: [0,1,2,3] # ECVs selected
     # Directory to save climatology mean values
     climatology_mean_root: './databases/Russia/data_py/climatology_mean'
@@ -42,67 +45,61 @@ data:
     # Train, validation and test slices for each experiment
     train_slice:
         exp1:
-            - "'1-January-2004','30-June-2010'" 
+            - "'1-January-2003','31-December-2010'"
     val_slice:
         exp1:
-            - "'1-July-2010','31-December-2011'"
+            - "'1-January-2003','31-December-2010'"
     test_slice:
         exp1:
-            - "'1-January-2012','31-December-2013'" 
-    batch_size: 4 # Batch size
+            - "'1-January-2009','31-December-2012'"
+    batch_size: 1 # Batch size 16
     num_classes: 2 # Number of categories in the database (drought, non-drought)
+    n_samples: 1000
 
 # Architecture definition
 arch:
     # Select user-defined model (true/false)
-    user_defined: False 
+    user_defined: true 
     # Type of architecture to be used (e.g., 'UNET')
-    type: 'UNET'
-    # Parameters to configure the architecture
-    params:
-        encoder_name: "mobilenet_v2" # Type of encoder used
-        encoder_weights: null
-        encoder_depth: 3
-        decoder_channels: [64, 32, 16]
-        decoder_use_batchnorm: true
-
+    type: 'CNN3D'
     # Model input dimension (1: 1D, 2: 2D)
-    input_model_dim: 2
+    input_model_dim: 3
     # Model output dimension (1: 1D, 2: 2D)
-    output_model_dim: 2
+    output_model_dim: 3
     
 # Definition of the training stage
 implementation:
     # Loss function
-    loss: 
+    loss:
         user_defined: false # Select user-defined model (true/false)
         type: "sigmoid_focal_loss" # Type
-        package: 'torchvision.ops' # Package, none for user defined 
-        activation: 
+        package: 'torchvision.ops' # Package, none for user defined
+        activation:
             type: 'linear' # Activation before computing the loss function
         masked: true # Use masks to compute loss true
         # Parameters for the loss function
         params:
             reduction: 'none'
-            alpha: 0.99
-            gamma: 2 #4.75
+            alpha: 0.98
+            gamma: 1
     # Definition of the optimizer
     optimizer:
         type: "Adam" # Optimizer type
-        lr: 0.0001 # Learning rate
-        weight_decay: 0 # Weight decay
-        gclip_value: 1. # Gradient clipping values
+        params:
+            lr: 0.01 # Learning rate 0.0001
+            weight_decay: 0 # Weight decay
+        gclip_value: 0 # Gradient clipping values
     # Definition of Pytorch trainer
     trainer:  
-        accelerator: 'gpu' #Pytorch Lightning 2.0
+        accelerator: 'cpu' #Pytorch Lightning 2.0
         devices: 1 #Pytorch Lightning 2.0
-        epochs: 100 # # Number of epochs
-        batch_size: 4 # Batch size 16
+        epochs: 500 # # Number of epochs
+        batch_size: 1 # Batch size 16
         monitor: # Metric to be monitored during training
             split: 'val'
-            metric: 'AUROC' 
+            metric: 'F1Score' 
         monitor_mode: 'max' # Monitor mode (increase or decrease monitored metric value)
-        early_stop: 10 # Number of steps to perform early stopping
+        early_stop: 5 # Number of steps to perform early stopping
     # Definition of Pytorch data loader
     data_loader: 
         num_workers: 12 # Number of CPUs to read the data in parallel
@@ -111,6 +108,7 @@ evaluation:
     metrics:
         AUROC: {task: 'binary'}
         AveragePrecision: {task: 'binary'}
+        F1Score: {task: 'binary'}
         Accuracy: {task: 'binary'}
                 
     visualization: 
@@ -127,21 +125,25 @@ evaluation:
             min_area_holes: 64
             min_area_objects: 64
             threshold:
-                F1Score: {task: 'multiclass', num_classes: 4} # predefined threshold or selected threshold metrics for characterization, 0.5 or 'f1_score'
+                F1Score: {task: 'binary'} # predefined threshold or selected threshold metrics for characterization, 0.5 or 'f1_score'
             threshold_lower_is_best: false
     
     xai: 
-        activate: true
+        activate: false
         params:
-            type: 'InputXGradient' #'IntegratedGradients'
-            out_agg_dim: [2,3]
+            type: 'IntegratedGradients'
+            out_agg_dim: [2,3,4]
             params: ~
-            mask: "events" #One of ["none", "events[-full]", "correctness[-full]", "labels[-full]", "custom[-full]"]
-            time_aggregation: true # Time aggregation for characterization purposes
-            min_distance: 100 # minimum euclidean distance between pixels to consider two True pixels connected
-            remove_scant: false
-            min_area_holes: 64
-            min_area_objects: 64
-            threshold:
-                F1Score: {task: 'multiclass', num_classes: 4} # predefined threshold or selected threshold metrics for characterization, 0.5 or 'f1_score'
-            threshold_lower_is_best: false
+            mask: "none" #One of ["none", "events[-full]", "correctness[-full]", "labels[-full]", "custom[-full]"]
+            #time_aggregation: true # Time aggregation for characterization purposes
+            #min_distance: 100 # minimum euclidean distance between pixels to consider two True pixels connected
+            #remove_scant: false
+            #min_area_holes: 64
+            #min_area_objects: 64
+            #threshold:
+            #    F1Score: {task: 'multiclass', num_classes: 4} # predefined threshold or selected threshold metrics for characterization, 0.5 or 'f1_score'
+            #threshold_lower_is_best: false
+
+    custom:
+        activate: false
+        params: ~ 

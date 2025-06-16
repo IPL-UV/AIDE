@@ -7,39 +7,40 @@ from_scratch: true
 # Path to the best model, required if from_scrath: false
 best_run_path: ""
 # Directory to save model outputs and results
-save_path: "experiments/transformer/"
+save_path: "experiments/" 
 # Debug mode: sets inference / xai to only two samples and prints extra info
 debug: false
 
 # Database and DataLoader definition
 data:
     name: 'DROUGHT'
-    data_dim: 1 # Data dimension
+    data_dim: 3 # Data dimension
     seed_idx: 1
-    root: 'databases/Russia/' # Database root  /data/users/ESDL/
+    root: './databases/RussiaLPS2025/' # Database root  /data/users/ESDL/
     data_file: 'ESDC_RUSSIA.nc' # Data filename
     labels_file: 'GDIS_RUSSIA.nc' # Labels filename
     lat_slice_train: "51, 39" # Max/min latitude coordinates (train)
     lon_slice_train: "27.3, 67.3" # Min/max longitude coordinates (train)
-    input_size_train: (1,1,230) # (256,256,32) # Model input size (lat,lon,time)
+    input_size_train: (48,80,8) # (256,256,32) # Model input size (lat,lon,time)
     lat_slice_val: "63, 51" # Max/min latitude coordinates (val)
     lon_slice_val: "27.3, 47.3" # Min/max longitude coordinates (val)
-    input_size_val: (1,1,230) # (256,256,32) # Model input size (lat,lon,time)
+    input_size_val: (48,80,8) # (256,256,32) # Model input size (lat,lon,time)
     lat_slice_test: "63, 51" # Max/min latitude coordinates (test)
     lon_slice_test: "47.3, 67.3"  # Min/max longitude coordinates (test)
-    input_size_test: (1,1,230) #(64,128,8)  # (256,256,32) # Model output size (lat,lon,time)
-    time_slice: "'January-2003','December-2013'" # Time interval selected
+    input_size_test: (48,80,8)  # (256,256,32) # Model output size (lat,lon,time)
+    time_slice: "'January-2003','December-2012'" # Time interval selected
     features: # ECVs included in the database
         - 'surface_moisture'
         - 'air_temperature_2m'
         - 'evaporation'
-    features_selected: [0,1,2] # ECVs selected [0,1,2,3]
+        - 'ndvi'
+    features_selected: [0,1,2,3] # ECVs selected
     # Directory to save climatology mean values
-    climatology_mean_root: 'databases/Russia/data_py/climatology_mean'
+    climatology_mean_root: './databases/Russia/data_py/climatology_mean'
     # Directory to save climatology standard deviation values
-    climatology_std_root: 'databases/Russia/data_py/climatology_std'
+    climatology_std_root: './databases/Russia/data_py/climatology_std'
     # Clip values after pre-processing based on climatology
-    climatology_clipping: false
+    climatology_clipping: true
     nexp: "1" # Number of experiment to be performed
     # Train, validation and test slices for each experiment
     train_slice:
@@ -47,36 +48,25 @@ data:
             - "'1-January-2003','31-December-2010'"
     val_slice:
         exp1:
-            - "'1-January-2006','31-December-2010'"
+            - "'1-January-2003','31-December-2010'"
     test_slice:
         exp1:
-            - "'1-January-2007','31-December-2011'"
+            - "'1-January-2009','31-December-2012'"
+    batch_size: 1 # Batch size 16
     num_classes: 2 # Number of categories in the database (drought, non-drought)
     n_samples: 1000
 
 # Architecture definition
 arch:
     # Select user-defined model (true/false)
-    user_defined: false
+    user_defined: true 
     # Type of architecture to be used (e.g., 'UNET')
-    type: 'tsai_models.TST'
-    # Parameters to configure the architecture
-    params:
-        out_len: 230 
-        c_in: 3 # Input dimension
-        c_out: 1 # Output dimension
-        seq_len: 230
-        d_model: 128 # Hidden dimension
-        n_heads: 4
-        dropout: 0.
-        n_layers: 1
-        fc_dropout: 0.
-
+    type: 'CNN3D'
     # Model input dimension (1: 1D, 2: 2D)
-    input_model_dim: 1
+    input_model_dim: 3
     # Model output dimension (1: 1D, 2: 2D)
-    output_model_dim: 1
-
+    output_model_dim: 3
+    
 # Definition of the training stage
 implementation:
     # Loss function
@@ -90,62 +80,69 @@ implementation:
         # Parameters for the loss function
         params:
             reduction: 'none'
-            alpha: 0.99
-            gamma: 2
+            alpha: 0.98
+            gamma: 1
     # Definition of the optimizer
     optimizer:
         type: "Adam" # Optimizer type
         params:
-            lr: 0.0001 # Learning rate 0.0001
+            lr: 0.01 # Learning rate 0.0001
             weight_decay: 0 # Weight decay
-        gclip_value: 0. # Gradient clipping values
+        gclip_value: 0 # Gradient clipping values
     # Definition of Pytorch trainer
-    trainer:
-        accelerator: 'gpu' #Pytorch Lightning 2.0
+    trainer:  
+        accelerator: 'cpu' #Pytorch Lightning 2.0
         devices: 1 #Pytorch Lightning 2.0
-        epochs: 20 # # Number of epochs
-        batch_size: 8 # Batch size 16
+        epochs: 500 # # Number of epochs
+        batch_size: 1 # Batch size 16
         monitor: # Metric to be monitored during training
             split: 'val'
-            metric: 'F1Score'
+            metric: 'F1Score' 
         monitor_mode: 'max' # Monitor mode (increase or decrease monitored metric value)
         early_stop: 5 # Number of steps to perform early stopping
     # Definition of Pytorch data loader
-    data_loader:
+    data_loader: 
         num_workers: 12 # Number of CPUs to read the data in parallel
 
 evaluation:
-    #test_batch_size: 4096 # Test Batch size 1
     metrics:
         AUROC: {task: 'binary'}
         AveragePrecision: {task: 'binary'}
         F1Score: {task: 'binary'}
         Accuracy: {task: 'binary'}
-
-    visualization:
-        activate: false
+                
+    visualization: 
+        activate: true
         params:
-            time_aggregation: false # Time aggregation for visualization purposes
-            spatial_aggregation: false #(48,80,230) # Spatial aggregation for visualization purposes
-
-    characterization:
-        activate: false
+            time_aggregation: true # Time aggregation for visualization purposes
+    
+    characterization: 
+        activate: true
         params:
             time_aggregation: true # Time aggregation for characterization purposes
-            min_distance: 100 # minimum euclidean distance between pixels to consider two True pixels connected
+            min_distance: 100 # minimum euclidean distance between pixels to consider two True pixels connected 
             remove_scant: false
             min_area_holes: 64
             min_area_objects: 64
             threshold:
-                F1Score: {task: 'multiclass', num_classes: 4} # predefined threshold or selected threshold metrics for characterization, 0.5 or 'f1_score'
+                F1Score: {task: 'binary'} # predefined threshold or selected threshold metrics for characterization, 0.5 or 'f1_score'
             threshold_lower_is_best: false
-
-    xai:
+    
+    xai: 
         activate: false
         params:
-            type: 'InputXGradient' #'IntegratedGradients'
+            type: 'IntegratedGradients'
+            out_agg_dim: [2,3,4]
             params: ~
             mask: "none" #One of ["none", "events[-full]", "correctness[-full]", "labels[-full]", "custom[-full]"]
+            #time_aggregation: true # Time aggregation for characterization purposes
+            #min_distance: 100 # minimum euclidean distance between pixels to consider two True pixels connected
+            #remove_scant: false
+            #min_area_holes: 64
+            #min_area_objects: 64
+            #threshold:
+            #    F1Score: {task: 'multiclass', num_classes: 4} # predefined threshold or selected threshold metrics for characterization, 0.5 or 'f1_score'
+            #threshold_lower_is_best: false
 
     custom:
         activate: false

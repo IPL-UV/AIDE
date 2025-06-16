@@ -59,14 +59,22 @@ data:
 # Architecture definition
 arch:
     # Select user-defined model (true/false)
-    user_defined: true 
+    user_defined: false
     # Type of architecture to be used (e.g., 'UNET')
-    type: 'CNN3D'
+    type: 'tsai_models.GRU'
+    # Parameters to configure the architecture
+    params:
+        out_len: 46 # sequence length at the output
+        c_in: 3 # Input dimension
+        c_out: 1 # Output dimension
+        hidden_size: 100
+        n_layers: 1
+
     # Model input dimension (1: 1D, 2: 2D)
-    input_model_dim: 3
+    input_model_dim: 1
     # Model output dimension (1: 1D, 2: 2D)
-    output_model_dim: 3
-    
+    output_model_dim: 1
+
 # Definition of the training stage
 implementation:
     # Loss function
@@ -81,68 +89,61 @@ implementation:
         params:
             reduction: 'none'
             alpha: 0.98
-            gamma: 1
+            gamma: 2
     # Definition of the optimizer
     optimizer:
         type: "Adam" # Optimizer type
         params:
-            lr: 0.01 # Learning rate 0.0001
+            lr: 0.0001 # Learning rate 0.0001
             weight_decay: 0 # Weight decay
-        gclip_value: 0 # Gradient clipping values
+        gclip_value: 0. # Gradient clipping values
     # Definition of Pytorch trainer
-    trainer:  
+    trainer:
         accelerator: 'cpu' #Pytorch Lightning 2.0
         devices: 1 #Pytorch Lightning 2.0
-        epochs: 500 # # Number of epochs
+        epochs: 1 # # Number of epochs
         batch_size: 1 # Batch size 16
         monitor: # Metric to be monitored during training
             split: 'val'
-            metric: 'F1Score' 
+            metric: 'F1Score'
         monitor_mode: 'max' # Monitor mode (increase or decrease monitored metric value)
-        early_stop: 5 # Number of steps to perform early stopping
+        early_stop: 10 # Number of steps to perform early stopping
     # Definition of Pytorch data loader
-    data_loader: 
+    data_loader:
         num_workers: 12 # Number of CPUs to read the data in parallel
 
 evaluation:
+    #test_batch_size: 4096 # Test Batch size 1
     metrics:
         AUROC: {task: 'binary'}
         AveragePrecision: {task: 'binary'}
         F1Score: {task: 'binary'}
         Accuracy: {task: 'binary'}
-                
-    visualization: 
+
+    visualization:
         activate: true
         params:
-            time_aggregation: true # Time aggregation for visualization purposes
-    
-    characterization: 
-        activate: true
+            time_aggregation: false # Time aggregation for visualization purposes
+            spatial_aggregation: (48,80,46)
+
+    characterization:
+        activate: false
         params:
             time_aggregation: true # Time aggregation for characterization purposes
-            min_distance: 100 # minimum euclidean distance between pixels to consider two True pixels connected 
+            min_distance: 100 # minimum euclidean distance between pixels to consider two True pixels connected
             remove_scant: false
             min_area_holes: 64
             min_area_objects: 64
             threshold:
-                F1Score: {task: 'binary'} # predefined threshold or selected threshold metrics for characterization, 0.5 or 'f1_score'
+                F1Score: {task: 'multiclass', num_classes: 4} # predefined threshold or selected threshold metrics for characterization, 0.5 or 'f1_score'
             threshold_lower_is_best: false
-    
-    xai: 
+
+    xai:
         activate: false
         params:
-            type: 'IntegratedGradients'
-            out_agg_dim: [2,3,4]
+            type: 'InputXGradient' #'IntegratedGradients'
             params: ~
             mask: "none" #One of ["none", "events[-full]", "correctness[-full]", "labels[-full]", "custom[-full]"]
-            #time_aggregation: true # Time aggregation for characterization purposes
-            #min_distance: 100 # minimum euclidean distance between pixels to consider two True pixels connected
-            #remove_scant: false
-            #min_area_holes: 64
-            #min_area_objects: 64
-            #threshold:
-            #    F1Score: {task: 'multiclass', num_classes: 4} # predefined threshold or selected threshold metrics for characterization, 0.5 or 'f1_score'
-            #threshold_lower_is_best: false
 
     custom:
         activate: false

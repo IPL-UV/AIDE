@@ -21,13 +21,13 @@ data:
     labels_file: 'GDIS_RUSSIA.nc' # Labels filename
     lat_slice_train: "51, 39" # Max/min latitude coordinates (train)
     lon_slice_train: "27.3, 67.3" # Min/max longitude coordinates (train)
-    input_size_train: (48,80,8) # (256,256,32) # Model input size (lat,lon,time)
+    input_size_train: (48,80,1) # (256,256,32) # Model input size (lat,lon,time)
     lat_slice_val: "63, 51" # Max/min latitude coordinates (val)
     lon_slice_val: "27.3, 47.3" # Min/max longitude coordinates (val)
-    input_size_val: (48,80,8) # (256,256,32) # Model input size (lat,lon,time)
+    input_size_val: (48,80,1) # (256,256,32) # Model input size (lat,lon,time)
     lat_slice_test: "63, 51" # Max/min latitude coordinates (test)
     lon_slice_test: "47.3, 67.3"  # Min/max longitude coordinates (test)
-    input_size_test: (48,80,8)  # (256,256,32) # Model output size (lat,lon,time)
+    input_size_test: (48,80,1)  # (256,256,32) # Model output size (lat,lon,time)
     time_slice: "'January-2003','December-2012'" # Time interval selected
     features: # ECVs included in the database
         - 'surface_moisture'
@@ -59,91 +59,35 @@ data:
 # Architecture definition
 arch:
     # Select user-defined model (true/false)
-    user_defined: true 
+    user_defined: False 
     # Type of architecture to be used (e.g., 'UNET')
-    type: 'CNN3D'
+    type: 'pca.PCA' # "specifies the type of architecture to be used
+    # Parameters to configure the architecture (see description in PyOD API)
+    args:
+        contamination: 0.1
+        weighted: true
+        white: true
+        standardization: true
+        
     # Model input dimension (1: 1D, 2: 2D)
-    input_model_dim: 3
+    input_model_dim: 1
     # Model output dimension (1: 1D, 2: 2D)
-    output_model_dim: 3
+    output_model_dim: 1
+    # Select 1 out of 100 samples for training or evaluation purposes
+    step_samples_train: 10000
+    step_samples_evaluation: 2500
     
 # Definition of the training stage
 implementation:
-    # Loss function
-    loss:
-        user_defined: false # Select user-defined model (true/false)
-        type: "sigmoid_focal_loss" # Type
-        package: 'torchvision.ops' # Package, none for user defined
-        activation:
-            type: 'linear' # Activation before computing the loss function
-        masked: true # Use masks to compute loss true
-        # Parameters for the loss function
-        params:
-            reduction: 'none'
-            alpha: 0.98
-            gamma: 1
-    # Definition of the optimizer
-    optimizer:
-        type: "Adam" # Optimizer type
-        params:
-            lr: 0.01 # Learning rate 0.0001
-            weight_decay: 0 # Weight decay
-        gclip_value: 0 # Gradient clipping values
     # Definition of Pytorch trainer
     trainer:  
-        accelerator: 'cpu' #Pytorch Lightning 2.0
-        devices: 1 #Pytorch Lightning 2.0
-        epochs: 500 # # Number of epochs
-        batch_size: 1 # Batch size 16
-        monitor: # Metric to be monitored during training
-            split: 'val'
-            metric: 'F1Score' 
-        monitor_mode: 'max' # Monitor mode (increase or decrease monitored metric value)
-        early_stop: 5 # Number of steps to perform early stopping
+        batch_size: 2 # Batch size
     # Definition of Pytorch data loader
     data_loader: 
         num_workers: 12 # Number of CPUs to read the data in parallel
 
-evaluation:
-    metrics:
-        AUROC: {task: 'binary'}
-        AveragePrecision: {task: 'binary'}
-        F1Score: {task: 'binary'}
-        Accuracy: {task: 'binary'}
-                
-    visualization: 
+# Visualization
+evaluation:  
+    visualization:
         activate: true
-        params:
-            time_aggregation: true # Time aggregation for visualization purposes
-    
-    characterization: 
-        activate: true
-        params:
-            time_aggregation: true # Time aggregation for characterization purposes
-            min_distance: 100 # minimum euclidean distance between pixels to consider two True pixels connected 
-            remove_scant: false
-            min_area_holes: 64
-            min_area_objects: 64
-            threshold:
-                F1Score: {task: 'binary'} # predefined threshold or selected threshold metrics for characterization, 0.5 or 'f1_score'
-            threshold_lower_is_best: false
-    
-    xai: 
-        activate: false
-        params:
-            type: 'IntegratedGradients'
-            out_agg_dim: [2,3,4]
-            params: ~
-            mask: "none" #One of ["none", "events[-full]", "correctness[-full]", "labels[-full]", "custom[-full]"]
-            #time_aggregation: true # Time aggregation for characterization purposes
-            #min_distance: 100 # minimum euclidean distance between pixels to consider two True pixels connected
-            #remove_scant: false
-            #min_area_holes: 64
-            #min_area_objects: 64
-            #threshold:
-            #    F1Score: {task: 'multiclass', num_classes: 4} # predefined threshold or selected threshold metrics for characterization, 0.5 or 'f1_score'
-            #threshold_lower_is_best: false
 
-    custom:
-        activate: false
-        params: ~ 

@@ -55,17 +55,25 @@ data:
     batch_size: 1 # Batch size 16
     num_classes: 2 # Number of categories in the database (drought, non-drought)
     n_samples: 1000
-
+    
 # Architecture definition
 arch:
     # Select user-defined model (true/false)
-    user_defined: true 
+    user_defined: False 
     # Type of architecture to be used (e.g., 'UNET')
-    type: 'CNN3D'
+    type: 'UNET'
+    # Parameters to configure the architecture
+    params:
+        encoder_name: "mobilenet_v2" # Type of encoder used mit_b0
+        encoder_weights: null
+        encoder_depth: 1
+        decoder_channels: [32]
+        decoder_use_batchnorm: false
+
     # Model input dimension (1: 1D, 2: 2D)
-    input_model_dim: 3
+    input_model_dim: 2
     # Model output dimension (1: 1D, 2: 2D)
-    output_model_dim: 3
+    output_model_dim: 2
     
 # Definition of the training stage
 implementation:

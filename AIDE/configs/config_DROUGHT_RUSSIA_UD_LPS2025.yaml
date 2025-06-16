@@ -59,21 +59,13 @@ data:
 # Architecture definition
 arch:
     # Select user-defined model (true/false)
-    user_defined: False 
+    user_defined: true 
     # Type of architecture to be used (e.g., 'UNET')
-    type: 'UNET'
-    # Parameters to configure the architecture
-    params:
-        encoder_name: "mobilenet_v2" # Type of encoder used mit_b0
-        encoder_weights: null
-        encoder_depth: 1
-        decoder_channels: [32]
-        decoder_use_batchnorm: false
-
+    type: 'CNN3D'
     # Model input dimension (1: 1D, 2: 2D)
-    input_model_dim: 2
+    input_model_dim: 3
     # Model output dimension (1: 1D, 2: 2D)
-    output_model_dim: 2
+    output_model_dim: 3
     
 # Definition of the training stage
 implementation:

@@ -14,27 +14,27 @@ debug: false
 # Database and DataLoader definition
 data:
     name: 'DROUGHT'
-    data_dim: 3 # Data dimension
+    data_dim: 1 # Data dimension
     seed_idx: 1
     root: './databases/RussiaLPS2025/' # Database root  /data/users/ESDL/
     data_file: 'ESDC_RUSSIA.nc' # Data filename
     labels_file: 'GDIS_RUSSIA.nc' # Labels filename
     lat_slice_train: "51, 39" # Max/min latitude coordinates (train)
     lon_slice_train: "27.3, 67.3" # Min/max longitude coordinates (train)
-    input_size_train: (48,80,8) # (256,256,32) # Model input size (lat,lon,time)
+    input_size_train: (1,1,46) # (256,256,32) # Model input size (lat,lon,time)
     lat_slice_val: "63, 51" # Max/min latitude coordinates (val)
     lon_slice_val: "27.3, 47.3" # Min/max longitude coordinates (val)
-    input_size_val: (48,80,8) # (256,256,32) # Model input size (lat,lon,time)
+    input_size_val: (1,1,46) # (256,256,32) # Model input size (lat,lon,time)
     lat_slice_test: "63, 51" # Max/min latitude coordinates (test)
     lon_slice_test: "47.3, 67.3"  # Min/max longitude coordinates (test)
-    input_size_test: (48,80,8)  # (256,256,32) # Model output size (lat,lon,time)
+    input_size_test: (1,1,46)  # (256,256,32) # Model output size (lat,lon,time)
     time_slice: "'January-2003','December-2012'" # Time interval selected
     features: # ECVs included in the database
         - 'surface_moisture'
         - 'air_temperature_2m'
         - 'evaporation'
         - 'ndvi'
-    features_selected: [0,1,2,3] # ECVs selected
+    features_selected: [0,1,2] # ECVs selected
     # Directory to save climatology mean values
     climatology_mean_root: './databases/Russia/data_py/climatology_mean'
     # Directory to save climatology standard deviation values

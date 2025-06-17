@@ -9,7 +9,7 @@ best_run_path: ""
 # Directory to save model outputs and results
 save_path: "experiments/" 
 # Debug mode: sets inference / xai to only two samples and prints extra info
-debug: 10 #false
+debug: false
 
 # Database and DataLoader definition
 data:
@@ -36,9 +36,9 @@ data:
         - 'ndvi'
     features_selected: [0,1,2,3] # ECVs selected
     # Directory to save climatology mean values
-    climatology_mean_root: './databases/Russia/data_py/climatology_mean'
+    climatology_mean_root: './databases/RussiaLPS2025/data_py/climatology_mean'
     # Directory to save climatology standard deviation values
-    climatology_std_root: './databases/Russia/data_py/climatology_std'
+    climatology_std_root: './databases/RussiaLPS2025/data_py/climatology_std'
     # Clip values after pre-processing based on climatology
     climatology_clipping: true
     nexp: "1" # Number of experiment to be performed
@@ -93,7 +93,7 @@ implementation:
     trainer:  
         accelerator: 'gpu' #Pytorch Lightning 2.0
         devices: 1 #Pytorch Lightning 2.0
-        epochs: 1 #100 # # Number of epochs
+        epochs: 100 # # Number of epochs
         batch_size: 4 # Batch size 16
         monitor: # Metric to be monitored during training
             split: 'val'

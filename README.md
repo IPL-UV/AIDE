@@ -19,7 +19,7 @@ source ./aide_env/bin/activate
 
 
 # 3) Install dependencies
-pip install -r requirements.txt install libs
+pip install -r requirements_lps2025.txt install libs
 
 
 # 4) Run main.py of AIDE using a config file. Some examples:
@@ -32,6 +32,9 @@ python main.py --config=./configs/config_DroughtED_DeepLearning.yaml
 ```
 
 Documentation can be found on [**Read the Docs**](http://aidextremes.readthedocs.org/en/latest), as well as in the [`docs/`](https://github.com/IPL-UV/AIDE/tree/main/docs) on the toolbox source.
+
+## Data for HANDS-ON TRAINING - Advanced Artificial Intelligence for Extreme Event Analysis: Hands-on with the AIDE Toolbox at Living Planet Symposium (LPS) 2025
+[https://drive.google.com/drive/folders/13x91C6HmVTgqffmCNFtldk7RXMUBGTw6?usp=sharing](https://drive.google.com/drive/folders/13x91C6HmVTgqffmCNFtldk7RXMUBGTw6?usp=sharing)
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

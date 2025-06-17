@@ -9,7 +9,7 @@ best_run_path: ""
 # Directory to save model outputs and results
 save_path: "experiments/" 
 # Debug mode: sets inference / xai to only two samples and prints extra info
-debug: false
+debug: 10 #false
 
 # Database and DataLoader definition
 data:
@@ -93,7 +93,7 @@ implementation:
     trainer:  
         accelerator: 'gpu' #Pytorch Lightning 2.0
         devices: 1 #Pytorch Lightning 2.0
-        epochs: 100 # # Number of epochs
+        epochs: 1 #100 # # Number of epochs
         batch_size: 4 # Batch size 16
         monitor: # Metric to be monitored during training
             split: 'val'
@@ -131,18 +131,18 @@ evaluation:
     xai: 
         activate: false
         params:
-            type: 'InputXGradient' #'IntegratedGradients'
-            out_agg_dim: [2,3]
+            type: 'IntegratedGradients'
+            out_agg_dim: [2,3,4]
             params: ~
-            mask: "events" #One of ["none", "events[-full]", "correctness[-full]", "labels[-full]", "custom[-full]"]
-            time_aggregation: true # Time aggregation for characterization purposes
-            min_distance: 100 # minimum euclidean distance between pixels to consider two True pixels connected
-            remove_scant: false
-            min_area_holes: 64
-            min_area_objects: 64
-            threshold:
-                F1Score: {task: 'multiclass', num_classes: 4} # predefined threshold or selected threshold metrics for characterization, 0.5 or 'f1_score'
-            threshold_lower_is_best: false
+            mask: "none" #One of ["none", "events[-full]", "correctness[-full]", "labels[-full]", "custom[-full]"]
+            #time_aggregation: true # Time aggregation for characterization purposes
+            #min_distance: 100 # minimum euclidean distance between pixels to consider two True pixels connected
+            #remove_scant: false
+            #min_area_holes: 64
+            #min_area_objects: 64
+            #threshold:
+            #    F1Score: {task: 'multiclass', num_classes: 4} # predefined threshold or selected threshold metrics for characterization, 0.5 or 'f1_score'
+            #threshold_lower_is_best: false
 
     custom:
         activate: False

@@ -34,7 +34,7 @@ data:
         - 'air_temperature_2m'
         - 'evaporation'
         - 'ndvi'
-    features_selected: [0,1,2] # ECVs selected
+    features_selected: [0,1,2,3] # ECVs selected
     # Directory to save climatology mean values
     climatology_mean_root: './databases/Russia/data_py/climatology_mean'
     # Directory to save climatology standard deviation values
@@ -65,7 +65,7 @@ arch:
     # Parameters to configure the architecture
     params:
         out_len: 46 # sequence length at the output
-        c_in: 3 # Input dimension
+        c_in: 4 # Input dimension
         c_out: 1 # Output dimension
         hidden_size: 100
         n_layers: 1
@@ -99,9 +99,9 @@ implementation:
         gclip_value: 0. # Gradient clipping values
     # Definition of Pytorch trainer
     trainer:
-        accelerator: 'cpu' #Pytorch Lightning 2.0
+        accelerator: 'gpu' #Pytorch Lightning 2.0
         devices: 1 #Pytorch Lightning 2.0
-        epochs: 1 # # Number of epochs
+        epochs: 100 # # Number of epochs
         batch_size: 1 # Batch size 16
         monitor: # Metric to be monitored during training
             split: 'val'

@@ -59,20 +59,10 @@ class DROUGHT(torch.utils.data.Dataset):
         self.data_dim = int(self.config['data_dim'])
 
         # Labels for droughts
-        
-        if self.task == "Classification" or self.task == "OutlierDetection":
-            self.labels = xr.open_dataset(os.path.join(self.config['root'], self.config['labels_file']))
-        elif self.task == "ImpactAssessment":
-            self.labels = xr.open_dataset(data_path)
+        self.labels = xr.open_dataset(os.path.join(self.config['root'], self.config['labels_file']))
         # Temporal slice
         start, end = eval(self.config['time_slice'])
         self.labels = self.labels.sel(time=slice(start,end)) 
-
-        ####################################################################
-        if self.task == 'Classification':
-            start, end = eval("'1-January-2003','31-December-2018'")
-        elif self.task == 'ImpactAssessment':
-            start, end = eval("'1-January-2003','31-December-2009'")
         self.dataset = self.dataset.sel(time=slice(start,end))     
         self.dataset_labels = (self.labels['mask_EMDAT'].sel(time=slice(start,end)).copy(deep = True) > 0)      
         
@@ -108,24 +98,14 @@ class DROUGHT(torch.utils.data.Dataset):
         # Standardization based on climatology
         self.climatology_clipping = self.config['climatology_clipping']
 
-        if self.task == 'ImpactAssessment':
-            features = self.config['features'].copy()
-            features.append(self.config['target_feature'])
-            features_idx = self.config['features_selected'].copy()
-            features_idx.append(len(self.config['features_selected']))
-            list_of_variables = np.array(features)[features_idx]
-        else:
-            list_of_variables = np.array(self.config['features'])[self.config['features_selected']]
+        list_of_variables = np.array(self.config['features'])[self.config['features_selected']]
         
-
         if self.mode == 'train' \
             and not (os.path.isdir(self.config['climatology_mean_root']+'_'+'exp'+str(self.config['nexp'])) \
                      and os.path.isdir(self.config['climatology_std_root']+'_'+'exp'+str(self.config['nexp']))):  
             # # Climatology
             self._compute_climatology(list_of_variables)
             self.data = self._apply_climatology(self.data, np.array(self.config['features'])[self.config['features_selected']])
-            if self.task == 'ImpactAssessment':
-                self.labels = self._apply_climatology(self.labels, self.config['target_feature'])
         
         else:
             # Climatology
@@ -133,11 +113,7 @@ class DROUGHT(torch.utils.data.Dataset):
             self.climatology_std = xr.open_mfdataset(self.config['climatology_std_root']+'_'+'exp'+str(self.config['nexp'])+'/*.zarr', engine='zarr')
 
             # Climatology            
-            self.data = self._apply_climatology(self.data, np.array(self.config['features'])[self.config['features_selected']])
-            if self.task == 'ImpactAssessment':
-                self.labels = self._apply_climatology(self.labels, self.config['target_feature'])      
-
-        #self.data = self.data.where(abs(self.data) < 10)
+            self.data = self._apply_climatology(self.data, np.array(self.config['features'])[self.config['features_selected']])     
 
         # Spatial slice
         start, end = eval(self.config['lat_slice_'+self.period])
@@ -159,45 +135,17 @@ class DROUGHT(torch.utils.data.Dataset):
 
         # Probabilistic sampling, timestep level
         if self.period == 'train':
-            #if self.task == "Classification" or self.task == "OutlierDetection":
             self.block_lat, self.block_lon, self.block_time = np.meshgrid(np.arange(len(self.data.lat.values)),
                                                                               np.arange(len(self.data.lon.values)),
                                                                               np.arange(len(self.data.time.values)),
                                                                               indexing='ij')
-            '''elif self.task == "ImpactAssessment":
-                self.block_lat, self.block_lon = np.meshgrid(np.arange(len(self.data.lat.values)),
-                                                             np.arange(len(self.data.lon.values)),
-                                                             indexing='ij')'''
-
-            '''lat_degrees_per_pixel = np.abs(self.data.lat.values[1]-self.data.lat.values[0])
-            lat_degrees_safeguard = lat_degrees_per_pixel*(eval(self.config['input_size_train'])[0]-1)
-            
-            lat_boundary_min = eval(self.config['lat_slice_val'])[0] + lat_degrees_safeguard
-            lat_boundary_max = eval(self.config['lat_slice_val'])[1] - lat_degrees_safeguard
-                
-            lon_degrees_per_pixel = np.abs(self.data.lon.values[1]-self.data.lon.values[0])
-            lon_degrees_safeguard = lon_degrees_per_pixel*(eval(self.config['input_size_train'])[1]-1)
-            
-            lon_boundary_min = eval(self.config['lon_slice_val'])[0] - lon_degrees_safeguard
-            lon_boundary_max = eval(self.config['lon_slice_test'])[1] + lon_degrees_safeguard
-            
-            self.block_train = np.logical_not(np.logical_and(np.logical_and(self.data.lat.values[self.block_lat]<lat_boundary_min,
-                                                                            self.data.lat.values[self.block_lat]>lat_boundary_max),
-                                                             np.logical_and(self.data.lon.values[self.block_lon]>lon_boundary_min,
-                                                                            self.data.lon.values[self.block_lon]<lon_boundary_max)))'''
             if self.data_dim > 1:
                 self.block_train = np.zeros((self.block_lat.shape))
-                if self.task == 'Classification' or self.task == 'OutlierDetection':
-                    self.block_train[0, 0:80] = 1
-                elif self.task == 'ImpactAssessment':
-                    self.block_train[0:64, 0:48] = 1
-                    self.block_train[48:64, 48:128] = 1
+                self.block_train[0, 0:80] = 1
             else:
                 self.block_train = np.ones((self.block_lat.shape))
                 self.block_train = self.block_train * self.labels['mask_EMDAT'].any(dim='time', keepdims=True).values
             
-            #plt.imshow(self.block_train[:,:,0]), plt.show()# > IMPACT ASSESSMENT
-            #plt.imshow(self.block_train[:,:,0]),plt.colorbar(), plt.show()# > DETECTION
             self.block_lat = self.block_lat.reshape(-1).astype('int')
             self.block_lon = self.block_lon.reshape(-1).astype('int')
             self.block_train = self.block_train.reshape(-1).astype('int')
@@ -332,27 +280,15 @@ class DROUGHT(torch.utils.data.Dataset):
         
         for i in np.arange(num_features):
             # Features
-            if self.task == "Classification" or self.task == "OutlierDetection":
-                # Features
-                feature = self.data[np.array(self.config['features'])[self.config['features_selected'][i]]] \
-                    [index:index + eval(self.config['input_size_' + self.period])[2],
-                          lat:lat + eval(self.config['input_size_' + self.period])[0],
-                          lon:lon + eval(self.config['input_size_' + self.period])[1]]
-            elif self.task == "ImpactAssessment":
-                start, end = eval(self.config[self.period+'_slice']['exp'+str(self.config['nexp'])][0])
-                end = pd.to_datetime(end) - pd.DateOffset(months=1)
-                feature = self.data[np.array(self.config['features'])[
-                    self.config['features_selected'][i]]].sel(time=slice(start,end))
-                feature = feature[:, lat:lat + eval(self.config['input_size_' + self.period])[0],
-                                     lon:lon + eval(self.config['input_size_' + self.period])[1]]
+            feature = self.data[np.array(self.config['features'])[self.config['features_selected'][i]]] \
+                [index:index + eval(self.config['input_size_' + self.period])[2],
+                      lat:lat + eval(self.config['input_size_' + self.period])[0],
+                      lon:lon + eval(self.config['input_size_' + self.period])[1]]
             feature = feature.transpose('time', 'lat', 'lon').values
             features[i, :np.shape(feature)[0], :np.shape(feature)[1], :np.shape(feature)[2]] = feature
             # Masks
             mask = np.logical_not(np.isnan(feature))
             masks[i, :np.shape(mask)[0], :np.shape(mask)[1], :np.shape(mask)[2]] = mask                  
-
-        if self.task == "ImpactAssessment":
-            masks = np.sum(masks,axis=(0,1),keepdims=True) > 0
             
         # Fill missing values with 0s
         features[np.isnan(features)] = 0
@@ -364,19 +300,11 @@ class DROUGHT(torch.utils.data.Dataset):
             (1, eval(self.config['input_size_' + self.period])[2] if self.task=="Classification" else 1,
                 eval(self.config['input_size_' + self.period])[0],
                 eval(self.config['input_size_' + self.period])[1]))
-        if self.task == "Classification" or self.task == "OutlierDetection":
-            item_date = self.data['time'][index:index + eval(self.config['input_size_' + self.mode])[2]].values
-            gt_found = np.where(np.in1d(item_date, self.labels['time']))[0]
-            gt_aux = self.labels['mask_EMDAT'].sel(lat=self.data.lat[lat:lat + eval(self.config['input_size_' + self.period])[0]],
-                                                   lon=self.data.lon[lon:lon + eval(self.config['input_size_' + self.period])[1]],
-                                                   time=item_date[gt_found]).transpose('time', 'lat', 'lon').values > 0
-        elif self.task == "ImpactAssessment":
-            start, end = eval(self.config[self.period+'_slice']['exp'+str(self.config['nexp'])][0])
-            start = pd.to_datetime(end) - pd.DateOffset(months=1)
-            gt_aux = self.labels[self.config['target_feature']].sel(lat=self.data.lat[lat:lat + eval(self.config['input_size_' + self.period])[0]],
-                                                                lon=self.data.lon[lon:lon + eval(self.config['input_size_' + self.period])[1]],
-                                                                time=slice(start,end))
-            gt_aux = gt_aux.transpose('time', 'lat', 'lon').mean("time", keepdims=True).values
+        item_date = self.data['time'][index:index + eval(self.config['input_size_' + self.mode])[2]].values
+        gt_found = np.where(np.in1d(item_date, self.labels['time']))[0]
+        gt_aux = self.labels['mask_EMDAT'].sel(lat=self.data.lat[lat:lat + eval(self.config['input_size_' + self.period])[0]],
+                                               lon=self.data.lon[lon:lon + eval(self.config['input_size_' + self.period])[1]],
+                                               time=item_date[gt_found]).transpose('time', 'lat', 'lon').values > 0
         gt[0][:np.shape(gt_aux)[0], :np.shape(gt_aux)[1], :np.shape(gt_aux)[2]] = gt_aux
         gt[np.isnan(gt)] = 0
             
@@ -465,18 +393,14 @@ class DROUGHT(torch.utils.data.Dataset):
         if self.period == 'train':
             return self.num_total_samples_train
         else:
-            if self.task == "Classification" or self.task == "OutlierDetection":
-                samples_length = eval(self.config['input_size_'+self.period])[2]
-                if self.config['data_dim'] == 1:
-                    
-                    if self.period == 'val':
-                        self.total_points = int((np.size(self.data['lat']) * np.size(self.data['lon'])) / 10 )
-                    else:
-                        self.total_points = np.size(self.data['lat']) * np.size(self.data['lon'])
-                    
-                    return int((self.total_points) * (np.size(self.data['time'])/self.total_config['arch']['params']['out_len']))
-                else: 
-                    return np.size(self.data['time']) - samples_length
-
-            elif self.task == "ImpactAssessment":
-                return 1
+            samples_length = eval(self.config['input_size_'+self.period])[2]
+            if self.config['data_dim'] == 1:
+                
+                if self.period == 'val':
+                    self.total_points = int((np.size(self.data['lat']) * np.size(self.data['lon'])) / 10 )
+                else:
+                    self.total_points = np.size(self.data['lat']) * np.size(self.data['lon'])
+                
+                return int((self.total_points) * (np.size(self.data['time'])/self.total_config['arch']['params']['out_len']))
+            else: 
+                return np.size(self.data['time']) - samples_length

@@ -99,7 +99,7 @@ implementation:
         gclip_value: 0 # Gradient clipping values
     # Definition of Pytorch trainer
     trainer:  
-        accelerator: 'cpu' #Pytorch Lightning 2.0
+        accelerator: 'gpu' #Pytorch Lightning 2.0
         devices: 1 #Pytorch Lightning 2.0
         epochs: 500 # # Number of epochs
         batch_size: 1 # Batch size 16

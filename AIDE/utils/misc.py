@@ -25,9 +25,9 @@ def plot_confusion_matrix(cm , outputs, labels, path):
     """
 
     plt.figure(figsize=(12,10))
-    cm = cm(outputs, labels)
+    cmatrix = cm(outputs, labels)
     sn.set(font_scale=1.4)
-    sn.heatmap(np.round(cm,2), annot=True, annot_kws={"size": 18}, fmt="g", vmax=1)
+    sn.heatmap(np.round(cmatrix,2), annot=True, annot_kws={"size": 18}, fmt="g", vmax=1)
     plt.xlabel('Predicted labels', fontsize=18)
     plt.ylabel('True labels', fontsize=18)
     plt.savefig(path+'/confusionMatrix.png', dpi=300)

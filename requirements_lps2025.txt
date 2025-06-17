@@ -172,7 +172,7 @@ safetensors==0.4.5
 scikit-image==0.25.0
 scikit-learn==1.6.0
 scipy==1.15.0rc2
-seaborn==0.12.2
+seaborn==0.13.2
 segmentation-models-pytorch==0.3.4
 Send2Trash==1.8.3
 sentry-sdk==2.19.2

@@ -111,7 +111,7 @@ class ClassificationVisualizer2D(VisualizerAbstract):
         if self.config['evaluation']['visualization']['params']['time_aggregation']:
             self.temporal_plot_xticks_labels.append(str(time))
             for num_class in self.data_classes:
-                self.__save_data_to_plot_temporal(output[num_class-1], mask, labels, num_class)
+                self.__save_data_to_plot_temporal(output[num_class-1], labels, mask, num_class)
                 
     def __plot_per_class_detection(self, output, label, sample_name, mask):
         """Plot extreme event detection saliency map for each class and a given time step

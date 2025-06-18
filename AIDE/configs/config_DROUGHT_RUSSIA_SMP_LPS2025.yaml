@@ -9,7 +9,7 @@ best_run_path: ""
 # Directory to save model outputs and results
 save_path: "experiments/" 
 # Debug mode: sets inference / xai to only two samples and prints extra info
-debug: false
+debug: 2 #false
 
 # Database and DataLoader definition
 data:
@@ -52,7 +52,7 @@ data:
     test_slice:
         exp1:
             - "'1-January-2009','31-December-2012'"
-    batch_size: 1 # Batch size 16
+    batch_size: 4 # Batch size 16
     num_classes: 2 # Number of categories in the database (drought, non-drought)
     n_samples: 1000
     
@@ -66,9 +66,9 @@ arch:
     params:
         encoder_name: "mobilenet_v2" # Type of encoder used mit_b0
         encoder_weights: null
-        encoder_depth: 1
-        decoder_channels: [32]
-        decoder_use_batchnorm: false
+        encoder_depth: 3
+        decoder_channels: [64, 32, 16]
+        decoder_use_batchnorm: true
 
     # Model input dimension (1: 1D, 2: 2D)
     input_model_dim: 2
@@ -78,36 +78,36 @@ arch:
 # Definition of the training stage
 implementation:
     # Loss function
-    loss:
+    loss: 
         user_defined: false # Select user-defined model (true/false)
         type: "sigmoid_focal_loss" # Type
-        package: 'torchvision.ops' # Package, none for user defined
-        activation:
+        package: 'torchvision.ops' # Package, none for user defined 
+        activation: 
             type: 'linear' # Activation before computing the loss function
         masked: true # Use masks to compute loss true
         # Parameters for the loss function
         params:
             reduction: 'none'
-            alpha: 0.98
-            gamma: 1
+            alpha: 0.99
+            gamma: 2
     # Definition of the optimizer
     optimizer:
         type: "Adam" # Optimizer type
         params:
-            lr: 0.01 # Learning rate 0.0001
+            lr: 0.0001 # Learning rate 0.0001
             weight_decay: 0 # Weight decay
-        gclip_value: 0 # Gradient clipping values
+        gclip_value: 1. # Gradient clipping values
     # Definition of Pytorch trainer
     trainer:  
         accelerator: 'gpu' #Pytorch Lightning 2.0
         devices: 1 #Pytorch Lightning 2.0
-        epochs: 500 # # Number of epochs
-        batch_size: 1 # Batch size 16
+        epochs: 100 # # Number of epochs
+        batch_size: 4 # Batch size 16
         monitor: # Metric to be monitored during training
             split: 'val'
-            metric: 'F1Score' 
+            metric: 'AUROC' 
         monitor_mode: 'max' # Monitor mode (increase or decrease monitored metric value)
-        early_stop: 5 # Number of steps to perform early stopping
+        early_stop: 10 # Number of steps to perform early stopping
     # Definition of Pytorch data loader
     data_loader: 
         num_workers: 12 # Number of CPUs to read the data in parallel
@@ -133,25 +133,25 @@ evaluation:
             min_area_holes: 64
             min_area_objects: 64
             threshold:
-                F1Score: {task: 'binary'} # predefined threshold or selected threshold metrics for characterization, 0.5 or 'f1_score'
+                F1Score: {task: 'multiclass', num_classes: 4} # predefined threshold or selected threshold metrics for characterization, 0.5 or 'f1_score'
             threshold_lower_is_best: false
     
     xai: 
         activate: false
         params:
-            type: 'IntegratedGradients'
+            type: 'InputXGradient' #'IntegratedGradients'
             out_agg_dim: [2,3]
             params: ~
-            mask: "none" #One of ["none", "events[-full]", "correctness[-full]", "labels[-full]", "custom[-full]"]
-            #time_aggregation: true # Time aggregation for characterization purposes
-            #min_distance: 100 # minimum euclidean distance between pixels to consider two True pixels connected
-            #remove_scant: false
-            #min_area_holes: 64
-            #min_area_objects: 64
-            #threshold:
-            #    F1Score: {task: 'multiclass', num_classes: 4} # predefined threshold or selected threshold metrics for characterization, 0.5 or 'f1_score'
-            #threshold_lower_is_best: false
+            mask: "events" #One of ["none", "events[-full]", "correctness[-full]", "labels[-full]", "custom[-full]"]
+            time_aggregation: true # Time aggregation for characterization purposes
+            min_distance: 100 # minimum euclidean distance between pixels to consider two True pixels connected
+            remove_scant: false
+            min_area_holes: 64
+            min_area_objects: 64
+            threshold:
+                F1Score: {task: 'multiclass', num_classes: 4} # predefined threshold or selected threshold metrics for characterization, 0.5 or 'f1_score'
+            threshold_lower_is_best: false
 
     custom:
-        activate: false
+        activate: False
         params: ~ 

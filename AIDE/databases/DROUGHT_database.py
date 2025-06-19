@@ -161,6 +161,11 @@ class DROUGHT(torch.utils.data.Dataset):
             if self.task == "Classification":
                 self.block_time = self.block_time.reshape(-1).astype('int')
                 self.block_time = self.block_time[self.block_idxs]
+        
+        if self.period == 'val':
+            self.total_points = int((np.size(self.data['lat']) * np.size(self.data['lon'])) / 10 )
+        else:
+            self.total_points = np.size(self.data['lat']) * np.size(self.data['lon'])
 
     def _compute_climatology(self, list_of_variables):
         """Compute annual cycle, mean and standard deviation for data normalization.
@@ -395,12 +400,6 @@ class DROUGHT(torch.utils.data.Dataset):
         else:
             samples_length = eval(self.config['input_size_'+self.period])[2]
             if self.config['data_dim'] == 1:
-                
-                if self.period == 'val':
-                    self.total_points = int((np.size(self.data['lat']) * np.size(self.data['lon'])) / 10 )
-                else:
-                    self.total_points = np.size(self.data['lat']) * np.size(self.data['lon'])
-                
                 return int((self.total_points) * (np.size(self.data['time'])/self.total_config['arch']['params']['out_len']))
             else: 
                 return np.size(self.data['time']) - samples_length

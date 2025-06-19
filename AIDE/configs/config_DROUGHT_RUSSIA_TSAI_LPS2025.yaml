@@ -123,7 +123,7 @@ evaluation:
     visualization:
         activate: true
         params:
-            time_aggregation: false # Time aggregation for visualization purposes
+            time_aggregation: true # Time aggregation for visualization purposes
             spatial_aggregation: (48,80,46)
 
     characterization:

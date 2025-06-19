@@ -9,7 +9,7 @@ best_run_path: ""
 # Directory to save model outputs and results
 save_path: "experiments/" 
 # Debug mode: sets inference / xai to only two samples and prints extra info
-debug: 2 #false
+debug: false
 
 # Database and DataLoader definition
 data:
@@ -59,16 +59,16 @@ data:
 # Architecture definition
 arch:
     # Select user-defined model (true/false)
-    user_defined: False 
+    user_defined: false 
     # Type of architecture to be used (e.g., 'UNET')
     type: 'UNET'
     # Parameters to configure the architecture
     params:
         encoder_name: "mobilenet_v2" # Type of encoder used mit_b0
         encoder_weights: null
-        encoder_depth: 3
-        decoder_channels: [64, 32, 16]
-        decoder_use_batchnorm: true
+        encoder_depth: 1
+        decoder_channels: [32]
+        decoder_use_batchnorm: false
 
     # Model input dimension (1: 1D, 2: 2D)
     input_model_dim: 2

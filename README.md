@@ -33,7 +33,12 @@ python main.py --config=./configs/config_DroughtED_DeepLearning.yaml
 
 Documentation can be found on [**Read the Docs**](http://aidextremes.readthedocs.org/en/latest), as well as in the [`docs/`](https://github.com/IPL-UV/AIDE/tree/main/docs) on the toolbox source.
 
-## Data for HANDS-ON TRAINING - Advanced Artificial Intelligence for Extreme Event Analysis: Hands-on with the AIDE Toolbox at Living Planet Symposium (LPS) 2025
+## Instructions and data for HANDS-ON TRAINING - Advanced Artificial Intelligence for Extreme Event Analysis: Hands-on with the AIDE Toolbox at Living Planet Symposium (LPS) 2025
+
+To clone the repository, use: ```git clone -b lps2025 https://github.com/IPL-UV/AIDE.git```
+
+Data:
+
 [https://drive.google.com/drive/folders/13x91C6HmVTgqffmCNFtldk7RXMUBGTw6?usp=sharing](https://drive.google.com/drive/folders/13x91C6HmVTgqffmCNFtldk7RXMUBGTw6?usp=sharing)
 
 ## Contributing

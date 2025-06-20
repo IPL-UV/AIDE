@@ -19,7 +19,7 @@ source ./aide_env/bin/activate
 
 
 # 3) Install dependencies
-pip install -r requirements_lps2025.txt install libs
+pip install -r requirements_lps2025.txt
 
 
 # 4) Run main.py of AIDE using a config file. Some examples:

@@ -52,7 +52,7 @@ If you use this code for your research, please cite **The AIDE Toolbox: AI for D
 Gonzalez-Calabuig, M., Cortés-Andrés, J., Williams, T., Zhang, M., Pellicer-Valero, O.J., Fernández-Torres, M.Á., Camps-Valls, G.: The AIDE Toolbox: AI for Disentangling Extreme Events. IEEE Geoscience and Remote Sensing Magazine 12(3), 1–8 (2024). https://doi.org/10.1109/MGRS.2024.3382544
 
 ## Acknowledgement
-This project has received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement 101003469.
+This project has received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement 101003469. The authors gratefully acknowledge the computer resources at Artemisa and the technical support provided by the Instituto de Fisica Corpuscular, IFIC(CSIC-UV). Artemisa is co-funded by the European Union through the 2014-2020 ERDF Operative Programme of Comunitat Valenciana, project IDIFEDER/2018/048. 
 
 [<img src="AIDE/tutorials/imgs/xaida_logo.png" width="130" />](AIDE/tutorials/imgs/xaida_logo.png)
 
